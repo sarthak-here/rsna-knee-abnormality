@@ -1,0 +1,22 @@
+{
+  "id": "sarthaksharma14/rsna-knee-optuna-gold-search",
+  "title": "RSNA Knee Optuna Gold Search",
+  "code_file": "optuna_gold_search.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "dreaddevelopment/raptor-knee-widedense"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "kernel_sources": [
+    "dreaddevelopment/knee-mri-twelve-findings-from-a-single-model"
+  ],
+  "model_sources": []
+}

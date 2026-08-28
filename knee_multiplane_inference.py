@@ -4,7 +4,7 @@
 This notebook takes a knee MRI study and scores twelve findings at once: ACL tear, MCL tear,
 medial and lateral meniscus tears, osteoarthritis in the medial, lateral and patellofemoral
 compartments, joint effusion, synovitis, a Baker's cyst, bone contusion and fracture. It scores
-0.924 on the public leaderboard using one model, with no ensembling and no test-time augmentation.
+the public leaderboard using one checkpoint with two complementary slice-window views.
 
 This is the inference half of the work. The model was trained separately and its weights are
 attached as a dataset, so this notebook only loads them and predicts:
@@ -95,7 +95,7 @@ CROP_MM = 140.0
 SLOTS = [("Sagittal", 1, 18), ("Sagittal", 0, 14), ("Coronal", 1, 12),
          ("Coronal", 0, 8), ("Axial", -1, 12)]
 MAXS = sum(s[2] for s in SLOTS)                     # 64
-K_EVAL = 42   # every window position the volume holds, not an evenly spaced subset
+K_EVAL = 42   # fallback for checkpoints that do not declare their evaluation window count
 NORM = "imagenet"
 LAB = ["ACL", "MCL", "Medial Meniscus", "Lateral Meniscus", "Medial OA", "Lateral OA",
        "PF OA", "Effusion", "Synovitis", "Baker's", "Contusion", "Fracture"]
@@ -125,7 +125,8 @@ _STD = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
 # Biggest gains land on the findings that were capping us: Lateral Meniscus +0.071,
 # Fracture +0.057, Lateral OA +0.048, Medial Meniscus +0.035, ACL +0.028.
 ARMS = [
-    {"file": "raptor_ft_coatnet_v4_full.pt", "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k", "res": 384, "w": 1.0},
+    {"name": "full_k24", "file": "raptor_ft_coatnet_v4_full.pt", "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k", "res": 384, "k": 24, "w": 0.5},
+    {"name": "full_k56", "file": "raptor_ft_coatnet_v4_full.pt", "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k", "res": 384, "k": 56, "w": 0.5},
 ]
 
 
@@ -427,39 +428,46 @@ def main():
     # arms simultaneously OOM'd system RAM on the full hidden test. Each study is re-preprocessed
     # per arm (build_study is cheap vs inference) and every per-study buffer is freed. Same models,
     # same windowing, same rank-mean blend -> identical 0.8893 result, just serialized.
-    arm_failures = []
-    for a, arm in enumerate(ARMS):
-        wp = find_weight_file(arm["file"])
-        model, res = load_model(wp, arm["arch"], arm["res"], dev)
-        print(f"[arm {a}] loaded {arm['file']} | res {res} | {time.time()-t0:.0f}s", flush=True)
-        failures = 0
+    arm_failures = [0 for _ in ARMS]
+    weight_files = list(dict.fromkeys(arm["file"] for arm in ARMS))
+    for weight_file in weight_files:
+        group = [(a, arm) for a, arm in enumerate(ARMS) if arm["file"] == weight_file]
+        template = group[0][1]
+        wp = find_weight_file(weight_file)
+        model, res = load_model(wp, template["arch"], template["res"], dev)
+        print(f"loaded {weight_file} | res {res} | views {[arm['name'] for _, arm in group]} | {time.time()-t0:.0f}s", flush=True)
         for i, sid in enumerate(test_ids):
             try:
                 vol, mask = build_study(sid, SER, tsdir, reader)
-                xw = eval_windows(vol, mask, k=K_EVAL, res=res, norm=NORM)
-                arm_probs[a][i] = infer_probs(model, xw, dev)
-                del vol, mask, xw
+                for a, arm in group:
+                    xw = eval_windows(vol, mask, k=int(arm.get("k", K_EVAL)), res=res, norm=NORM)
+                    arm_probs[a][i] = infer_probs(model, xw, dev)
+                    del xw
+                del vol, mask
             except Exception as e:
-                failures += 1
-                print(f"  [arm {a}] study {i} {sid[:16]} FALLBACK ({type(e).__name__}: {e})", flush=True)
+                for a, _ in group:
+                    arm_failures[a] += 1
+                print(f"  study {i} {sid[:16]} FALLBACK ({type(e).__name__}: {e})", flush=True)
             if (i + 1) % 100 == 0 or i + 1 == N:
-                print(f"  [arm {a}] {i+1}/{N} | {time.time()-t0:.0f}s", flush=True)
+                print(f"  {weight_file}: {i+1}/{N} | {time.time()-t0:.0f}s", flush=True)
         del model
         gc.collect()
         if str(dev).startswith("cuda"):
             torch.cuda.empty_cache()
-        arm_failures.append(failures)
+        print(f"freed {weight_file} | {time.time()-t0:.0f}s", flush=True)
+
+    for a, failures in enumerate(arm_failures):
         allowed = max(1, int(np.ceil(0.02 * N)))
         if failures > allowed:
             raise RuntimeError(f"arm {a} failed on {failures}/{N} studies; refusing fallback-heavy output")
-        print(f"[arm {a}] done + freed | failures {failures}/{N} | {time.time()-t0:.0f}s", flush=True)
+        print(f"[arm {a}] {ARMS[a]['name']} failures {failures}/{N}", flush=True)
 
     # WEIGHTED rank-mean blend across the test set, per finding (the offline recipe).
     # Weights come from ARMS[*]["w"] and are normalised here, so dropping/adding an arm can
     # never silently change the scale. Falls back to equal weights if none are declared.
     _w = np.array([float(a.get("w", 1.0)) for a in ARMS], dtype=np.float64)
     _w = _w / _w.sum()
-    print(f"[blend] weighted rank-mean w={dict(zip([a['file'] for a in ARMS], _w.round(4)))}", flush=True)
+    print(f"[blend] weighted rank-mean w={dict(zip([a['name'] for a in ARMS], _w.round(4)))}", flush=True)
     ranks = np.tensordot(_w, np.stack([rankpct(np.clip(p, 0, 1)) for p in arm_probs]),
                          axes=(0, 0))                                          # (N,12) in [0,1]
     if not np.isfinite(ranks).all():

@@ -7,7 +7,8 @@ GPU inference pipeline for detecting 12 knee MRI findings from multi-series DICO
 - Selects sagittal, coronal, and axial MRI series using the competition metadata.
 - Orders slices from DICOM geometry and normalizes each selected series independently.
 - Samples a fixed 64-slice study representation with a physical 140 mm crop.
-- Scores 42 adjacent three-slice windows with a CoAtNet backbone and finding-specific attention.
+- Scores complementary 24-window and 56-window views with one CoAtNet checkpoint and finding-specific attention.
+- Blends both views with equal-weight percentile ranks, selected by nested Optuna evaluation.
 - Produces rank-normalized probabilities for all 12 targets.
 - Preserves every test study with neutral fallback predictions if an individual study cannot be decoded.
 
