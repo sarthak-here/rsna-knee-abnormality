@@ -1,0 +1,22 @@
+{
+  "id": "sarthaksharma14/rsna-knee-multiplane-mri-inference",
+  "title": "RSNA Knee Multiplane MRI Inference",
+  "code_file": "knee_multiplane_inference.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "dreaddevelopment/raptor-knee-widedense"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "kernel_sources": [
+    "dreaddevelopment/knee-mri-twelve-findings-from-a-single-model"
+  ],
+  "model_sources": []
+}
