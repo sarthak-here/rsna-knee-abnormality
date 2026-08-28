@@ -22,3 +22,18 @@ The private Kaggle experiment evaluates inference settings against the 58 radiol
 The fixed blend improved macro AUC by 0.00449 and beat the baseline in 91.7% of 1,500 paired bootstrap samples. Flip inference reduced accuracy, and the SWA checkpoint did not improve on the selected standard-checkpoint views.
 
 The experiment source is in `optuna-gold-search/`. Generated predictions and model weights are intentionally excluded from Git.
+
+## Expanded window search
+
+`optuna-window-search/` caches backbone features and evaluates window count, left and right trimming, sampling density, and phase. It completed 1,250 Optuna trials covering 1,194 distinct configurations.
+
+- Existing feature-cache baseline: 0.91269
+- Best all-gold configuration: 0.92006
+- Nested out-of-fold result: 0.91216
+- Out-of-fold delta: -0.00052
+
+The apparent all-gold improvement did not generalize, so it was rejected and never promoted to production.
+
+## Diverse swarm validation
+
+`swarm-0936-validation/` validates an attributed public ensemble combining DINO, RadImageNet, MaxSpan, WideDense, and dual CoAtNet predictions. The visible test completed every branch, verified checkpoint fingerprints, and produced a valid submission in 163 seconds. This branch was submitted separately because its public reference score is 0.936, materially above the 0.924 single-checkpoint baseline.

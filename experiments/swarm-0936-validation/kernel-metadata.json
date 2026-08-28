@@ -1,0 +1,26 @@
+{
+  "id": "sarthaksharma14/rsna-knee-swarm-0936-validation",
+  "title": "RSNA Knee Swarm 0936 Validation",
+  "code_file": "rsna-knee-swarm-0936-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "dreaddevelopment/raptor-knee-maxspan",
+    "dreaddevelopment/raptor-knee-widedense",
+    "tonylica/rsna-knee-bend-dinov3-0917-repro-assets"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "kernel_sources": [
+    "cemalata/rsna-knee-swarm-0-936-repro"
+  ],
+  "model_sources": [
+    "metaresearch/dinov2/PyTorch/small/1"
+  ]
+}
