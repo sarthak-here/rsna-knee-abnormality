@@ -1,0 +1,27 @@
+{
+  "id": "sarthaksharma14/rsna-knee-orthodiffusion-residual",
+  "title": "RSNA Knee OrthoDiffusion Residual",
+  "code_file": "orthodiffusion-residual-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "dreaddevelopment/raptor-knee-maxspan",
+    "dreaddevelopment/raptor-knee-widedense",
+    "prvsiyan/orthodiffusion-official-knee-mri-foundation",
+    "tonylica/rsna-knee-bend-dinov3-0917-repro-assets"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "kernel_sources": [
+    "prvsiyan/head-and-shoulders-knees-and-toes"
+  ],
+  "model_sources": [
+    "metaresearch/dinov2/PyTorch/small/1"
+  ]
+}
