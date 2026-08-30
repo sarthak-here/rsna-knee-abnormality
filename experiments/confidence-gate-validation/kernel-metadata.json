@@ -1,0 +1,26 @@
+{
+  "id": "sarthaksharma14/rsna-knee-confidence-gate-validation",
+  "title": "RSNA Knee Confidence Gate Validation",
+  "code_file": "confidence-gate-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "dreaddevelopment/raptor-knee-maxspan",
+    "dreaddevelopment/raptor-knee-widedense",
+    "tonylica/rsna-knee-bend-dinov3-0917-repro-assets"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "kernel_sources": [
+    "romantamrazov/rsna-knee-dinosaur-v4"
+  ],
+  "model_sources": [
+    "metaresearch/dinov2/PyTorch/small/1"
+  ]
+}

@@ -37,3 +37,11 @@ The apparent all-gold improvement did not generalize, so it was rejected and nev
 ## Diverse swarm validation
 
 `swarm-0936-validation/` validates an attributed public ensemble combining DINO, RadImageNet, MaxSpan, WideDense, and dual CoAtNet predictions. The visible test completed every branch, verified checkpoint fingerprints, and produced a valid submission in 163 seconds. This branch was submitted separately because its public reference score is 0.936, materially above the 0.924 single-checkpoint baseline.
+
+## Confidence-gated ensemble validation
+
+`confidence-gate-validation/` evaluates the accessible DINOsaur V5.2 tri-expert ensemble while preserving the original public notebook attribution. The Kaggle run completed successfully with 20 DINO members, five DINOv3 folds, V18 calibration, MaxSpan v5, and WideDense v4/CoAtNet branches. Its generated `submission.csv` passed strict validation against the official test IDs, row order, 13-column schema, finite-value checks, and probability bounds.
+
+The visible three-row test set is too small for a meaningful confidence gate, so the notebook safely defers the gate there and activates it only during hidden scoring. The exact completed notebook version was submitted as Kaggle submission `55894162`; its public score is pending.
+
+An OrthoDiffusion residual candidate was also investigated but rejected because its required fine-tuned specialist checkpoints are private and unavailable. No unverifiable result from that branch was submitted.
