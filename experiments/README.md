@@ -42,6 +42,6 @@ The apparent all-gold improvement did not generalize, so it was rejected and nev
 
 `confidence-gate-validation/` evaluates the accessible DINOsaur V5.2 tri-expert ensemble while preserving the original public notebook attribution. The Kaggle run completed successfully with 20 DINO members, five DINOv3 folds, V18 calibration, MaxSpan v5, and WideDense v4/CoAtNet branches. Its generated `submission.csv` passed strict validation against the official test IDs, row order, 13-column schema, finite-value checks, and probability bounds.
 
-The visible three-row test set is too small for a meaningful confidence gate, so the notebook safely defers the gate there and activates it only during hidden scoring. The exact completed notebook version was submitted as Kaggle submission `55894162`; its public score is pending.
+The visible three-row test set is too small for a meaningful confidence gate, so the notebook safely defers the gate there and activates it only during hidden scoring. The exact completed notebook version was submitted as Kaggle submission `55894162` and scored `0.936` publicly. This ties the existing diverse-swarm baseline rather than improving it, so the validated `0.936` submission remains the benchmark.
 
 An OrthoDiffusion residual candidate was also investigated but rejected because its required fine-tuned specialist checkpoints are private and unavailable. No unverifiable result from that branch was submitted.
