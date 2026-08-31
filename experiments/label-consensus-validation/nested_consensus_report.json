@@ -1,0 +1,106 @@
+{
+  "protocol": "100 repeated target-wise nested stratified five-fold searches; 0.25 simplex; no fold sees validation labels",
+  "sources": [
+    "lixin_sol56",
+    "steven_full",
+    "steven_v2",
+    "steven_v4",
+    "pilkwang_v2"
+  ],
+  "baseline": "steven_v4",
+  "baseline_macro_auc": 0.8927073353343263,
+  "repeats": 20,
+  "nested_delta": {
+    "mean": -0.009813140424280525,
+    "median": -0.009858896090511826,
+    "p_improve": 0.0,
+    "q05": -0.015555808777286411,
+    "q95": -0.0042386736167498
+  },
+  "median_weights_by_target": {
+    "ACL": {
+      "lixin_sol56": 0.0,
+      "steven_full": 0.0,
+      "steven_v2": 0.75,
+      "steven_v4": 0.25,
+      "pilkwang_v2": 0.0
+    },
+    "MCL": {
+      "lixin_sol56": 0.0,
+      "steven_full": 0.0,
+      "steven_v2": 0.0,
+      "steven_v4": 0.0,
+      "pilkwang_v2": 0.75
+    },
+    "Medial Meniscus": {
+      "lixin_sol56": 0.0,
+      "steven_full": 0.0,
+      "steven_v2": 0.25,
+      "steven_v4": 0.5,
+      "pilkwang_v2": 0.5
+    },
+    "Lateral Meniscus": {
+      "lixin_sol56": 0.25,
+      "steven_full": 0.0,
+      "steven_v2": 0.0,
+      "steven_v4": 0.0,
+      "pilkwang_v2": 0.0
+    },
+    "Medial OA": {
+      "lixin_sol56": 0.0,
+      "steven_full": 0.0,
+      "steven_v2": 0.0,
+      "steven_v4": 0.875,
+      "pilkwang_v2": 0.0
+    },
+    "Lateral OA": {
+      "lixin_sol56": 0.0,
+      "steven_full": 0.0,
+      "steven_v2": 0.0,
+      "steven_v4": 1.0,
+      "pilkwang_v2": 0.0
+    },
+    "PF OA": {
+      "lixin_sol56": 0.0,
+      "steven_full": 0.0,
+      "steven_v2": 0.0,
+      "steven_v4": 0.75,
+      "pilkwang_v2": 0.25
+    },
+    "Effusion": {
+      "lixin_sol56": 0.25,
+      "steven_full": 0.0,
+      "steven_v2": 0.0,
+      "steven_v4": 0.5,
+      "pilkwang_v2": 0.25
+    },
+    "Synovitis": {
+      "lixin_sol56": 0.0,
+      "steven_full": 0.0,
+      "steven_v2": 0.0,
+      "steven_v4": 0.75,
+      "pilkwang_v2": 0.25
+    },
+    "Baker's": {
+      "lixin_sol56": 0.0,
+      "steven_full": 0.0,
+      "steven_v2": 0.25,
+      "steven_v4": 0.0,
+      "pilkwang_v2": 0.75
+    },
+    "Contusion": {
+      "lixin_sol56": 0.75,
+      "steven_full": 0.0,
+      "steven_v2": 0.0,
+      "steven_v4": 0.25,
+      "pilkwang_v2": 0.0
+    },
+    "Fracture": {
+      "lixin_sol56": 0.25,
+      "steven_full": 0.0,
+      "steven_v2": 0.0,
+      "steven_v4": 0.0,
+      "pilkwang_v2": 0.75
+    }
+  }
+}
