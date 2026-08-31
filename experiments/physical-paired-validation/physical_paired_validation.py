@@ -288,7 +288,11 @@ class AttentionHead(nn.Module):
 def macro_auc(y, p):
     scores=[]
     for j in range(y.shape[1]):
-        if len(np.unique(y[:,j]))>1: scores.append(roc_auc_score(y[:,j],p[:,j]))
+        truth = y[:, j]
+        if not np.isin(np.unique(truth), (0.0, 1.0)).all():
+            truth = (truth >= 0.5).astype(np.uint8)
+        if len(np.unique(truth)) > 1:
+            scores.append(roc_auc_score(truth, p[:, j]))
     return float(np.mean(scores))
 
 
@@ -358,4 +362,6 @@ def main():
 
 
 if __name__=="__main__": main()
+
+
 
