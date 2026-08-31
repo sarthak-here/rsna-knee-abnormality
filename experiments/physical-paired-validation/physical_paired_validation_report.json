@@ -1,0 +1,69 @@
+{
+  "contract": "private paired validation; gold evaluation only; no submission",
+  "encoder": "RadImageNet ResNet-50",
+  "encoder_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "weak_labels": "stevenleehans llm_labels_v4_blend.csv",
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20260901,
+      "incumbent_weak_val_auc": 0.8313894964317144,
+      "canonical_weak_val_auc": 0.7881402334365301,
+      "incumbent_gold_auc": 0.8504074625359532,
+      "canonical_gold_auc": 0.7799515448860775,
+      "delta": -0.07045591764987569
+    },
+    {
+      "seed": 20260902,
+      "incumbent_weak_val_auc": 0.8241012368030273,
+      "canonical_weak_val_auc": 0.7793134885328071,
+      "incumbent_gold_auc": 0.8590998524700258,
+      "canonical_gold_auc": 0.768220335510045,
+      "delta": -0.09087951695998087
+    },
+    {
+      "seed": 20260903,
+      "incumbent_weak_val_auc": 0.8370128551120398,
+      "canonical_weak_val_auc": 0.7879208981637018,
+      "incumbent_gold_auc": 0.8558380234597629,
+      "canonical_gold_auc": 0.7647153922825574,
+      "delta": -0.09112263117720554
+    },
+    {
+      "seed": 20260904,
+      "incumbent_weak_val_auc": 0.8257956423093261,
+      "canonical_weak_val_auc": 0.7713913084879992,
+      "incumbent_gold_auc": 0.8482122631505721,
+      "canonical_gold_auc": 0.7593779873875098,
+      "delta": -0.08883427576306224
+    },
+    {
+      "seed": 20260905,
+      "incumbent_weak_val_auc": 0.8198201413425021,
+      "canonical_weak_val_auc": 0.7465812527366095,
+      "incumbent_gold_auc": 0.8607466146508479,
+      "canonical_gold_auc": 0.7628569627694487,
+      "delta": -0.0978896518813992
+    }
+  ],
+  "ensemble": {
+    "incumbent_gold_auc": 0.8602212485734322,
+    "canonical_gold_auc": 0.7743594299641985,
+    "delta": -0.0858618186092337
+  },
+  "bootstrap": {
+    "mean": -0.08590829717176131,
+    "p_improve": 0.0,
+    "q025": -0.13341721763943248,
+    "q975": -0.04103317443187093
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": false,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "passed": false,
+  "submission_created": false
+}
