@@ -1,0 +1,74 @@
+{
+  "experiment": "MedicalNet 3D ResNet-50 frozen volumetric probe",
+  "provenance": {
+    "backbone": "Tencent MedicalNet / Med3D ResNet-50 pretrained on 23 datasets",
+    "weights": "royceplayz/rsna-medicalnet-resnet50-weights/resnet_50_23dataset.pth",
+    "weak_labels": "stevenleehans/rsna-knee-llm-report-labels/llm_labels_v4_blend.csv",
+    "gold_rows_used_for_training": 0
+  },
+  "screening_control": "public RadImageNet E9 OOF; not the locked 0.936 ensemble",
+  "screening_control_macro_auc": 0.8543239133509962,
+  "medicalnet_macro_auc": 0.6430367175723692,
+  "fixed_20pct_blend_macro_auc": 0.8471290019842524,
+  "fixed_20pct_delta_vs_control": -0.0071949113667437725,
+  "seed_blend_deltas": [
+    -0.005397745517657371,
+    -0.008011345223854716,
+    -0.00851876521001893,
+    -0.008840477563210158,
+    -0.006312356618696002
+  ],
+  "positive_seed_count": 0,
+  "bootstrap": {
+    "draws": 2000,
+    "mean": -0.0072535047639681665,
+    "p_improve": 0.051,
+    "q025": -0.01610831465733543,
+    "q975": 0.0014271552878548739
+  },
+  "per_target": {
+    "screening_control": {
+      "ACL": 0.8651960784313725,
+      "MCL": 0.891156462585034,
+      "Medial Meniscus": 0.8137019230769231,
+      "Lateral Meniscus": 0.7776397515527951,
+      "Medial OA": 0.9457364341085271,
+      "Lateral OA": 0.7911025145067698,
+      "PF OA": 0.8314028314028313,
+      "Effusion": 0.9229813664596274,
+      "Synovitis": 0.8100358422939068,
+      "Baker's": 0.8931159420289856,
+      "Contusion": 0.9014844804318487,
+      "Fracture": 0.8083333333333335
+    },
+    "medicalnet": {
+      "ACL": 0.5968137254901961,
+      "MCL": 0.6439909297052154,
+      "Medial Meniscus": 0.6021634615384615,
+      "Lateral Meniscus": 0.6695652173913043,
+      "Medial OA": 0.6604651162790698,
+      "Lateral OA": 0.5551257253384914,
+      "PF OA": 0.6563706563706564,
+      "Effusion": 0.8546583850931677,
+      "Synovitis": 0.6750298685782556,
+      "Baker's": 0.6195652173913043,
+      "Contusion": 0.641025641025641,
+      "Fracture": 0.5416666666666666
+    },
+    "candidate": {
+      "ACL": 0.8363970588235294,
+      "MCL": 0.8877551020408163,
+      "Medial Meniscus": 0.8034855769230769,
+      "Lateral Meniscus": 0.7801242236024845,
+      "Medial OA": 0.9372093023255814,
+      "Lateral OA": 0.7785299806576402,
+      "PF OA": 0.8462033462033461,
+      "Effusion": 0.9391304347826087,
+      "Synovitis": 0.7998805256869773,
+      "Baker's": 0.8759057971014492,
+      "Contusion": 0.8920377867746287,
+      "Fracture": 0.788888888888889
+    }
+  },
+  "passes_screening_gate": false
+}
