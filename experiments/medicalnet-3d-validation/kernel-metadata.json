@@ -1,0 +1,20 @@
+{
+  "id": "sarthaksharma14/rsna-knee-medicalnet-3d-validation",
+  "title": "RSNA Knee MedicalNet 3D Validation",
+  "code_file": "medicalnet-3d-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "royceplayz/rsna-medicalnet-resnet50-weights",
+    "stevenleehans/rsna-knee-llm-report-labels",
+    "antoinegg1/rsna-knee-e9-radimagenet-heads-v15"
+  ],
+  "competition_sources": ["rsna-knee-abnormality-detection"],
+  "kernel_sources": [],
+  "model_sources": []
+}
