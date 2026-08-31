@@ -1,0 +1,129 @@
+{
+  "contract": "header-only preflight; no fitting; no submission",
+  "decision_gate": {
+    "gold_studies_reserved_for_evaluation": 58,
+    "next_step": "train identical frozen-encoder heads on incumbent and canonical representations",
+    "paired_training_required": true
+  },
+  "instance_projection_disagreement": 0,
+  "nonuniform_spacing_series_cv_gt_005": 0,
+  "orientation_drift_series_gt_1deg": 0,
+  "pixel_spacing_row_quantiles": {
+    "0.01": 0.1367,
+    "0.05": 0.1667,
+    "0.5": 0.3125,
+    "0.95": 0.5625,
+    "0.99": 0.703125
+  },
+  "projection_coverage_lt_080": 0,
+  "readable_series": 24371,
+  "sequence_counts": [
+    {
+      "count": 3819,
+      "plane": "Coronal",
+      "sequence": "PDFS"
+    },
+    {
+      "count": 3772,
+      "plane": "Sagittal",
+      "sequence": "PDFS"
+    },
+    {
+      "count": 3442,
+      "plane": "Axial",
+      "sequence": "PDFS"
+    },
+    {
+      "count": 2851,
+      "plane": "Coronal",
+      "sequence": "T1"
+    },
+    {
+      "count": 2248,
+      "plane": "Sagittal",
+      "sequence": "T1"
+    },
+    {
+      "count": 1891,
+      "plane": "Sagittal",
+      "sequence": "PD"
+    },
+    {
+      "count": 1105,
+      "plane": "Sagittal",
+      "sequence": "T2"
+    },
+    {
+      "count": 928,
+      "plane": "Axial",
+      "sequence": "T1"
+    },
+    {
+      "count": 872,
+      "plane": "Axial",
+      "sequence": "T2FS"
+    },
+    {
+      "count": 832,
+      "plane": "Sagittal",
+      "sequence": "T2FS"
+    },
+    {
+      "count": 766,
+      "plane": "Coronal",
+      "sequence": "T2FS"
+    },
+    {
+      "count": 685,
+      "plane": "Coronal",
+      "sequence": "PD"
+    },
+    {
+      "count": 478,
+      "plane": "Coronal",
+      "sequence": "T2"
+    },
+    {
+      "count": 404,
+      "plane": "Axial",
+      "sequence": "PD"
+    },
+    {
+      "count": 231,
+      "plane": "Axial",
+      "sequence": "T2"
+    },
+    {
+      "count": 21,
+      "plane": "Axial",
+      "sequence": "T1FS"
+    },
+    {
+      "count": 16,
+      "plane": "Sagittal",
+      "sequence": "T1FS"
+    },
+    {
+      "count": 8,
+      "plane": "Coronal",
+      "sequence": "T1FS"
+    },
+    {
+      "count": 2,
+      "plane": "Coronal",
+      "sequence": "UNKFS"
+    }
+  ],
+  "series": 24371,
+  "slice_spacing_geometry_quantiles": {
+    "0.01": 0.6000000000002779,
+    "0.05": 2.200013634852187,
+    "0.5": 3.5000010944548894,
+    "0.95": 5.011977665561357,
+    "0.99": 6.1857783240650885
+  },
+  "studies": 4407,
+  "studies_with_three_plane_fluid_sensitive_protocol": 3917,
+  "tag_geometry_comparable_studies": 11699,
+  "tag_geometry_disagreement": 164
+}
