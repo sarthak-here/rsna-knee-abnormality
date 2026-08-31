@@ -1,0 +1,15 @@
+{
+  "id": "sarthaksharma14/rsna-knee-physical-preprocessing-audit",
+  "title": "RSNA Knee Physical Preprocessing Audit",
+  "code_file": "physical-preprocessing-audit.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "false",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "competition_sources": ["rsna-knee-abnormality-detection"],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
