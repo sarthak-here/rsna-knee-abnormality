@@ -1,0 +1,103 @@
+{
+  "contract": "private attributed segmentation-guided ROI validation; gold evaluation only; no submission",
+  "encoder": "RadImageNet ResNet-50",
+  "encoder_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "segmentation_model": "KneeXNet-2.5D baseline ResNet34 U-Net",
+  "segmentation_repository": "pitthexai/Knee_MRI_Segmentation_2.5D",
+  "segmentation_commit": "f2452feb602f2bd9e790550c8a5a07f62e7d6e55",
+  "segmentation_checkpoint_sha256": "0c2b5fe87f86e78c7d90e9dfc3de1307aaef57c36d44ebb1251eecdcffc3c663",
+  "segmentation_citation": "Sanogo et al., KneeXNet-2.5D, npj Health Systems (2026), doi:10.1038/s44401-026-00072-5",
+  "segmentation_use": "research/educational private validation",
+  "hybrid_targets": [
+    "Medial Meniscus",
+    "Lateral Meniscus",
+    "Medial OA",
+    "Lateral OA",
+    "PF OA"
+  ],
+  "roi_audit": {
+    "attempted": 26442,
+    "confident": 8340,
+    "fallback": 18102,
+    "confidence_rate": 0.315407306557749,
+    "foreground_area_median": 0.0028839111328125,
+    "foreground_area_q05": 0.0,
+    "foreground_area_q95": 0.0122222900390625
+  },
+  "weak_labels": "stevenleehans llm_labels_v4_blend.csv",
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20260901,
+      "control_weak_validation_auc": 0.8158815591500638,
+      "roi_head_weak_validation_auc": 0.8120152042953662,
+      "hybrid_weak_validation_auc": 0.8121862426599589,
+      "control_gold_auc": 0.8557862976684198,
+      "hybrid_gold_auc": 0.8537560527471246,
+      "delta": -0.002030244921295221
+    },
+    {
+      "seed": 20260902,
+      "control_weak_validation_auc": 0.8366929914169748,
+      "roi_head_weak_validation_auc": 0.8336819791869093,
+      "hybrid_weak_validation_auc": 0.8358046807443649,
+      "control_gold_auc": 0.8498140356320296,
+      "hybrid_gold_auc": 0.8470001557402562,
+      "delta": -0.0028138798917733965
+    },
+    {
+      "seed": 20260903,
+      "control_weak_validation_auc": 0.840559409603738,
+      "roi_head_weak_validation_auc": 0.8339512976164003,
+      "hybrid_weak_validation_auc": 0.8338160115418268,
+      "control_gold_auc": 0.8555865410556779,
+      "hybrid_gold_auc": 0.856834384072639,
+      "delta": 0.0012478430169611254
+    },
+    {
+      "seed": 20260904,
+      "control_weak_validation_auc": 0.8225597401154251,
+      "roi_head_weak_validation_auc": 0.8171007799327475,
+      "hybrid_weak_validation_auc": 0.8194373301904508,
+      "control_gold_auc": 0.8590458379532669,
+      "hybrid_gold_auc": 0.8525168557041627,
+      "delta": -0.006528982249104254
+    },
+    {
+      "seed": 20260905,
+      "control_weak_validation_auc": 0.832500728845938,
+      "roi_head_weak_validation_auc": 0.8290992032548442,
+      "hybrid_weak_validation_auc": 0.8312736812216263,
+      "control_gold_auc": 0.8575171258755249,
+      "hybrid_gold_auc": 0.8575511939397732,
+      "delta": 3.406806424832709e-05
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8605096778451152,
+    "hybrid_gold_auc": 0.8596599120913625,
+    "delta": -0.0008497657537527292,
+    "per_target_delta": {
+      "Medial Meniscus": -0.03725961538461542,
+      "Lateral Meniscus": 0.017391304347826098,
+      "Medial OA": -0.007751937984496138,
+      "Lateral OA": 0.025145067698259305,
+      "PF OA": -0.007722007722007818
+    }
+  },
+  "bootstrap": {
+    "mean": -0.0008490387252601746,
+    "p_improve": 0.4094,
+    "q025": -0.008338514841805035,
+    "q975": 0.006794277485941057
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": false,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "passed": false,
+  "submission_created": false
+}
