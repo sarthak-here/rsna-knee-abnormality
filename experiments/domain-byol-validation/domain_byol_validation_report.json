@@ -1,0 +1,123 @@
+{
+  "contract": "private domain-adaptive BYOL validation; gold evaluation only; no submission",
+  "initial_encoder": "RadImageNet ResNet-50",
+  "initial_encoder_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "adapted_encoder_sha256": "54cad852295cfb7c17bef2184534ac27db04235cb1f7d484206aed73ffa5aff9",
+  "feature_control_source": "rsna-knee-report-image-cross-supervision authenticated output",
+  "weak_labels": "stevenleehans llm_labels_v4_blend.csv",
+  "ssl": {
+    "method": "BYOL",
+    "seed": 20260911,
+    "epochs": 10,
+    "batch_size": 32,
+    "learning_rate": 0.0001,
+    "ema": 0.996,
+    "study_count": 4349,
+    "gold_study_count": 0,
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 0.2992178153465776
+      },
+      {
+        "epoch": 2,
+        "loss": 0.0692663468858775
+      },
+      {
+        "epoch": 3,
+        "loss": 0.05563915433252559
+      },
+      {
+        "epoch": 4,
+        "loss": 0.046020864563829755
+      },
+      {
+        "epoch": 5,
+        "loss": 0.0396002570495886
+      },
+      {
+        "epoch": 6,
+        "loss": 0.036148124319665575
+      },
+      {
+        "epoch": 7,
+        "loss": 0.03462122775175992
+      },
+      {
+        "epoch": 8,
+        "loss": 0.032376036047935486
+      },
+      {
+        "epoch": 9,
+        "loss": 0.03270204672042061
+      },
+      {
+        "epoch": 10,
+        "loss": 0.035433070624575895
+      }
+    ]
+  },
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20260901,
+      "control_weak_validation_auc": 0.8158815591500638,
+      "candidate_weak_validation_auc": 0.7948762254060949,
+      "control_gold_auc": 0.8557862976684198,
+      "candidate_gold_auc": 0.818290895292001,
+      "delta": -0.037495402376418796
+    },
+    {
+      "seed": 20260902,
+      "control_weak_validation_auc": 0.8366929914169748,
+      "candidate_weak_validation_auc": 0.8211878417723528,
+      "control_gold_auc": 0.8498140356320296,
+      "candidate_gold_auc": 0.8197018850429397,
+      "delta": -0.030112150589089892
+    },
+    {
+      "seed": 20260903,
+      "control_weak_validation_auc": 0.840559409603738,
+      "candidate_weak_validation_auc": 0.8288080306050537,
+      "control_gold_auc": 0.8555865410556779,
+      "candidate_gold_auc": 0.8324089796040507,
+      "delta": -0.023177561451627193
+    },
+    {
+      "seed": 20260904,
+      "control_weak_validation_auc": 0.8225597401154251,
+      "candidate_weak_validation_auc": 0.8023194419142535,
+      "control_gold_auc": 0.8590458379532669,
+      "candidate_gold_auc": 0.8266033660466201,
+      "delta": -0.03244247190664684
+    },
+    {
+      "seed": 20260905,
+      "control_weak_validation_auc": 0.832500728845938,
+      "candidate_weak_validation_auc": 0.820285615418111,
+      "control_gold_auc": 0.8575171258755249,
+      "candidate_gold_auc": 0.8245031233136061,
+      "delta": -0.033014002561918776
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8605096778451152,
+    "candidate_gold_auc": 0.8335535079358253,
+    "delta": -0.02695616990928995
+  },
+  "bootstrap": {
+    "mean": -0.027196770057591396,
+    "p_improve": 0.0164,
+    "q025": -0.054765493705152095,
+    "q975": -0.002171591913358549
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": false,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "passed": false,
+  "submission_created": false
+}
