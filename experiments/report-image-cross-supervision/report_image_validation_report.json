@@ -1,0 +1,114 @@
+{
+  "contract": "private image-only evaluation; training-only report cross-supervision",
+  "encoder": "RadImageNet ResNet-50",
+  "encoder_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "weak_labels": "stevenleehans llm_labels_v4_blend.csv",
+  "report_representation": "non-gold TF-IDF bigrams + 128D truncated SVD",
+  "report_loss_weight": 0.1,
+  "text_audits": [
+    {
+      "vocabulary_size": 25765,
+      "explained_variance": 0.492817551093126,
+      "fit_studies": 3927,
+      "gold_reports_transformed": 0,
+      "seed": 20260901,
+      "weak_validation_reports_transformed": 0
+    },
+    {
+      "vocabulary_size": 25743,
+      "explained_variance": 0.4927015257399373,
+      "fit_studies": 3923,
+      "gold_reports_transformed": 0,
+      "seed": 20260902,
+      "weak_validation_reports_transformed": 0
+    },
+    {
+      "vocabulary_size": 25523,
+      "explained_variance": 0.4860113457010218,
+      "fit_studies": 3865,
+      "gold_reports_transformed": 0,
+      "seed": 20260903,
+      "weak_validation_reports_transformed": 0
+    },
+    {
+      "vocabulary_size": 25582,
+      "explained_variance": 0.48769192929917476,
+      "fit_studies": 3886,
+      "gold_reports_transformed": 0,
+      "seed": 20260904,
+      "weak_validation_reports_transformed": 0
+    },
+    {
+      "vocabulary_size": 25589,
+      "explained_variance": 0.49039512399626806,
+      "fit_studies": 3910,
+      "gold_reports_transformed": 0,
+      "seed": 20260905,
+      "weak_validation_reports_transformed": 0
+    }
+  ],
+  "gold_fit_count": 0,
+  "gold_text_transform_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20260901,
+      "control_weak_validation_auc": 0.8194280868450429,
+      "cross_weak_validation_auc": 0.8182873641598524,
+      "control_gold_auc": 0.8567007885203001,
+      "cross_gold_auc": 0.8513092962986071,
+      "delta": -0.005391492221692995
+    },
+    {
+      "seed": 20260902,
+      "control_weak_validation_auc": 0.8369713522179559,
+      "cross_weak_validation_auc": 0.8379508923328675,
+      "control_gold_auc": 0.8500474226485556,
+      "cross_gold_auc": 0.8477773516062329,
+      "delta": -0.0022700710423226855
+    },
+    {
+      "seed": 20260903,
+      "control_weak_validation_auc": 0.8421578028357669,
+      "cross_weak_validation_auc": 0.8415372699855035,
+      "control_gold_auc": 0.8549242728930558,
+      "cross_gold_auc": 0.857376613791458,
+      "delta": 0.0024523408984021833
+    },
+    {
+      "seed": 20260904,
+      "control_weak_validation_auc": 0.8240125681448579,
+      "cross_weak_validation_auc": 0.8239763576071896,
+      "control_gold_auc": 0.8578955567494932,
+      "cross_gold_auc": 0.8532817197843096,
+      "delta": -0.004613836965183693
+    },
+    {
+      "seed": 20260905,
+      "control_weak_validation_auc": 0.8339038374138013,
+      "cross_weak_validation_auc": 0.8344229924868837,
+      "control_gold_auc": 0.8590935312312071,
+      "cross_gold_auc": 0.858459643023704,
+      "delta": -0.0006338882075030972
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8616896726776068,
+    "cross_supervised_gold_auc": 0.8607478854324512,
+    "delta": -0.0009417872451555898
+  },
+  "bootstrap": {
+    "mean": -0.0009714305748908287,
+    "p_improve": 0.3688,
+    "q025": -0.0067350594063303685,
+    "q975": 0.004786071679159661
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": false,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "passed": false,
+  "submission_created": false
+}
