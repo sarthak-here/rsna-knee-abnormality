@@ -88,7 +88,14 @@ def render_volume(record):
             image = cv2.resize(image, (VOLUME_SIZE, VOLUME_SIZE), interpolation=cv2.INTER_AREA)
             images.append(image.astype(np.float32))
         except Exception:
-            return np.zeros((VOLUME_DEPTH, VOLUME_SIZE, VOLUME_SIZE), np.float32), 0
+            images.append(None)
+    valid_indices = [index for index, image in enumerate(images) if image is not None]
+    if len(valid_indices) < 4:
+        return np.zeros((VOLUME_DEPTH, VOLUME_SIZE, VOLUME_SIZE), np.float32), 0
+    for index, image in enumerate(images):
+        if image is None:
+            nearest = min(valid_indices, key=lambda valid_index: abs(valid_index - index))
+            images[index] = images[nearest].copy()
     volume = np.stack(images)
     nonzero = volume[np.isfinite(volume) & (volume != 0)]
     if len(nonzero) < 100:
@@ -103,18 +110,33 @@ def render_volume(record):
     return normalized, 1
 
 
+def choose_mars_sequence(records, plane):
+    preferred = choose(records, plane, True, True)
+    if preferred is not None:
+        return preferred, 0
+    same_plane = [record for record in records if record["plane"] == plane]
+    if same_plane:
+        return max(same_plane, key=lambda record: record["n"]), 1
+    if records:
+        return max(records, key=lambda record: record["n"]), 2
+    return None, 3
+
+
 @torch.no_grad()
 def encode_mars(studies, by_study):
     model = load_mars()
     features = np.zeros((len(studies), len(PLANES), MARS_FEATURE_DIM), np.float16)
     masks = np.zeros((len(studies), len(PLANES)), np.float32)
+    fallback_levels = np.zeros((len(studies), len(PLANES)), np.uint8)
     batch_studies = 8
     for start in range(0, len(studies), batch_studies):
         ids = studies[start:start + batch_studies]
-        jobs = []
+        jobs, fallback_batch = [], []
         for uid in ids:
             records = by_study.get(uid, [])
-            jobs.extend(choose(records, plane, True, True) for plane in PLANES)
+            selected = [choose_mars_sequence(records, plane) for plane in PLANES]
+            jobs.extend(item[0] for item in selected)
+            fallback_batch.extend(item[1] for item in selected)
         with ThreadPoolExecutor(max_workers=8) as pool:
             rendered = list(pool.map(render_volume, jobs))
         volumes = np.stack([item[0] for item in rendered])
@@ -128,11 +150,12 @@ def encode_mars(studies, by_study):
                 encoded[indices] = model(tensor).float().cpu().numpy().astype(np.float16)
         features[start:start + len(ids)] = encoded.reshape(len(ids), len(PLANES), MARS_FEATURE_DIM)
         masks[start:start + len(ids)] = valid.reshape(len(ids), len(PLANES))
+        fallback_levels[start:start + len(ids)] = np.asarray(fallback_batch, np.uint8).reshape(len(ids), len(PLANES))
         if start % (batch_studies * 20) == 0:
             log(f"MARS encoded {start}/{len(studies)}")
     del model
     gc.collect(); torch.cuda.empty_cache()
-    return features, masks
+    return features, masks, fallback_levels
 
 
 class MARSAttentionHead(nn.Module):
@@ -239,7 +262,7 @@ def mars_3d_main():
     by_study = {}
     for record in records:
         by_study.setdefault(record["study"], []).append(record)
-    mars_features, mars_masks = encode_mars(studies, by_study)
+    mars_features, mars_masks, mars_fallback_levels = encode_mars(studies, by_study)
     if float(mars_masks.mean()) < 0.75:
         raise RuntimeError(f"MARS sequence coverage too low: {mars_masks.mean()}")
     missing_studies = int((mars_masks.sum(axis=1) == 0).sum())
@@ -306,7 +329,11 @@ def mars_3d_main():
         "candidate_checkpoint_size": MARS_SIZE,
         "candidate_volume_shape": [VOLUME_DEPTH, VOLUME_SIZE, VOLUME_SIZE],
         "candidate_sequence_tokens": list(PLANES),
+        "sequence_policy": "fluid-sensitive preferred; best same-plane sequence fallback; best available sequence final fallback",
         "sequence_coverage": float(mars_masks.mean()),
+        "same_plane_fallback_fraction": float((mars_fallback_levels == 1).mean()),
+        "cross_plane_fallback_fraction": float((mars_fallback_levels == 2).mean()),
+        "missing_sequence_fraction": float((mars_fallback_levels == 3).mean()),
         "control": "RadImageNet ResNet-50",
         "control_sha256": RAD_SHA,
         "weak_labels": "stevenleehans llm_labels_v4_blend.csv",
@@ -330,4 +357,3 @@ def mars_3d_main():
 
 
 mars_3d_main()
-
