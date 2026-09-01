@@ -1,0 +1,79 @@
+{
+  "contract": "plane/slice-aware target-query head; image-only gold evaluation",
+  "encoder": "RadImageNet ResNet-50",
+  "encoder_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "feature_source": "rsna-knee-report-image-cross-supervision v1 authenticated output",
+  "weak_labels": "stevenleehans llm_labels_v4_blend.csv",
+  "candidate": {
+    "head_dim": 256,
+    "encoder_layers": 2,
+    "attention_heads": 8,
+    "epochs": 24,
+    "slot_embeddings": 6,
+    "slice_embeddings": 3,
+    "target_queries": 12
+  },
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20260901,
+      "control_weak_validation_auc": 0.8158815591500638,
+      "query_weak_validation_auc": 0.8085605148189657,
+      "control_gold_auc": 0.8557862976684198,
+      "query_gold_auc": 0.8267716174527213,
+      "delta": -0.02901468021569853
+    },
+    {
+      "seed": 20260902,
+      "control_weak_validation_auc": 0.8366929914169748,
+      "query_weak_validation_auc": 0.835855191400818,
+      "control_gold_auc": 0.8498140356320296,
+      "query_gold_auc": 0.831052104252402,
+      "delta": -0.018761931379627672
+    },
+    {
+      "seed": 20260903,
+      "control_weak_validation_auc": 0.840559409603738,
+      "query_weak_validation_auc": 0.8363036414920987,
+      "control_gold_auc": 0.8555865410556779,
+      "query_gold_auc": 0.8297766369010781,
+      "delta": -0.025809904154599828
+    },
+    {
+      "seed": 20260904,
+      "control_weak_validation_auc": 0.8225597401154251,
+      "query_weak_validation_auc": 0.8228346284014294,
+      "control_gold_auc": 0.8590458379532669,
+      "query_gold_auc": 0.8381310711318696,
+      "delta": -0.020914766821397368
+    },
+    {
+      "seed": 20260905,
+      "control_weak_validation_auc": 0.8325204736910853,
+      "query_weak_validation_auc": 0.8226441855225208,
+      "control_gold_auc": 0.8577868151044822,
+      "query_gold_auc": 0.824150927563585,
+      "delta": -0.03363588754089719
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8603099556611863,
+    "query_gold_auc": 0.8429926531847899,
+    "delta": -0.0173173024763964
+  },
+  "bootstrap": {
+    "mean": -0.017334540777755477,
+    "p_improve": 0.0264,
+    "q025": -0.03543598590222364,
+    "q975": 0.00010563195404796138
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": false,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "passed": false,
+  "submission_created": false
+}
