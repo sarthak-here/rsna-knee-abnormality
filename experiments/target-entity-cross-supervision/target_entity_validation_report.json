@@ -1,0 +1,543 @@
+{
+  "contract": "private image-only evaluation; target-specific report sentence cross-supervision",
+  "encoder": "RadImageNet ResNet-50",
+  "encoder_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "feature_source": "rsna-knee-report-image-cross-supervision v1 authenticated output",
+  "weak_labels": "stevenleehans llm_labels_v4_blend.csv",
+  "entity_patterns": {
+    "ACL": "\\bACL\\b|anterior cruciate|cruciate ligament",
+    "MCL": "\\bMCL\\b|medial collateral",
+    "Medial Meniscus": "medial menisc",
+    "Lateral Meniscus": "lateral menisc",
+    "Medial OA": "medial compartment|medial femoro?tibial|medial tibiofemoral|medial joint space",
+    "Lateral OA": "lateral compartment|lateral femoro?tibial|lateral tibiofemoral|lateral joint space",
+    "PF OA": "patellofemoral|patello-femoral|patellar cartilage|trochlear cartilage|trochlea",
+    "Effusion": "effusion|joint fluid",
+    "Synovitis": "synovitis|synovial",
+    "Baker's": "baker.?s|popliteal cyst",
+    "Contusion": "contusion|bone bruise|marrow edema|marrow oedema",
+    "Fracture": "fracture|cortical break|trabecular break"
+  },
+  "entity_loss_weight": 0.1,
+  "text_audits": [
+    {
+      "seed": 20260901,
+      "targets": [
+        {
+          "target": "ACL",
+          "fit_snippets": 1505,
+          "vocabulary_size": 1926,
+          "components": 16,
+          "explained_variance": 0.618214262020545
+        },
+        {
+          "target": "MCL",
+          "fit_snippets": 1410,
+          "vocabulary_size": 1414,
+          "components": 16,
+          "explained_variance": 0.6476491979805923
+        },
+        {
+          "target": "Medial Meniscus",
+          "fit_snippets": 1141,
+          "vocabulary_size": 2002,
+          "components": 16,
+          "explained_variance": 0.43864070884082706
+        },
+        {
+          "target": "Lateral Meniscus",
+          "fit_snippets": 1348,
+          "vocabulary_size": 1339,
+          "components": 16,
+          "explained_variance": 0.6560058798932635
+        },
+        {
+          "target": "Medial OA",
+          "fit_snippets": 759,
+          "vocabulary_size": 1430,
+          "components": 16,
+          "explained_variance": 0.4673453545901112
+        },
+        {
+          "target": "Lateral OA",
+          "fit_snippets": 768,
+          "vocabulary_size": 1069,
+          "components": 16,
+          "explained_variance": 0.5527034815563392
+        },
+        {
+          "target": "PF OA",
+          "fit_snippets": 1249,
+          "vocabulary_size": 2955,
+          "components": 16,
+          "explained_variance": 0.43511644961991547
+        },
+        {
+          "target": "Effusion",
+          "fit_snippets": 1432,
+          "vocabulary_size": 951,
+          "components": 16,
+          "explained_variance": 0.6101884762660388
+        },
+        {
+          "target": "Synovitis",
+          "fit_snippets": 374,
+          "vocabulary_size": 993,
+          "components": 16,
+          "explained_variance": 0.3889585095351471
+        },
+        {
+          "target": "Baker's",
+          "fit_snippets": 770,
+          "vocabulary_size": 726,
+          "components": 16,
+          "explained_variance": 0.6764280894553427
+        },
+        {
+          "target": "Contusion",
+          "fit_snippets": 822,
+          "vocabulary_size": 2076,
+          "components": 16,
+          "explained_variance": 0.45961973806571366
+        },
+        {
+          "target": "Fracture",
+          "fit_snippets": 566,
+          "vocabulary_size": 790,
+          "components": 16,
+          "explained_variance": 0.7238513492031614
+        }
+      ],
+      "gold_reports_transformed": 0,
+      "weak_validation_reports_transformed": 0
+    },
+    {
+      "seed": 20260902,
+      "targets": [
+        {
+          "target": "ACL",
+          "fit_snippets": 1506,
+          "vocabulary_size": 1960,
+          "components": 16,
+          "explained_variance": 0.6168118703374917
+        },
+        {
+          "target": "MCL",
+          "fit_snippets": 1400,
+          "vocabulary_size": 1433,
+          "components": 16,
+          "explained_variance": 0.6491667385427509
+        },
+        {
+          "target": "Medial Meniscus",
+          "fit_snippets": 1151,
+          "vocabulary_size": 2069,
+          "components": 16,
+          "explained_variance": 0.435757773362342
+        },
+        {
+          "target": "Lateral Meniscus",
+          "fit_snippets": 1344,
+          "vocabulary_size": 1414,
+          "components": 16,
+          "explained_variance": 0.6562036951806165
+        },
+        {
+          "target": "Medial OA",
+          "fit_snippets": 767,
+          "vocabulary_size": 1465,
+          "components": 16,
+          "explained_variance": 0.46652064499515067
+        },
+        {
+          "target": "Lateral OA",
+          "fit_snippets": 768,
+          "vocabulary_size": 1057,
+          "components": 16,
+          "explained_variance": 0.5513479656151938
+        },
+        {
+          "target": "PF OA",
+          "fit_snippets": 1251,
+          "vocabulary_size": 2964,
+          "components": 16,
+          "explained_variance": 0.43508240549959537
+        },
+        {
+          "target": "Effusion",
+          "fit_snippets": 1427,
+          "vocabulary_size": 983,
+          "components": 16,
+          "explained_variance": 0.6082541151771018
+        },
+        {
+          "target": "Synovitis",
+          "fit_snippets": 365,
+          "vocabulary_size": 974,
+          "components": 16,
+          "explained_variance": 0.39799104407355995
+        },
+        {
+          "target": "Baker's",
+          "fit_snippets": 763,
+          "vocabulary_size": 762,
+          "components": 16,
+          "explained_variance": 0.6766746929168466
+        },
+        {
+          "target": "Contusion",
+          "fit_snippets": 830,
+          "vocabulary_size": 2064,
+          "components": 16,
+          "explained_variance": 0.459483523854546
+        },
+        {
+          "target": "Fracture",
+          "fit_snippets": 568,
+          "vocabulary_size": 797,
+          "components": 16,
+          "explained_variance": 0.7176802155900117
+        }
+      ],
+      "gold_reports_transformed": 0,
+      "weak_validation_reports_transformed": 0
+    },
+    {
+      "seed": 20260903,
+      "targets": [
+        {
+          "target": "ACL",
+          "fit_snippets": 1504,
+          "vocabulary_size": 1935,
+          "components": 16,
+          "explained_variance": 0.6161808905125572
+        },
+        {
+          "target": "MCL",
+          "fit_snippets": 1423,
+          "vocabulary_size": 1454,
+          "components": 16,
+          "explained_variance": 0.6459783670741517
+        },
+        {
+          "target": "Medial Meniscus",
+          "fit_snippets": 1157,
+          "vocabulary_size": 2047,
+          "components": 16,
+          "explained_variance": 0.439037259409397
+        },
+        {
+          "target": "Lateral Meniscus",
+          "fit_snippets": 1349,
+          "vocabulary_size": 1368,
+          "components": 16,
+          "explained_variance": 0.6555220080767882
+        },
+        {
+          "target": "Medial OA",
+          "fit_snippets": 763,
+          "vocabulary_size": 1486,
+          "components": 16,
+          "explained_variance": 0.45874669905468796
+        },
+        {
+          "target": "Lateral OA",
+          "fit_snippets": 773,
+          "vocabulary_size": 1057,
+          "components": 16,
+          "explained_variance": 0.5453923674577887
+        },
+        {
+          "target": "PF OA",
+          "fit_snippets": 1244,
+          "vocabulary_size": 2971,
+          "components": 16,
+          "explained_variance": 0.4332708032393006
+        },
+        {
+          "target": "Effusion",
+          "fit_snippets": 1436,
+          "vocabulary_size": 986,
+          "components": 16,
+          "explained_variance": 0.606844601426207
+        },
+        {
+          "target": "Synovitis",
+          "fit_snippets": 364,
+          "vocabulary_size": 981,
+          "components": 16,
+          "explained_variance": 0.39574652638782537
+        },
+        {
+          "target": "Baker's",
+          "fit_snippets": 774,
+          "vocabulary_size": 732,
+          "components": 16,
+          "explained_variance": 0.6716542837577127
+        },
+        {
+          "target": "Contusion",
+          "fit_snippets": 831,
+          "vocabulary_size": 2048,
+          "components": 16,
+          "explained_variance": 0.4502521883714907
+        },
+        {
+          "target": "Fracture",
+          "fit_snippets": 571,
+          "vocabulary_size": 771,
+          "components": 16,
+          "explained_variance": 0.7232989188146779
+        }
+      ],
+      "gold_reports_transformed": 0,
+      "weak_validation_reports_transformed": 0
+    },
+    {
+      "seed": 20260904,
+      "targets": [
+        {
+          "target": "ACL",
+          "fit_snippets": 1506,
+          "vocabulary_size": 1922,
+          "components": 16,
+          "explained_variance": 0.6175239687986744
+        },
+        {
+          "target": "MCL",
+          "fit_snippets": 1410,
+          "vocabulary_size": 1421,
+          "components": 16,
+          "explained_variance": 0.6518590554601804
+        },
+        {
+          "target": "Medial Meniscus",
+          "fit_snippets": 1156,
+          "vocabulary_size": 2050,
+          "components": 16,
+          "explained_variance": 0.438594961262196
+        },
+        {
+          "target": "Lateral Meniscus",
+          "fit_snippets": 1357,
+          "vocabulary_size": 1390,
+          "components": 16,
+          "explained_variance": 0.6519092558599064
+        },
+        {
+          "target": "Medial OA",
+          "fit_snippets": 771,
+          "vocabulary_size": 1470,
+          "components": 16,
+          "explained_variance": 0.4702773965152638
+        },
+        {
+          "target": "Lateral OA",
+          "fit_snippets": 782,
+          "vocabulary_size": 1090,
+          "components": 16,
+          "explained_variance": 0.5510689630255374
+        },
+        {
+          "target": "PF OA",
+          "fit_snippets": 1253,
+          "vocabulary_size": 2979,
+          "components": 16,
+          "explained_variance": 0.43138390845090024
+        },
+        {
+          "target": "Effusion",
+          "fit_snippets": 1441,
+          "vocabulary_size": 993,
+          "components": 16,
+          "explained_variance": 0.6042335786209789
+        },
+        {
+          "target": "Synovitis",
+          "fit_snippets": 361,
+          "vocabulary_size": 983,
+          "components": 16,
+          "explained_variance": 0.38766819240025563
+        },
+        {
+          "target": "Baker's",
+          "fit_snippets": 769,
+          "vocabulary_size": 713,
+          "components": 16,
+          "explained_variance": 0.6806823560142561
+        },
+        {
+          "target": "Contusion",
+          "fit_snippets": 838,
+          "vocabulary_size": 2038,
+          "components": 16,
+          "explained_variance": 0.4575115153538501
+        },
+        {
+          "target": "Fracture",
+          "fit_snippets": 566,
+          "vocabulary_size": 787,
+          "components": 16,
+          "explained_variance": 0.721458963238782
+        }
+      ],
+      "gold_reports_transformed": 0,
+      "weak_validation_reports_transformed": 0
+    },
+    {
+      "seed": 20260905,
+      "targets": [
+        {
+          "target": "ACL",
+          "fit_snippets": 1509,
+          "vocabulary_size": 1897,
+          "components": 16,
+          "explained_variance": 0.6170338899876578
+        },
+        {
+          "target": "MCL",
+          "fit_snippets": 1407,
+          "vocabulary_size": 1423,
+          "components": 16,
+          "explained_variance": 0.6546395573912305
+        },
+        {
+          "target": "Medial Meniscus",
+          "fit_snippets": 1146,
+          "vocabulary_size": 2004,
+          "components": 16,
+          "explained_variance": 0.4401559871598052
+        },
+        {
+          "target": "Lateral Meniscus",
+          "fit_snippets": 1345,
+          "vocabulary_size": 1367,
+          "components": 16,
+          "explained_variance": 0.6554297899850944
+        },
+        {
+          "target": "Medial OA",
+          "fit_snippets": 765,
+          "vocabulary_size": 1464,
+          "components": 16,
+          "explained_variance": 0.4676555678271985
+        },
+        {
+          "target": "Lateral OA",
+          "fit_snippets": 771,
+          "vocabulary_size": 1074,
+          "components": 16,
+          "explained_variance": 0.5550530010808501
+        },
+        {
+          "target": "PF OA",
+          "fit_snippets": 1258,
+          "vocabulary_size": 2979,
+          "components": 16,
+          "explained_variance": 0.4301141552571207
+        },
+        {
+          "target": "Effusion",
+          "fit_snippets": 1435,
+          "vocabulary_size": 974,
+          "components": 16,
+          "explained_variance": 0.6065820182303884
+        },
+        {
+          "target": "Synovitis",
+          "fit_snippets": 356,
+          "vocabulary_size": 960,
+          "components": 16,
+          "explained_variance": 0.3971605687645445
+        },
+        {
+          "target": "Baker's",
+          "fit_snippets": 772,
+          "vocabulary_size": 756,
+          "components": 16,
+          "explained_variance": 0.6754138054678388
+        },
+        {
+          "target": "Contusion",
+          "fit_snippets": 818,
+          "vocabulary_size": 2074,
+          "components": 16,
+          "explained_variance": 0.4531567796171529
+        },
+        {
+          "target": "Fracture",
+          "fit_snippets": 572,
+          "vocabulary_size": 788,
+          "components": 16,
+          "explained_variance": 0.7207512682252166
+        }
+      ],
+      "gold_reports_transformed": 0,
+      "weak_validation_reports_transformed": 0
+    }
+  ],
+  "gold_fit_count": 0,
+  "gold_text_transform_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20260901,
+      "control_weak_validation_auc": 0.8158815591500638,
+      "entity_weak_validation_auc": 0.8158075918905804,
+      "control_gold_auc": 0.8557862976684198,
+      "entity_gold_auc": 0.8525480680399248,
+      "delta": -0.0032382296284950707
+    },
+    {
+      "seed": 20260902,
+      "control_weak_validation_auc": 0.8366929914169748,
+      "entity_weak_validation_auc": 0.8389447923073506,
+      "control_gold_auc": 0.8498140356320296,
+      "entity_gold_auc": 0.8517707033525402,
+      "delta": 0.0019566677205106187
+    },
+    {
+      "seed": 20260903,
+      "control_weak_validation_auc": 0.840559409603738,
+      "entity_weak_validation_auc": 0.8403648826973856,
+      "control_gold_auc": 0.8555865410556779,
+      "entity_gold_auc": 0.8523942407310366,
+      "delta": -0.0031923003246412396
+    },
+    {
+      "seed": 20260904,
+      "control_weak_validation_auc": 0.8225597401154251,
+      "entity_weak_validation_auc": 0.8247360110374046,
+      "control_gold_auc": 0.8590458379532669,
+      "entity_gold_auc": 0.8559848202941142,
+      "delta": -0.003061017659152787
+    },
+    {
+      "seed": 20260905,
+      "control_weak_validation_auc": 0.832500728845938,
+      "entity_weak_validation_auc": 0.8347361818912096,
+      "control_gold_auc": 0.8575171258755249,
+      "entity_gold_auc": 0.8601514037093315,
+      "delta": 0.002634277833806653
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8605096778451152,
+    "entity_gold_auc": 0.860076987442781,
+    "delta": -0.0004326904023341793
+  },
+  "bootstrap": {
+    "mean": -0.0004791298447279603,
+    "p_improve": 0.4142,
+    "q025": -0.005295484463287511,
+    "q975": 0.004509721905954619
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": false,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "passed": false,
+  "submission_created": false
+}
