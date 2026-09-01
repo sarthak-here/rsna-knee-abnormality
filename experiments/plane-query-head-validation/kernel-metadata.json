@@ -1,0 +1,16 @@
+{
+  "id": "sarthaksharma14/rsna-knee-plane-query-head-validation",
+  "title": "RSNA Knee Plane Query Head Validation",
+  "code_file": "plane-query-head-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": ["rsna-knee-abnormality-detection"],
+  "dataset_sources": ["tonylica/rsna-knee-bend-dinov3-0917-repro-assets"],
+  "kernel_sources": ["sarthaksharma14/rsna-knee-report-image-cross-supervision"],
+  "model_sources": []
+}
