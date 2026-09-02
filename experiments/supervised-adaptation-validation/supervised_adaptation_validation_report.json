@@ -1,0 +1,94 @@
+{
+  "contract": "private supervised layer4 adaptation; gold evaluation only; no submission",
+  "candidate": "RadImageNet ResNet-50 final-stage supervised multi-plane adaptation",
+  "initial_checkpoint_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "adapted_checkpoint_sha256": "bf9b8f923f2a882c7d69b84a797fe99a115fe24f883fff4be53b19d618c4ff10",
+  "adapted_checkpoint_size": 94347023,
+  "adaptation_seed": 20260902,
+  "adaptation_epochs": 3,
+  "adaptation_slice_contract": "six central clinically selected slices",
+  "final_feature_contract": "same fixed 18-token contract as control",
+  "fitting_studies": 3923,
+  "weak_validation_studies": 426,
+  "report_group_overlap": 0,
+  "adaptation_history": [
+    {
+      "epoch": 1,
+      "train_bce": 0.5586109891887103,
+      "weak_validation_auc": 0.8070642239562554
+    },
+    {
+      "epoch": 2,
+      "train_bce": 0.5331180966116171,
+      "weak_validation_auc": 0.8145798431763542
+    },
+    {
+      "epoch": 3,
+      "train_bce": 0.5163304212595958,
+      "weak_validation_auc": 0.8181205232213261
+    }
+  ],
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20260911,
+      "control_weak_validation_auc": 0.8371126713414628,
+      "adapted_weak_validation_auc": 0.8299662416215218,
+      "control_gold_auc": 0.8577418684799137,
+      "adapted_gold_auc": 0.8395793013764564,
+      "delta": -0.018162567103457317
+    },
+    {
+      "seed": 20260912,
+      "control_weak_validation_auc": 0.8367800445717261,
+      "adapted_weak_validation_auc": 0.83544434514151,
+      "control_gold_auc": 0.8631208013694849,
+      "adapted_gold_auc": 0.8328873391275251,
+      "delta": -0.030233462241959774
+    },
+    {
+      "seed": 20260913,
+      "control_weak_validation_auc": 0.8335952570814498,
+      "adapted_weak_validation_auc": 0.833032202263322,
+      "control_gold_auc": 0.8546349122511053,
+      "adapted_gold_auc": 0.8065458146109417,
+      "delta": -0.04808909764016367
+    },
+    {
+      "seed": 20260914,
+      "control_weak_validation_auc": 0.8376771053705641,
+      "adapted_weak_validation_auc": 0.834872218622737,
+      "control_gold_auc": 0.8536214369402293,
+      "adapted_gold_auc": 0.8205967227946297,
+      "delta": -0.0330247141455996
+    },
+    {
+      "seed": 20260915,
+      "control_weak_validation_auc": 0.8353532897817771,
+      "adapted_weak_validation_auc": 0.8358349795662261,
+      "control_gold_auc": 0.8613256709228253,
+      "adapted_gold_auc": 0.8339892732301509,
+      "delta": -0.027336397692674375
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8604570711716714,
+    "adapted_gold_auc": 0.831550505814523,
+    "delta": -0.028906565357148306
+  },
+  "bootstrap": {
+    "mean": -0.02870404784710387,
+    "p_improve": 0.0004,
+    "q025": -0.04655660904838664,
+    "q975": -0.012439511763069037
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": false,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "passed": false,
+  "submission_created": false
+}
