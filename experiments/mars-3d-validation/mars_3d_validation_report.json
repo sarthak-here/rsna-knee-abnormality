@@ -1,0 +1,90 @@
+{
+  "contract": "private MARS 3D foundation validation; gold evaluation only; no submission",
+  "candidate": "MARS 3D Swin Transformer Base",
+  "candidate_repository": "zqiuak/MARS",
+  "candidate_license": "Apache-2.0",
+  "candidate_citation": "Large-scale multi-sequence pretraining for generalizable MRI analysis, Nature Biomedical Engineering (2026)",
+  "candidate_checkpoint_sha256": "88388a59d92935a15d30bd41c0e9dbece99ba78db73cb374d44290fd6566ccc3",
+  "candidate_checkpoint_size": 82121520,
+  "candidate_volume_shape": [
+    32,
+    96,
+    96
+  ],
+  "candidate_sequence_tokens": [
+    "Sagittal",
+    "Coronal",
+    "Axial"
+  ],
+  "sequence_policy": "fluid-sensitive preferred; best same-plane sequence fallback; best available sequence final fallback",
+  "sequence_coverage": 1.0,
+  "same_plane_fallback_fraction": 0.06618258830648212,
+  "cross_plane_fallback_fraction": 0.0,
+  "missing_sequence_fraction": 0.0,
+  "control": "RadImageNet ResNet-50",
+  "control_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "weak_labels": "stevenleehans llm_labels_v4_blend.csv",
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20260901,
+      "control_weak_validation_auc": 0.8158815591500638,
+      "mars_weak_validation_auc": 0.6636237037393394,
+      "control_gold_auc": 0.8557862976684198,
+      "mars_gold_auc": 0.6561965078452359,
+      "delta": -0.19958978982318398
+    },
+    {
+      "seed": 20260902,
+      "control_weak_validation_auc": 0.8366929914169748,
+      "mars_weak_validation_auc": 0.6733277392922906,
+      "control_gold_auc": 0.8498140356320296,
+      "mars_gold_auc": 0.6636057982755411,
+      "delta": -0.1862082373564885
+    },
+    {
+      "seed": 20260903,
+      "control_weak_validation_auc": 0.840559409603738,
+      "mars_weak_validation_auc": 0.6849794844544296,
+      "control_gold_auc": 0.8555865410556779,
+      "mars_gold_auc": 0.6604325261978132,
+      "delta": -0.19515401485786465
+    },
+    {
+      "seed": 20260904,
+      "control_weak_validation_auc": 0.8225597401154251,
+      "mars_weak_validation_auc": 0.6714799189906245,
+      "control_gold_auc": 0.8590458379532669,
+      "mars_gold_auc": 0.656017544413417,
+      "delta": -0.20302829353984997
+    },
+    {
+      "seed": 20260905,
+      "control_weak_validation_auc": 0.832500728845938,
+      "mars_weak_validation_auc": 0.6827168011328156,
+      "control_gold_auc": 0.8575171258755249,
+      "mars_gold_auc": 0.6485682951158243,
+      "delta": -0.2089488307597006
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8605096778451152,
+    "mars_gold_auc": 0.6564388476210747,
+    "delta": -0.2040708302240405
+  },
+  "bootstrap": {
+    "mean": -0.20440906924265514,
+    "p_improve": 0.0,
+    "q025": -0.25690156995168656,
+    "q975": -0.15274429930529668
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": false,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "passed": false,
+  "submission_created": false
+}

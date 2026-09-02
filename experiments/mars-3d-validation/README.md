@@ -11,3 +11,8 @@ Attribution and provenance:
 The candidate encodes one fluid-sensitive 32×96×96 volume from each sagittal, coronal, and axial plane, then trains the same kind of lightweight target-attention head used by the control. All 58 organizer-labelled studies are excluded from fitting, splitting, weak validation, stopping, and model selection. The notebook cannot submit.
 
 Acceptance requires +0.005 ensemble macro AUC, at least four of five positive seeds, paired-bootstrap probability of improvement of at least 0.95, and positive q025. Passing would authorize only a separate private comparison with the locked 0.936 ensemble.
+
+## Outcome
+
+Rejected after strict private validation. See `RESULTS.md` and `mars_3d_validation_report.json`. No submission was created.
+
