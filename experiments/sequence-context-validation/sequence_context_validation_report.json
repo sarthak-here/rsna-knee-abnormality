@@ -1,0 +1,110 @@
+{
+  "contract": "private adjacent-slice sequence-context SSL; no submission",
+  "candidate": "RadImageNet final-stage adjacent-slice InfoNCE and order pretraining",
+  "initial_checkpoint_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "adapted_checkpoint_sha256": "c900c6c240dad079522e6e9be200b2045635c8d25246cffe414918a02b6a1a43",
+  "adapted_checkpoint_size": 94347671,
+  "ssl_seed": 20260921,
+  "ssl_epochs": 5,
+  "pretraining_pairs": 3922,
+  "pretraining_pair_coverage": 1.0,
+  "pretraining_uses_report_labels": false,
+  "fitting_studies": 3922,
+  "weak_validation_studies": 427,
+  "report_group_overlap": 0,
+  "ssl_history": [
+    {
+      "epoch": 1,
+      "loss": 0.31439920158060397,
+      "infonce": 0.14107728554605525,
+      "relative_order_ce": 0.6932876641381948
+    },
+    {
+      "epoch": 2,
+      "loss": 0.20655445422462393,
+      "infonce": 0.034779861941743664,
+      "relative_order_ce": 0.6870983693746813
+    },
+    {
+      "epoch": 3,
+      "loss": 0.19847863791002296,
+      "infonce": 0.028780143489526403,
+      "relative_order_ce": 0.6787939776819862
+    },
+    {
+      "epoch": 4,
+      "loss": 0.1926887479441194,
+      "infonce": 0.024802213326696836,
+      "relative_order_ce": 0.6715461384696902
+    },
+    {
+      "epoch": 5,
+      "loss": 0.1875607066620132,
+      "infonce": 0.022397021640021848,
+      "relative_order_ce": 0.6606547400879653
+    }
+  ],
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20260921,
+      "control_weak_validation_auc": 0.8187295844573691,
+      "sequence_weak_validation_auc": 0.8229794359471484,
+      "control_gold_auc": 0.8619468894837654,
+      "sequence_gold_auc": 0.8352495452938893,
+      "delta": -0.026697344189876127
+    },
+    {
+      "seed": 20260922,
+      "control_weak_validation_auc": 0.8207366427800079,
+      "sequence_weak_validation_auc": 0.8198790625000171,
+      "control_gold_auc": 0.8570497120724383,
+      "sequence_gold_auc": 0.8310958595364385,
+      "delta": -0.0259538525359998
+    },
+    {
+      "seed": 20260923,
+      "control_weak_validation_auc": 0.8205939967077356,
+      "sequence_weak_validation_auc": 0.8187680795859906,
+      "control_gold_auc": 0.854175755975012,
+      "sequence_gold_auc": 0.8239664953318555,
+      "delta": -0.030209260643156544
+    },
+    {
+      "seed": 20260924,
+      "control_weak_validation_auc": 0.8169100742361598,
+      "sequence_weak_validation_auc": 0.8172491441119173,
+      "control_gold_auc": 0.856380679697574,
+      "sequence_gold_auc": 0.8313133843605899,
+      "delta": -0.025067295336984152
+    },
+    {
+      "seed": 20260925,
+      "control_weak_validation_auc": 0.817608227329491,
+      "sequence_weak_validation_auc": 0.8218702581317302,
+      "control_gold_auc": 0.8622923986559913,
+      "sequence_gold_auc": 0.82243498672159,
+      "delta": -0.03985741193440129
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8604510873814598,
+    "sequence_gold_auc": 0.834911699891235,
+    "delta": -0.025539387490224774
+  },
+  "bootstrap": {
+    "mean": -0.02563668046490741,
+    "p_improve": 0.006,
+    "q025": -0.04640302095113875,
+    "q975": -0.005725411290119633
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": false,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "passed": false,
+  "submission_created": false
+}
