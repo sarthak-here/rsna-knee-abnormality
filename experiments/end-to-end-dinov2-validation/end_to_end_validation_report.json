@@ -1,0 +1,17 @@
+{
+  "contract": "private one-fold screen; no competition submission",
+  "candidate": "full DINOv2-S 2.5D six-slot fine-tuning",
+  "fold": 0,
+  "seed": 20261004,
+  "fit_studies": 3479,
+  "weak_validation_studies": 870,
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "best_weak_auc": 0.6990177393856314,
+  "gold_auc": 0.6698186361091508,
+  "prior_control_gold_auc": 0.8604570711716714,
+  "delta_vs_prior_control": -0.1906384350625206,
+  "checkpoint_sha256": "f925034f3e2e9ab7b5339b3395ae92a4c76c099603e81ddad06e71b8febc8e88",
+  "passed": false,
+  "submission_created": false
+}

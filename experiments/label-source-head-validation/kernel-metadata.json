@@ -1,0 +1,20 @@
+{
+  "id": "sarthaksharma14/rsna-knee-label-source-head-audit",
+  "title": "RSNA Knee Label Source Head Audit",
+  "code_file": "label-source-head-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": ["rsna-knee-abnormality-detection"],
+  "dataset_sources": [
+    "tonylica/rsna-knee-bend-dinov3-0917-repro-assets",
+    "stevenleehans/rsna-knee-llm-report-labels",
+    "riadmohamed42/jev-knee-labels"
+  ],
+  "kernel_sources": ["sarthaksharma14/rsna-knee-report-image-cross-supervision"],
+  "model_sources": []
+}
