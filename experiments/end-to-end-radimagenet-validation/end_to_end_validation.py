@@ -157,7 +157,19 @@ def load_jev_targets(train):
                          dtype={"StudyInstanceUID": str})
     aligned = train[["StudyInstanceUID"]].merge(source, on="StudyInstanceUID", how="left",
                                                   validate="one_to_one")
-    labels = aligned[TARGETS].to_numpy(np.float32)
+    # The published hybrid table covers all 4,407 studies but contains three missing
+    # target values in one row (ACL, MCL and Fracture). The same CC0 release includes
+    # its complete FINAL2 soft-score table, so use only those exact cells as fallback.
+    fallback = pd.read_csv(unique_input("FINAL2_labels_scores.csv"),
+                           dtype={"StudyInstanceUID": str})
+    fallback = train[["StudyInstanceUID"]].merge(
+        fallback, on="StudyInstanceUID", how="left", validate="one_to_one")
+    values = aligned[TARGETS].copy()
+    missing = values.isna()
+    if int(missing.sum().sum()) != 3:
+        raise RuntimeError(f"unexpected JEV hybrid missing-cell count {int(missing.sum().sum())}")
+    values = values.where(~missing, fallback[TARGETS])
+    labels = values.to_numpy(np.float32)
     if not np.isfinite(labels).all():
         raise RuntimeError("JEV hybrid labels do not cover every training study")
     confidence_columns = [f"{target}_confidence" for target in TARGETS]
@@ -248,6 +260,7 @@ def main_end_to_end():
         "contract": "private one-fold screen; no competition submission",
         "candidate": "full RadImageNet ResNet-50 2.5D six-slot fine-tuning",
         "label_source": "riadmohamed42/jev-knee-labels HYBRID scores (CC0)",
+        "label_fallback": "3 published HYBRID NaNs filled from the same release's FINAL2 scores",
         "attribution": [
             "marwanmath/resnet-50-radimagenet-marwan",
             "stevenleehans/rsna-knee-500gb-to-11gib-cpu-pixel-cache",
