@@ -1,0 +1,17 @@
+{
+  "contract": "private one-fold screen; no competition submission",
+  "candidate": "full RadImageNet ResNet-50 2.5D six-slot fine-tuning",
+  "fold": 0,
+  "seed": 20261004,
+  "fit_studies": 3479,
+  "weak_validation_studies": 870,
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "best_weak_auc": 0.8195461008087758,
+  "gold_auc": 0.8280384234506618,
+  "prior_control_gold_auc": 0.8604570711716714,
+  "delta_vs_prior_control": -0.0324186477210096,
+  "checkpoint_sha256": "5f15e30e12c15c60e0f66355ded6672b53e5c419781a3b7f06911865c50f2002",
+  "passed": false,
+  "submission_created": false
+}
