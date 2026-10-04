@@ -1,6 +1,6 @@
 {
-  "id": "sarthaksharma14/rsna-knee-288px-15-slice-cache",
-  "title": "RSNA Knee 288px 15 Slice Cache",
+  "id": "sarthaksharma14/rsna-knee-288px-12-slice-cache",
+  "title": "RSNA Knee 288px 12 Slice Cache",
   "code_file": "highres-pixel-cache.ipynb",
   "language": "python",
   "kernel_type": "notebook",

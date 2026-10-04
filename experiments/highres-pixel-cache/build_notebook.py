@@ -10,7 +10,7 @@ source["cells"][3]["source"] = [
     "import os\n",
     "os.environ['RSNA_IMG'] = '288'\n",
     "os.environ['RSNA_CROP_MM'] = '140'\n",
-    "os.environ['RSNA_N_GROUP_MAX'] = '5'\n",
+    "os.environ['RSNA_N_GROUP_MAX'] = '4'\n",
     "os.environ['RSNA_WINDOW'] = '0.08,0.92'\n",
     "for k, v in os.environ.items():\n",
     "    if k.startswith('RSNA_'):\n",
@@ -20,7 +20,7 @@ source["cells"][3]["source"] = [
 writer = r'''
 import h5py
 
-OUT = Path('/kaggle/working/train_288x15.h5')
+OUT = Path('/kaggle/working/train_288x12.h5')
 META = Path('/kaggle/working/highres_cache_meta.json')
 STUDIES = Path('/kaggle/working/highres_cache_studies.csv')
 
@@ -38,17 +38,17 @@ all_studies = sorted(slot_map)
 if len(all_studies) != 4407:
     raise RuntimeError(f'unexpected highres study count {len(all_studies)}')
 
-n_group = 5
+n_group = 4
 n_slice = CFG.group * n_group
-if CFG.img != 288 or CFG.crop_mm != 140 or n_slice != 15:
+if CFG.img != 288 or CFG.crop_mm != 140 or n_slice != 12:
     raise RuntimeError('highres cache config drift')
 
 pd.DataFrame({'StudyInstanceUID': all_studies}).to_csv(STUDIES, index=False)
 with h5py.File(OUT, 'w') as handle:
     pixels = handle.create_dataset(
         'pixels', shape=(len(all_studies), len(SLOTS), n_slice, CFG.img, CFG.img),
-        dtype='u1', chunks=(1, len(SLOTS), n_slice, CFG.img, CFG.img),
-        compression='gzip', compression_opts=1, shuffle=True)
+        dtype='u1', chunks=(1, 1, n_slice, CFG.img, CFG.img),
+        compression='gzip', compression_opts=2, shuffle=True)
     masks = handle.create_dataset('masks', shape=(len(all_studies), len(SLOTS)),
                                   dtype='f4', chunks=(256, len(SLOTS)))
     bounds = np.linspace(0, len(all_studies), 5).astype(int)
@@ -83,7 +83,7 @@ meta = {
     'shape': [len(all_studies), len(SLOTS), n_slice, CFG.img, CFG.img],
     'crop_mm': CFG.crop_mm,
     'window': os.environ['RSNA_WINDOW'],
-    'compression': 'HDF5 gzip level 1, one-study chunks, shuffle',
+    'compression': 'HDF5 gzip level 2, one-study/one-slot chunks, shuffle',
     'study_count': len(all_studies),
     'h5_bytes': OUT.stat().st_size,
     'h5_sha256': digest(OUT),
@@ -98,8 +98,8 @@ source["cells"][25]["source"] = writer.splitlines(keepends=True)
 source["cells"][25]["outputs"] = []
 source["cells"][25]["execution_count"] = None
 source["cells"][0]["source"] = [
-    "# RSNA Knee 288px / 15-slice physical cache\n",
+    "# RSNA Knee 288px / 12-slice physical cache\n",
     "Derived from Steven Lee Hans' attributed public CPU cache notebook. This run changes\n",
-    "the pixel contract to 288px, 140mm, 15 slices and writes random-access HDF5.\n",
+    "the pixel contract to 288px, 140mm, 12 slices and writes random-access HDF5.\n",
 ]
 (root / "highres-pixel-cache.ipynb").write_text(json.dumps(source), encoding="utf-8")
