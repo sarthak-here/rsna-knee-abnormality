@@ -1,0 +1,19 @@
+{
+  "id": "sarthaksharma14/rsna-knee-end-to-end-radimagenet-screen",
+  "title": "RSNA Knee End to End RadImageNet Screen",
+  "code_file": "end-to-end-radimagenet-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": ["rsna-knee-abnormality-detection"],
+  "dataset_sources": [
+    "tonylica/rsna-knee-bend-dinov3-0917-repro-assets",
+    "riadmohamed42/jev-knee-labels"
+  ],
+  "kernel_sources": ["stevenleehans/rsna-knee-500gb-to-11gib-cpu-pixel-cache"],
+  "model_sources": []
+}
