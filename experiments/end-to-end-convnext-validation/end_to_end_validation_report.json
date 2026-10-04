@@ -1,0 +1,13 @@
+{
+  "contract": "private one-fold screen; no competition submission",
+  "candidate": "ConvNeXt-Tiny ImageNet-22k/1k 2.5D six-slot fine-tuning",
+  "best_weak_auc": 0.8203951764381556,
+  "gold_auc": 0.8173578422278568,
+  "prior_control_gold_auc": 0.8604570711716714,
+  "delta_vs_prior_control": -0.0430992289438146,
+  "checkpoint_sha256": "df341373b760af715bf578eb95bffa0a3c4c53f6b4058fe8a40458566444375b",
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "passed": false,
+  "submission_created": false
+}
