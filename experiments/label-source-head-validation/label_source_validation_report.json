@@ -1,0 +1,16 @@
+{
+  "contract": "private paired supervision audit; no submission",
+  "encoder_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "steven_gold_auc": 0.8623095055266338,
+  "jev_gold_auc": 0.8557452781008017,
+  "delta_jev_minus_steven": -0.00656422742583207,
+  "positive_jev_seeds": 0,
+  "bootstrap_p_improve": 0.0506,
+  "bootstrap_q025": -0.014667101273341093,
+  "bootstrap_q975": 0.0013424972807892053,
+  "winner": "stevenleehans llm_labels_v4_blend.csv",
+  "passed": false,
+  "submission_created": false
+}
