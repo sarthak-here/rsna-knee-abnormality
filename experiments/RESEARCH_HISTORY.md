@@ -1,10 +1,11 @@
 # Research history
 
-This log records completed, rejected, and in-progress experiments. A result is not described as an improvement unless it beats the locked public leaderboard baseline of `0.936`.
+This log records completed, rejected, and in-progress experiments. A result is not described as an improvement unless it beats the locked public leaderboard baseline of `0.943`.
 
 ## Validated baseline
 
-- Diverse DINO, RadImageNet, and CoAtNet swarm: `0.936` public score.
+- DINOsaur V5 attributed public reproduction, submission `56827069`: `0.943` public score; promoted on 5 October 2026.
+- Previous diverse DINO, RadImageNet, and CoAtNet swarm: `0.936` public score.
 - Confidence-gated variant, submission `55894162`: `0.936`; tied and therefore not promoted as an improvement.
 
 ## E11 residual validation
