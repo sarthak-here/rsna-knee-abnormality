@@ -1,0 +1,15 @@
+{
+  "id": "sarthaksharma14/rsna-knee-288px-cache-validation",
+  "title": "RSNA Knee 288px Cache Validation",
+  "code_file": "highres-cache-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "false",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "competition_sources": [],
+  "dataset_sources": [],
+  "kernel_sources": ["sarthaksharma14/rsna-knee-288px-12-slice-cache"],
+  "model_sources": []
+}
