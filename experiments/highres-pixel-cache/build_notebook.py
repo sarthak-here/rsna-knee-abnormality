@@ -3,6 +3,8 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent
 source = json.loads((root / "source-public-cache.ipynb").read_text(encoding="utf-8"))
+for index, cell in enumerate(source["cells"]):
+    cell.setdefault("id", f"cell-{index:02d}")
 
 # Keep the attributed public implementation cells, but make the resolution/sampling
 # decision explicit before CFG is defined.
@@ -18,6 +20,7 @@ source["cells"][3]["source"] = [
 ]
 
 writer = r'''
+import json
 import h5py
 
 OUT = Path('/kaggle/working/train_288x12.h5')
