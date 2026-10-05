@@ -12,10 +12,21 @@ import h5py
 import numpy as np
 import pandas as pd
 
-SOURCE = Path('/kaggle/input/rsna-knee-288px-12-slice-cache')
-H5 = SOURCE / 'train_288x12.h5'
-META = SOURCE / 'highres_cache_meta.json'
-STUDIES = SOURCE / 'highres_cache_studies.csv'
+INPUT = Path('/kaggle/input')
+
+
+def locate(name):
+    matches = list(INPUT.rglob(name))
+    if len(matches) != 1:
+        inventory = [str(path) for path in INPUT.rglob('*') if path.is_file()]
+        raise RuntimeError(f'expected one {name}, found {matches}; input files={inventory[:100]}')
+    return matches[0]
+
+
+H5 = locate('train_288x12.h5')
+SOURCE = H5.parent
+META = locate('highres_cache_meta.json')
+STUDIES = locate('highres_cache_studies.csv')
 REPORT = Path('/kaggle/working/highres_cache_validation.json')
 
 
