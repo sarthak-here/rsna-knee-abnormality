@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "contract": "training pixels only; no labels; no submission",
+  "shape": [4407, 6, 12, 288, 288],
+  "dtype": "uint8",
+  "chunks": [1, 1, 12, 288, 288],
+  "compression": "gzip-2-shuffle",
+  "study_count": 4407,
+  "unique_studies": 4407,
+  "occupied_slots": 23089,
+  "empty_slots": 3353,
+  "occupied_all_zero": 0,
+  "pixel_min": 0,
+  "pixel_max": 255,
+  "h5_bytes": 17051786047,
+  "h5_sha256": "490e5ccc07143699d05a9eb3ef9583e08795f1c2bacc6d9cf2bd0a9268158526",
+  "studies_sha256": "efc63afee30345f94a916f98ba6b30f266fccfe2976b8475fa86653b2c510513",
+  "source_kernel": "sarthaksharma14/rsna-knee-288px-12-slice-cache",
+  "creates_submission": false
+}
