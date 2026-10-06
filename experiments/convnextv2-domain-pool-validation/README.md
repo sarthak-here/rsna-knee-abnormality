@@ -23,3 +23,11 @@ Python emitted logs. For execution, the exact pinned checkpoint is mirrored in
 the private dataset `sarthaksharma14/rsna-knee-convnextv2-domain-checkpoint`;
 `checkpoint-dataset/SOURCE.md` records its original author, Apache-2.0 license,
 source model reference, and SHA-256. The binary is intentionally git-ignored.
+
+## Result
+
+Version 4 completed and passed artifact-integrity checks, but the candidate was
+rejected. Its three organizer-gold AUCs were `0.816303`, `0.836123`, and
+`0.823675`; the frozen ensemble reached `0.827406`, which is `-0.033051` below
+the `0.860457` private control and below the predeclared `0.865457` gate. No
+competition submission was created. See `RESULTS.md` for the validation record.
