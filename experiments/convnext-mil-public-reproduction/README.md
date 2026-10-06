@@ -15,3 +15,10 @@ The copied upstream notebook SHA-256 is
 No source cell or blend constant is changed. Any generated `submission.csv`
 must pass strict schema, test-ID, finiteness, range, and runtime-receipt checks
 before it can be submitted.
+
+## Result
+
+The exact private notebook version 1 passed every validation gate and was
+submitted as Kaggle submission `56877854`. It scored **0.944** publicly on
+6 October 2026, improving the previous locked `0.943` result and becoming the
+new validated baseline. See `RESULTS.md` for the complete audit trail.
