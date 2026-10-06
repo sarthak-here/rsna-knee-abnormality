@@ -12,3 +12,9 @@ comparison. The notebook cannot create a competition submission.
 
 The screen requires an ensemble gold AUC of at least `0.865457` and at least
 two of three seeds above the `0.860457` private control before any scaling work.
+
+The direct Kaggle Model attachment failed during worker provisioning before
+Python emitted logs. For execution, the exact pinned checkpoint is mirrored in
+the private dataset `sarthaksharma14/rsna-knee-convnextv2-domain-checkpoint`;
+`checkpoint-dataset/SOURCE.md` records its original author, Apache-2.0 license,
+source model reference, and SHA-256. The binary is intentionally git-ignored.

@@ -10,7 +10,10 @@
   "enable_internet": "false",
   "machine_shape": "NvidiaTeslaT4",
   "competition_sources": ["rsna-knee-abnormality-detection"],
-  "dataset_sources": ["stevenleehans/rsna-knee-llm-report-labels"],
+  "dataset_sources": [
+    "stevenleehans/rsna-knee-llm-report-labels",
+    "sarthaksharma14/rsna-knee-convnextv2-domain-checkpoint"
+  ],
   "kernel_sources": ["sarthaksharma14/rsna-knee-288px-12-slice-cache"],
-  "model_sources": ["yaolinghan/rsna-knee-pool-models/PyTorch/convnextv2-pool/1"]
+  "model_sources": []
 }
