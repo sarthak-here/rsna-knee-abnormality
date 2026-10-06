@@ -14,6 +14,6 @@
     "stevenleehans/rsna-knee-llm-report-labels",
     "sarthaksharma14/rsna-knee-convnextv2-domain-checkpoint"
   ],
-  "kernel_sources": ["sarthaksharma14/rsna-knee-288px-12-slice-cache"],
+  "kernel_sources": [],
   "model_sources": []
 }

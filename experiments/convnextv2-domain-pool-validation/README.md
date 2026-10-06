@@ -13,6 +13,11 @@ comparison. The notebook cannot create a competition submission.
 The screen requires an ensemble gold AUC of at least `0.865457` and at least
 two of three seeds above the `0.860457` private control before any scaling work.
 
+After the 17 GB cache notebook output repeatedly failed Kaggle worker mounting,
+the GPU notebook was changed to reproduce the exact attributed 288px, 140mm,
+12-slice preprocessing contract directly from competition DICOMs in bounded
+32-study in-memory shards. Only compact frozen features are persisted.
+
 The direct Kaggle Model attachment failed during worker provisioning before
 Python emitted logs. For execution, the exact pinned checkpoint is mirrored in
 the private dataset `sarthaksharma14/rsna-knee-convnextv2-domain-checkpoint`;

@@ -4,6 +4,21 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent
 source = (root / "convnextv2_domain_pool_validation.py").read_text(encoding="utf-8")
+public_cache = json.loads(
+    (root.parent / "highres-pixel-cache" / "source-public-cache.ipynb").read_text(
+        encoding="utf-8"))
+preprocessing = """from __future__ import annotations
+import os
+os.environ['RSNA_IMG'] = '288'
+os.environ['RSNA_CROP_MM'] = '140'
+os.environ['RSNA_N_GROUP_MAX'] = '4'
+os.environ['RSNA_WINDOW'] = '0.08,0.92'
+"""
+preprocessing += "\n\n".join(
+    "".join(public_cache["cells"][index]["source"]).replace(
+        "from __future__ import annotations\n", "")
+    for index in range(10, 16)
+    if public_cache["cells"][index]["cell_type"] == "code")
 notebook = {
     "cells": [
         {
@@ -14,6 +29,14 @@ notebook = {
                 "# RSNA Knee ConvNeXtV2 domain-pool screen\n",
                 "Private leakage-safe validation of an attributed public RSNA-trained backbone. No submission.\n",
             ],
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "id": "preprocessing",
+            "metadata": {},
+            "outputs": [],
+            "source": preprocessing.splitlines(keepends=True),
         },
         {
             "cell_type": "code",

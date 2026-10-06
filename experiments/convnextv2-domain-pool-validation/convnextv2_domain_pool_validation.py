@@ -8,7 +8,6 @@ import random
 import time
 from pathlib import Path
 
-import h5py
 import numpy as np
 import pandas as pd
 import torch
@@ -105,63 +104,69 @@ def load_backbone(checkpoint_path):
     return model
 
 
-class H5StudyRows(torch.utils.data.Dataset):
-    def __init__(self, path):
-        self.path = str(path)
-        self.handle = None
-
-    def __len__(self):
-        return N_STUDIES
-
-    def __getitem__(self, row):
-        if self.handle is None:
-            self.handle = h5py.File(self.path, "r", swmr=True)
-        return row, self.handle["pixels"][row], self.handle["masks"][row]
-
-
 @torch.no_grad()
-def encode_cache(h5_path, model):
+def encode_dicom(model):
+    """Reproduce the validated 288px cache contract shard-by-shard in memory."""
     output_path = Path("/kaggle/working/convnextv2_domain_features.npy")
+    mask_path = Path("/kaggle/working/convnextv2_domain_masks.npy")
+    study_path = Path("/kaggle/working/convnextv2_domain_studies.csv")
     features = np.lib.format.open_memmap(
         output_path, mode="w+", dtype=np.float16,
         shape=(N_STUDIES, N_SLOT, N_DEPTH, FEATURE_DIM))
+    output_masks = np.zeros((N_STUDIES, N_SLOT), np.float32)
     mean = torch.tensor([.485, .456, .406], device=DEVICE)[None, :, None, None]
     std = torch.tensor([.229, .224, .225], device=DEVICE)[None, :, None, None]
-    loader = DataLoader(H5StudyRows(h5_path), batch_size=4, shuffle=False,
-                        num_workers=4, prefetch_factor=1, persistent_workers=True,
-                        pin_memory=True)
-    completed = 0
-    for rows, studies, masks in loader:
-        batch = len(rows)
-        # Twelve physical slices yield ten adjacent 2.5D triplets.
-        windows = torch.stack((studies[:, :, :-2], studies[:, :, 1:-1],
-                               studies[:, :, 2:]), dim=3)
-        token_mask = masks.bool()[:, :, None].expand(-1, -1, N_DEPTH)
+    root = find_root()
+    train_series = pd.read_csv(root / "train_series.csv")
+    plane_map = dict(zip(train_series.SeriesInstanceUID, train_series.Anatomical_Plane))
+    log("direct-DICOM header pass")
+    headers = annotate(walk(root, "train_series"))
+    headers["plane"] = headers.SeriesInstanceUID.map(plane_map)
+    laterality = {study: resolve_laterality(group)
+                  for study, group in headers.groupby("StudyInstanceUID")}
+    slot_map = pick_slots(headers, plane_map)
+    all_studies = sorted(slot_map)
+    if len(all_studies) != N_STUDIES:
+        raise RuntimeError(f"unexpected study count {len(all_studies)}")
+    pd.DataFrame({"StudyInstanceUID": all_studies}).to_csv(study_path, index=False)
+
+    shard_size = 32
+    for lo in range(0, N_STUDIES, shard_size):
+        hi = min(N_STUDIES, lo + shard_size)
+        subset_ids = all_studies[lo:hi]
+        subset = {uid: slot_map[uid] for uid in subset_ids}
+        studies, cache, masks = build_cache(
+            subset, plane_map, laterality, f"cnxv2-{lo:04d}", 4)
+        if studies != subset_ids or cache.shape != (hi - lo, N_SLOT, 12, 288, 288):
+            raise RuntimeError(f"direct cache identity/shape drift at {lo}:{hi}")
+        output_masks[lo:hi] = masks
+        tensor = torch.from_numpy(cache)
+        windows = torch.stack((tensor[:, :, :-2], tensor[:, :, 1:-1],
+                               tensor[:, :, 2:]), dim=3)
+        token_mask = torch.from_numpy(masks).bool()[:, :, None].expand(-1, -1, N_DEPTH)
         images = windows[token_mask]
-        batch_features = []
+        encoded_parts = []
         for start in range(0, len(images), 32):
-            image = images[start:start + 32].to(
-                DEVICE, non_blocking=True).float().div_(255.0)
+            image = images[start:start + 32].to(DEVICE).float().div_(255.0)
             image = (image - mean) / std
             with torch.autocast("cuda", dtype=torch.float16,
                                 enabled=DEVICE.type == "cuda"):
                 fmap = model(image.contiguous(memory_format=torch.channels_last))
                 encoded = F.adaptive_avg_pool2d(fmap, 1).flatten(1)
-            batch_features.append(encoded.float().cpu())
-        encoded = torch.cat(batch_features).numpy().astype(np.float16)
-        locations = token_mask.nonzero(as_tuple=False).numpy()
-        row_values = rows.numpy()
-        for location, value in zip(locations, encoded):
+            encoded_parts.append(encoded.float().cpu())
+        encoded = torch.cat(encoded_parts).numpy().astype(np.float16)
+        for location, value in zip(token_mask.nonzero(as_tuple=False).numpy(), encoded):
             batch_row, slot, depth = location
-            features[row_values[batch_row], slot, depth] = value
-        completed += batch
-        if completed % 100 <= batch:
-            features.flush()
-            log(f"encoded {completed}/{N_STUDIES} studies")
+            features[lo + batch_row, slot, depth] = value
+        features.flush()
+        log(f"decoded and encoded {hi}/{N_STUDIES} studies")
+        del cache, tensor, windows, images, encoded, encoded_parts
+        gc.collect()
     features.flush()
+    np.save(mask_path, output_masks)
     del features
     gc.collect()
-    return output_path
+    return output_path, mask_path, study_path
 
 
 class StudyTransformerHead(nn.Module):
@@ -266,12 +271,6 @@ def main():
     checkpoint_hash = sha256(checkpoint)
     if checkpoint_hash != CHECKPOINT_SHA256:
         raise RuntimeError(f"checkpoint hash drift: {checkpoint_hash}")
-    h5_path = unique_input("train_288x12.h5")
-    with h5py.File(h5_path, "r") as handle:
-        if handle["pixels"].shape != (N_STUDIES, N_SLOT, 12, 288, 288):
-            raise RuntimeError(f"cache shape drift: {handle['pixels'].shape}")
-        masks_cache_order = np.asarray(handle["masks"], np.float32)
-
     train = pd.read_csv(competition_root() / "train.csv", dtype={"StudyInstanceUID": str})
     gold = train[TARGETS].notna().all(axis=1).to_numpy()
     if int(gold.sum()) != 58:
@@ -284,18 +283,17 @@ def main():
     if not np.isfinite(labels).all():
         raise RuntimeError("Steven v4 labels incomplete")
 
-    studies = pd.read_csv(unique_input("highres_cache_studies.csv"),
-                          dtype={"StudyInstanceUID": str})
-    if len(studies) != N_STUDIES or not studies.StudyInstanceUID.is_unique:
-        raise RuntimeError("cache study manifest drift")
-    order = pd.Series(np.arange(len(studies)), index=studies.StudyInstanceUID)
-    reorder = order.loc[train.StudyInstanceUID].to_numpy()
-    masks = masks_cache_order[reorder]
-
     backbone = load_backbone(checkpoint)
-    feature_path = encode_cache(h5_path, backbone)
+    feature_path, mask_path, study_path = encode_dicom(backbone)
     del backbone
     torch.cuda.empty_cache()
+
+    studies = pd.read_csv(study_path, dtype={"StudyInstanceUID": str})
+    if len(studies) != N_STUDIES or not studies.StudyInstanceUID.is_unique:
+        raise RuntimeError("direct-DICOM study manifest drift")
+    order = pd.Series(np.arange(len(studies)), index=studies.StudyInstanceUID)
+    reorder = order.loc[train.StudyInstanceUID].to_numpy()
+    masks = np.load(mask_path)[reorder]
     features = np.load(feature_path, mmap_mode="r")[reorder]
 
     non_gold = np.flatnonzero(~gold)
@@ -330,7 +328,8 @@ def main():
         "public_model_license": "Apache-2.0",
         "public_checkpoint": CHECKPOINT_NAME,
         "public_checkpoint_sha256": checkpoint_hash,
-        "cache_h5_sha256": CACHE_SHA256,
+        "pixel_contract": "direct DICOM reproduction of validated 288px/140mm/12-slice cache",
+        "reference_cache_h5_sha256": CACHE_SHA256,
         "feature_sha256": sha256(feature_path),
         "heads_sha256": sha256(heads_path),
         "label_source": "stevenleehans llm_labels_v4_blend.csv",
