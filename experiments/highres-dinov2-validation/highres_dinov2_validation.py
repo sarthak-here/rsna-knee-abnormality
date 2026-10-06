@@ -89,6 +89,22 @@ def load_encoder():
     return model, str(roots[0])
 
 
+class H5StudyRows(torch.utils.data.Dataset):
+    """Open one read-only HDF5 handle per worker and stream contiguous studies."""
+
+    def __init__(self, path):
+        self.path = str(path)
+        self.handle = None
+
+    def __len__(self):
+        return 4407
+
+    def __getitem__(self, row):
+        if self.handle is None:
+            self.handle = h5py.File(self.path, "r", swmr=True)
+        return row, self.handle["pixels"][row], self.handle["masks"][row]
+
+
 @torch.no_grad()
 def encode_cache(h5_path, model):
     output_path = Path("/kaggle/working/highres_dinov2_features.npy")
@@ -98,33 +114,36 @@ def encode_cache(h5_path, model):
     mean = torch.tensor([.485, .456, .406], device=DEVICE)[None, :, None, None]
     std = torch.tensor([.229, .224, .225], device=DEVICE)[None, :, None, None]
     with h5py.File(h5_path, "r") as handle:
-        pixels, masks = handle["pixels"], handle["masks"]
-        if pixels.shape != (4407, 6, 12, 288, 288):
-            raise RuntimeError(f"high-resolution cache shape drift: {pixels.shape}")
-        for row in range(4407):
-            study = pixels[row]
-            mask = masks[row].astype(bool)
-            triplets, locations = [], []
-            for slot in range(N_SLOT):
-                if not mask[slot]:
-                    continue
-                for depth in range(N_DEPTH):
-                    triplets.append(study[slot, depth * 3:(depth + 1) * 3])
-                    locations.append((slot, depth))
-            for start in range(0, len(triplets), 24):
-                image = torch.from_numpy(np.stack(triplets[start:start + 24])).to(
-                    DEVICE, non_blocking=True).float().div_(255.0)
-                image = (image - mean) / std
-                with torch.autocast("cuda", dtype=torch.float16, enabled=DEVICE.type == "cuda"):
-                    hidden = model(pixel_values=image, interpolate_pos_encoding=True).last_hidden_state
-                    encoded = torch.cat((hidden[:, 0], hidden[:, 1:].mean(1)), dim=1)
-                encoded = encoded.float().cpu().numpy().astype(np.float16)
-                for offset, value in enumerate(encoded):
-                    slot, depth = locations[start + offset]
-                    features[row, slot, depth] = value
-            if row % 250 == 0:
-                features.flush()
-                log(f"encoded {row}/{len(features)} studies")
+        if handle["pixels"].shape != (4407, 6, 12, 288, 288):
+            raise RuntimeError(f"high-resolution cache shape drift: {handle['pixels'].shape}")
+    loader = DataLoader(H5StudyRows(h5_path), batch_size=4, shuffle=False,
+                        num_workers=4, prefetch_factor=1, persistent_workers=True,
+                        pin_memory=True)
+    completed = 0
+    for rows, studies, masks in loader:
+        batch = len(rows)
+        images = studies.reshape(batch, N_SLOT, N_DEPTH, 3, 288, 288)
+        token_mask = masks.bool()[:, :, None].expand(-1, -1, N_DEPTH)
+        locations = token_mask.nonzero(as_tuple=False)
+        images = images[token_mask]
+        batch_features = []
+        for start in range(0, len(images), 32):
+            image = images[start:start + 32].to(
+                DEVICE, non_blocking=True).float().div_(255.0)
+            image = (image - mean) / std
+            with torch.autocast("cuda", dtype=torch.float16, enabled=DEVICE.type == "cuda"):
+                hidden = model(pixel_values=image, interpolate_pos_encoding=True).last_hidden_state
+                encoded = torch.cat((hidden[:, 0], hidden[:, 1:].mean(1)), dim=1)
+            batch_features.append(encoded.float().cpu())
+        encoded = torch.cat(batch_features).numpy().astype(np.float16)
+        row_values = rows.numpy()
+        for location, value in zip(locations.numpy(), encoded):
+            batch_row, slot, depth = location
+            features[row_values[batch_row], slot, depth] = value
+        completed += batch
+        if completed % 100 <= batch:
+            features.flush()
+            log(f"encoded {completed}/{len(features)} studies")
     features.flush()
     del features
     gc.collect()
