@@ -1,0 +1,16 @@
+{
+  "id": "sarthaksharma14/rsna-knee-convnextv2-domain-pool-screen",
+  "title": "RSNA Knee ConvNeXtV2 Domain Pool Screen",
+  "code_file": "convnextv2-domain-pool-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": ["rsna-knee-abnormality-detection"],
+  "dataset_sources": ["stevenleehans/rsna-knee-llm-report-labels"],
+  "kernel_sources": ["sarthaksharma14/rsna-knee-288px-12-slice-cache"],
+  "model_sources": ["yaolinghan/rsna-knee-pool-models/PyTorch/convnextv2-pool/1"]
+}
