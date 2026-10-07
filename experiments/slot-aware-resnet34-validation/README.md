@@ -24,3 +24,11 @@ permit only multi-fold private validation.
 - `dreaddevelopment/knee-raptor-corpus`
 - `dreaddevelopment/knee-raptor-corpus-ext`
 - `stevenleehans/rsna-knee-llm-report-labels`
+
+## Result
+
+Version 1 completed and passed artifact-integrity checks, but the candidate was
+rejected. Best weak-validation macro AUC was `0.797059`; the frozen checkpoint
+scored `0.795129` on organizer gold. Preserving the five fixed slots did not
+recover the flat reader's already inadequate ceiling. No submission was made.
+See `RESULTS.md`.

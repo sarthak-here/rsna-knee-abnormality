@@ -1,0 +1,18 @@
+{
+  "contract": "private one-fold screen; no competition submission",
+  "candidate": "five-slot 20-window ResNet34 mean-max pooling with plain BCE",
+  "slot_names": ["sagittal_fs", "sagittal_nonfs", "coronal_fs", "coronal_nonfs", "axial"],
+  "slot_ranges": [[0, 12], [12, 22], [22, 30], [30, 36], [36, 44]],
+  "fit_studies": 3479,
+  "weak_validation_studies": 870,
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "best_weak_auc": 0.7970594205116939,
+  "weak_validation_gate": 0.87,
+  "gold_auc": 0.7951287498714544,
+  "gold_diagnostic_floor": 0.860457,
+  "screen_passed": false,
+  "checkpoint_sha256": "760cd5223faf8818e89f0ded71d0e39818164a3ae5de9e8cc7d71d9d806e5a5c",
+  "pretrained_weight_sha256": "333f7ec4c6338da2cbed37f1fc0445f9624f1355633fa1d7eab79a91084c6cef",
+  "submission_created": false
+}
