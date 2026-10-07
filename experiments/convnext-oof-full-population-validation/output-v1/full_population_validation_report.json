@@ -1,0 +1,99 @@
+{
+  "contract": "private full-population fixed-epoch paired target audit; no submission",
+  "encoder": "RadImageNet ResNet-50",
+  "encoder_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "control_targets": "Steven v4 soft labels for all 4349 non-gold studies",
+  "candidate_targets": "fixed 50/50 Steven/true-OOF mix for 2610 covered; Steven unchanged for 1739 uncovered",
+  "fit_studies_each_arm": 4349,
+  "corrected_studies": 2610,
+  "unchanged_studies": 1739,
+  "checkpoint_selection": "none; fixed 20 epochs",
+  "teacher_folds": [
+    0,
+    1,
+    2
+  ],
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20261021,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.40537683061688323,
+      "candidate_final_loss": 0.4191183020161826,
+      "control_gold_auc": 0.8143353037289708,
+      "candidate_gold_auc": 0.8280261268743655,
+      "delta_candidate_minus_control": 0.013690823145394715
+    },
+    {
+      "seed": 20261022,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.40180979218530116,
+      "candidate_final_loss": 0.4169200563682965,
+      "control_gold_auc": 0.8402536127577013,
+      "candidate_gold_auc": 0.8442647324894009,
+      "delta_candidate_minus_control": 0.004011119731699653
+    },
+    {
+      "seed": 20261023,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.40208117438064384,
+      "candidate_final_loss": 0.4174461853548038,
+      "control_gold_auc": 0.825454014053833,
+      "candidate_gold_auc": 0.838706756255808,
+      "delta_candidate_minus_control": 0.013252742201975032
+    },
+    {
+      "seed": 20261024,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.40368107593753033,
+      "candidate_final_loss": 0.4192821372511963,
+      "control_gold_auc": 0.8217681379963618,
+      "candidate_gold_auc": 0.8384930219286106,
+      "delta_candidate_minus_control": 0.016724883932248802
+    },
+    {
+      "seed": 20261025,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.40331522721234453,
+      "candidate_final_loss": 0.4188084527319068,
+      "control_gold_auc": 0.8271577290454709,
+      "candidate_gold_auc": 0.8250775910127296,
+      "delta_candidate_minus_control": -0.002080138032741319
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8413796368230289,
+    "candidate_gold_auc": 0.8483561123273268,
+    "delta_candidate_minus_control": 0.006976475504297919
+  },
+  "bootstrap": {
+    "mean": 0.00712592010459384,
+    "p_improve": 0.8706,
+    "q025": -0.005519911077896076,
+    "q975": 0.020191192850509174
+  },
+  "gate": {
+    "delta_at_least_0_005": true,
+    "positive_seeds_at_least_4": true,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false
+  },
+  "submission_created": false,
+  "passed": false
+}

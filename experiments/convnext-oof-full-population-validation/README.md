@@ -20,3 +20,11 @@ seeds, paired-bootstrap p-improve at least 0.95, and positive q025.
 - `stevenleehans/rsna-knee-llm-report-labels`
 - RadImageNet ResNet-50 from the attributed public reproduction assets
 
+## Result
+
+Version 1 completed cleanly but failed the robustness gate. The corrected arm
+improved ensemble macro AUC from `0.841380` to `0.848356` (`+0.006976`) and four
+of five seeds were positive. However, paired-bootstrap `p_improve` was only
+`0.8706`, and the 95% lower bound was negative (`-0.005520`). The partial OOF
+coverage therefore produces a promising but insufficiently reliable gain. No
+submission was created.
