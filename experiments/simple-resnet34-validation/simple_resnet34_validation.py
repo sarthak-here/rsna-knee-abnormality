@@ -12,6 +12,7 @@ RESNET_EPOCHS = 14
 RESNET_BATCH = 2
 RESNET_WEAK_GATE = 0.87
 RESNET_GOLD_FLOOR = 0.860457
+RESNET_WEIGHT_SHA256 = "333f7ec4c6338da2cbed37f1fc0445f9624f1355633fa1d7eab79a91084c6cef"
 
 
 class PlainResNet34(nn.Module):
@@ -25,8 +26,16 @@ class PlainResNet34(nn.Module):
         if len(candidates) != 1:
             raise RuntimeError(f"expected one resnet34.pth, found {candidates}")
         self.weight_path = candidates[0]
+        weight_sha = sha256(self.weight_path)
+        if weight_sha != RESNET_WEIGHT_SHA256:
+            raise RuntimeError(
+                f"ResNet34 weight identity mismatch: {weight_sha} != {RESNET_WEIGHT_SHA256}")
         network = resnet34(weights=None)
-        state = torch.load(self.weight_path, map_location="cpu", weights_only=True)
+        # This pinned CC0 checkpoint predates zip serialization and is stored in
+        # PyTorch's legacy tar/pickle format. Modern weights_only loading rejects
+        # that format, so legacy deserialization is allowed only after the exact
+        # SHA-256 identity gate above succeeds.
+        state = torch.load(self.weight_path, map_location="cpu", weights_only=False)
         if isinstance(state, dict) and "state_dict" in state:
             state = state["state_dict"]
         state = {str(key).removeprefix("module."): value for key, value in state.items()}
