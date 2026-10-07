@@ -1,0 +1,20 @@
+{
+  "id": "sarthaksharma14/rsna-knee-convnext-oof-teacher-audit",
+  "title": "RSNA Knee ConvNeXt OOF Teacher Audit",
+  "code_file": "convnext-oof-teacher-audit.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "dataset_sources": [
+    "goodpjw2008/rsna-knee-2-5d-convnext-reader"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}
