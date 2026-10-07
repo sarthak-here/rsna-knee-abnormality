@@ -1,0 +1,43 @@
+[{"stream_name":"stderr","time":11.271639246,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":11.271701102,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":11.271707338,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":11.271711081,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":12.064788465,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":12.064841725,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":12.064850528,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":12.064854637,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":1705.223482867,"data":"competition: /kaggle/input/competitions/rsna-knee-abnormality-detection\n"}
+,{"stream_name":"stdout","time":1705.223538237,"data":"source: /kaggle/input/datasets/goodpjw2008/rsna-knee-2-5d-convnext-reader\n"}
+,{"stream_name":"stdout","time":1705.446843752,"data":"GPU: Tesla T4 bf16 native: True\n"}
+,{"stream_name":"stderr","time":1831.571409766,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":1831.572048969,"data":"  File \"\u003cstring\u003e\", line 1, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":1831.57206902,"data":"    import sys;import papermill as pm;pm.execute_notebook(\"__notebook__.ipynb\",\"__notebook__.ipynb\",progress_bar=False,log_output=True,stdout_file=sys.stdout,stderr_file=sys.stderr,allow_errors=False,timeout=43200)\n"}
+,{"stream_name":"stderr","time":1831.572081137,"data":"                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":1831.572086475,"data":"  File \"/usr/local/lib/python3.13/dist-packages/papermill/execute.py\", line 131, in execute_notebook\n"}
+,{"stream_name":"stderr","time":1831.572091228,"data":"    raise_for_execution_errors(nb, output_path)\n"}
+,{"stream_name":"stderr","time":1831.572095444,"data":"    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":1831.572100329,"data":"  File \"/usr/local/lib/python3.13/dist-packages/papermill/execute.py\", line 251, in raise_for_execution_errors\n"}
+,{"stream_name":"stderr","time":1831.572104947,"data":"    raise error\n"}
+,{"stream_name":"stderr","time":1831.572108848,"data":"papermill.exceptions.PapermillExecutionError: \n"}
+,{"stream_name":"stderr","time":1831.572112904,"data":"---------------------------------------------------------------------------\n"}
+,{"stream_name":"stderr","time":1831.572117544,"data":"Exception encountered at \"In [2]\":\n"}
+,{"stream_name":"stderr","time":1831.572122047,"data":"---------------------------------------------------------------------------\n"}
+,{"stream_name":"stderr","time":1831.572126634,"data":"RuntimeError                              Traceback (most recent call last)\n"}
+,{"stream_name":"stderr","time":1831.572130883,"data":"/tmp/ipykernel_23/2329507601.py in \u003ccell line: 0\u003e()\n"}
+,{"stream_name":"stderr","time":1831.572135444,"data":"     50             packed = torch.zeros(batch * slots, windows, feature_dim,\n"}
+,{"stream_name":"stderr","time":1831.572140015,"data":"     51                                  dtype=torch.float16)\n"}
+,{"stream_name":"stderr","time":1831.572155371,"data":"---\u003e 52             packed[keep] = encoded.reshape(-1, windows, feature_dim).cpu()\n"}
+,{"stream_name":"stderr","time":1831.572159585,"data":"     53             packed = packed.view(batch, slots, windows, feature_dim).numpy()\n"}
+,{"stream_name":"stderr","time":1831.572162789,"data":"     54         else:\n"}
+,{"stream_name":"stderr","time":1831.572165815,"data":"\n"}
+,{"stream_name":"stderr","time":1831.572169373,"data":"RuntimeError: Index put requires the source and destination dtypes match, got Half for the destination and Float for the source.\n"}
+,{"stream_name":"stderr","time":1831.572172969,"data":"\n"}
+,{"stream_name":"stderr","time":1833.929376862,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1833.929412163,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1834.124967647,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1834.124994008,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1835.071889605,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":1835.149259075,"data":"[NbConvertApp] Writing 13020 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":1837.68427954,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1838.261046944,"data":"[NbConvertApp] Writing 316296 bytes to __results__.html\n"}
+]

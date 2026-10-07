@@ -111,7 +111,10 @@ with torch.inference_mode():
                         memory_format=torch.channels_last))
             packed = torch.zeros(batch * slots, windows, feature_dim,
                                  dtype=torch.float16)
-            packed[keep] = encoded.reshape(-1, windows, feature_dim).cpu()
+            # ConvNeXt emits float32 even inside autocast on this Kaggle image;
+            # cast explicitly to the predeclared FP16 cache contract.
+            packed[keep] = encoded.reshape(-1, windows, feature_dim).to(
+                dtype=torch.float16).cpu()
             packed = packed.view(batch, slots, windows, feature_dim).numpy()
         else:
             packed = np.zeros((batch, slots, windows, feature_dim), np.float16)
@@ -195,4 +198,3 @@ metadata = {
     "model_sources": [],
 }
 (ROOT / "kernel-metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
-
