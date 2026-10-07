@@ -1,0 +1,88 @@
+{
+  "contract": "private one-fold screen; no competition submission",
+  "candidate": "quality-filtered 24-window EfficientNet-B0 target-attention MIL",
+  "attribution": [
+    "dreaddevelopment/knee-mri-training-the-twelve-finding-model",
+    "dreaddevelopment/knee-raptor-corpus",
+    "dreaddevelopment/knee-raptor-corpus-ext",
+    "timm/tf-efficientnet/PyTorch/tf-efficientnet-b0/1",
+    "stevenleehans/rsna-knee-llm-report-labels"
+  ],
+  "fold": 0,
+  "seed": 20261007,
+  "epochs": 12,
+  "fit_studies": 3479,
+  "weak_validation_studies": 870,
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "best_weak_auc": 0.7544423297457136,
+  "gold_auc": 0.7604536498742173,
+  "prior_private_control_auc": 0.860457,
+  "screen_gate_auc": 0.865457,
+  "screen_passed": false,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.8902156827023414,
+      "weak_validation_auc": 0.687549100410685
+    },
+    {
+      "epoch": 2,
+      "loss": 0.8477913105261606,
+      "weak_validation_auc": 0.6584005425589686
+    },
+    {
+      "epoch": 3,
+      "loss": 0.8128410586514234,
+      "weak_validation_auc": 0.6084045746942711
+    },
+    {
+      "epoch": 4,
+      "loss": 0.7867076755118411,
+      "weak_validation_auc": 0.7060253349083441
+    },
+    {
+      "epoch": 5,
+      "loss": 0.7633202380836525,
+      "weak_validation_auc": 0.7035131200597439
+    },
+    {
+      "epoch": 6,
+      "loss": 0.7385891236540502,
+      "weak_validation_auc": 0.7544423297457136
+    },
+    {
+      "epoch": 7,
+      "loss": 0.7190549841312378,
+      "weak_validation_auc": 0.6421750915609338
+    },
+    {
+      "epoch": 8,
+      "loss": 0.7015075453949633,
+      "weak_validation_auc": 0.7397815827032356
+    },
+    {
+      "epoch": 9,
+      "loss": 0.6872499521228347,
+      "weak_validation_auc": 0.6708184816957137
+    },
+    {
+      "epoch": 10,
+      "loss": 0.6794956681918933,
+      "weak_validation_auc": 0.6357876758945358
+    },
+    {
+      "epoch": 11,
+      "loss": 0.6730838975150946,
+      "weak_validation_auc": 0.7073745167881732
+    },
+    {
+      "epoch": 12,
+      "loss": 0.671066480970986,
+      "weak_validation_auc": 0.6863314929259566
+    }
+  ],
+  "checkpoint_sha256": "818db21ae866bf7b0211e31ea108f1328bdc63dbc8ef891ae5b42c1d4f84ccec",
+  "pretrained_weight_sha256": "827b6e33c2a10291671e2426b902c2fe87a77e88ab6e3ae769cda9c85b9be02e",
+  "submission_created": false
+}

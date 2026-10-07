@@ -38,3 +38,11 @@ The design is motivated by current competition reports that compact 224px
 models remain competitive when slice quality, augmentation, regularization, and
 weak-label handling are treated carefully. Those claims are not treated as
 evidence; this notebook exists to test the hypothesis privately.
+
+## Result
+
+Version 2 completed and passed artifact-integrity checks, but the candidate was
+rejected. Best weak-validation AUC was `0.754442`; the frozen checkpoint scored
+`0.760454` on the 58 organizer-gold studies, which is `-0.100003` below the
+`0.860457` private control and far below the `0.865457` gate. No competition
+submission was created. See `RESULTS.md` for the validation record.
