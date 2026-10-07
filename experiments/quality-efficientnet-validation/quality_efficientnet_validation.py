@@ -135,10 +135,14 @@ class QualityEfficientNet(nn.Module):
                     if "efficient" in str(p).lower()]
             weights = weights + bins
         if len(weights) != 1:
+            pths = [p for p in Path("/kaggle/input").rglob("*.pth")
+                    if "efficient" in str(p).lower()]
+            weights = weights + pths
+        if len(weights) != 1:
             raise RuntimeError(f"expected one EfficientNet weight file, found {weights}")
         self.weight_path = weights[0]
         self.encoder = timm.create_model(
-            "tf_efficientnet_b0.ns_jft_in1k", pretrained=True,
+            "tf_efficientnet_b0.aa_in1k", pretrained=True,
             pretrained_cfg_overlay={"file": str(self.weight_path)},
             num_classes=0, global_pool="avg")
         self.head = TargetAttention(self.encoder.num_features)

@@ -20,6 +20,12 @@ create a competition submission.
 The one-fold gate is organizer-gold macro AUC `>= 0.865457`. Passing would only
 justify a multi-fold private validation; it would not authorize submission.
 
+Version 1 reached Python but failed before training because the official TIMM
+model mount exposes `tf_efficientnet_b0_aa-827b6e33.pth`, while discovery only
+accepted safetensors and `.bin` files. Version 2 adds `.pth` discovery and uses
+the matching `tf_efficientnet_b0.aa_in1k` architecture; no scientific setting
+changed.
+
 ## Attribution
 
 - `dreaddevelopment/knee-mri-training-the-twelve-finding-model`
