@@ -32,3 +32,10 @@ No scientific setting changed.
 - `dreaddevelopment/knee-raptor-corpus`
 - `dreaddevelopment/knee-raptor-corpus-ext`
 - `stevenleehans/rsna-knee-llm-report-labels`
+
+## Result
+
+Version 2 completed and passed artifact-integrity checks, but the candidate was
+rejected. Best weak-validation macro AUC was `0.805253`; the frozen checkpoint
+scored `0.807047` on the 58 organizer-gold studies. Both missed the predeclared
+gates. No competition submission was created. See `RESULTS.md`.

@@ -1,0 +1,19 @@
+{
+  "contract": "private one-fold screen; no competition submission",
+  "candidate": "24-window ResNet34 mean-max pooling with plain BCE",
+  "fold": 0,
+  "seed": 20261007,
+  "epochs": 14,
+  "fit_studies": 3479,
+  "weak_validation_studies": 870,
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "best_weak_auc": 0.8052530566806823,
+  "weak_validation_gate": 0.87,
+  "gold_auc": 0.8070473042650641,
+  "gold_diagnostic_floor": 0.860457,
+  "screen_passed": false,
+  "checkpoint_sha256": "f07eec9367b414aa327b090c5cf91649e5d59baaa4571d93eb50e2aa3736f555",
+  "pretrained_weight_sha256": "333f7ec4c6338da2cbed37f1fc0445f9624f1355633fa1d7eab79a91084c6cef",
+  "submission_created": false
+}
