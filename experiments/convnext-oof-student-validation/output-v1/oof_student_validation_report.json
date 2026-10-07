@@ -1,0 +1,88 @@
+{
+  "contract": "private fixed-epoch paired OOF-teacher target audit; no submission",
+  "encoder": "RadImageNet ResNet-50",
+  "encoder_sha256": "08629f7e7bd3e29b8ee9522ca3f65ce4d010a7ddf74f0ea3c7e3f3d0bbab0734",
+  "control_targets": "Steven v4 soft labels",
+  "candidate_targets": "fixed 50/50 Steven v4 and true fold-held-out ConvNeXt teacher",
+  "fit_population": "same 2610 OOF-covered non-gold studies for both arms",
+  "checkpoint_selection": "none; fixed 20 epochs",
+  "teacher_folds": [
+    0,
+    1,
+    2
+  ],
+  "teacher_oof_count": 2610,
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "seeds": [
+    {
+      "seed": 20261021,
+      "fit_studies": 2610,
+      "epochs": 20,
+      "control_final_loss": 0.405478845473907,
+      "candidate_final_loss": 0.43021652958858975,
+      "control_gold_auc": 0.8096921259577455,
+      "candidate_gold_auc": 0.8424254662132847,
+      "delta_candidate_minus_control": 0.0327333402555392
+    },
+    {
+      "seed": 20261022,
+      "fit_studies": 2610,
+      "epochs": 20,
+      "control_final_loss": 0.3991664804946417,
+      "candidate_final_loss": 0.4257167861151056,
+      "control_gold_auc": 0.8245904604870259,
+      "candidate_gold_auc": 0.8478025481390326,
+      "delta_candidate_minus_control": 0.023212087652006663
+    },
+    {
+      "seed": 20261023,
+      "fit_studies": 2610,
+      "epochs": 20,
+      "control_final_loss": 0.40200737372212025,
+      "candidate_final_loss": 0.4284943640688827,
+      "control_gold_auc": 0.8126201191217514,
+      "candidate_gold_auc": 0.8287621775325152,
+      "delta_candidate_minus_control": 0.016142058410763882
+    },
+    {
+      "seed": 20261024,
+      "fit_studies": 2610,
+      "epochs": 20,
+      "control_final_loss": 0.4016849857865622,
+      "candidate_final_loss": 0.4282252565882672,
+      "control_gold_auc": 0.8273494854557848,
+      "candidate_gold_auc": 0.8439499598394605,
+      "delta_candidate_minus_control": 0.016600474383675734
+    },
+    {
+      "seed": 20261025,
+      "fit_studies": 2610,
+      "epochs": 20,
+      "control_final_loss": 0.40411009843322054,
+      "candidate_final_loss": 0.4299773056388358,
+      "control_gold_auc": 0.8157163742535519,
+      "candidate_gold_auc": 0.8338448212124212,
+      "delta_candidate_minus_control": 0.018128446958869282
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8294126139463459,
+    "candidate_gold_auc": 0.847557472712981,
+    "delta_candidate_minus_control": 0.018144858766635075
+  },
+  "bootstrap": {
+    "mean": 0.018064901001315768,
+    "p_improve": 0.993,
+    "q025": 0.0033145710980204413,
+    "q975": 0.033916787991859314
+  },
+  "gate": {
+    "delta_at_least_0_005": true,
+    "positive_seeds_at_least_4": true,
+    "bootstrap_p_at_least_0_95": true,
+    "bootstrap_q025_positive": true
+  },
+  "submission_created": false,
+  "passed": true
+}
