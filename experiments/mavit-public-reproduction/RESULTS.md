@@ -18,3 +18,11 @@ Version 2 changes no model, preprocessing, or probability contract. It:
 
 The exact checkpoint, source hashes, raw-probability output, and strict
 zero-fallback requirement remain unchanged.
+
+## Version 2: validated and submitted
+
+Version 2 completed with the exact pinned public assets, zero fallbacks, zero
+failures, valid official preview schema and IDs, finite probabilities in
+`[0,1]`, and a clean completion receipt. Exact notebook version 2 was submitted
+to the competition as submission `56949917` with full Hengck23/MAViT
+attribution. Its public score is pending.
