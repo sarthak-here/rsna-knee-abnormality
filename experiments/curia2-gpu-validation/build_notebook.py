@@ -68,7 +68,7 @@ notebook.setdefault("metadata", {})["curia2_gpu_replay"] = {
 OUTPUT.write_text(json.dumps(notebook, ensure_ascii=False, indent=1), encoding="utf-8")
 
 metadata = {
-    "id": "sarthaksharma14/rsna-knee-curia2-gpu-validation",
+    "id": "sarthaksharma14/rsna-knee-curia-2-gpu-private-validation",
     "title": "RSNA Knee Curia-2 GPU Private Validation",
     "code_file": OUTPUT.name,
     "language": "python",

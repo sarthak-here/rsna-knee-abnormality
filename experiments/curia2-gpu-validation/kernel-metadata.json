@@ -1,5 +1,5 @@
 {
-  "id": "sarthaksharma14/rsna-knee-curia2-gpu-validation",
+  "id": "sarthaksharma14/rsna-knee-curia-2-gpu-private-validation",
   "title": "RSNA Knee Curia-2 GPU Private Validation",
   "code_file": "curia2-gpu-validation.ipynb",
   "language": "python",
