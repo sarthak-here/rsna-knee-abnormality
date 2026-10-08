@@ -56,7 +56,19 @@ def sha256(path):
     return h.hexdigest()
 
 def find_unique(name):
-    hits = list(Path('/kaggle/input').rglob(name))
+    direct_roots = [
+        Path('/kaggle/input/datasets/hengck23/hengck23-rnsa-knee'),
+        Path('/kaggle/input/hengck23-rnsa-knee'),
+    ]
+    hits = [root / name for root in direct_roots if (root / name).is_file()]
+    if not hits:
+        # Never recursively scan the 500+ GB competition DICOM tree.
+        for root in Path('/kaggle/input').iterdir():
+            if 'abnormality-detection' in root.name or root.name == 'competitions':
+                continue
+            candidate = root / name
+            if candidate.is_file():
+                hits.append(candidate)
     if len(hits) != 1:
         raise RuntimeError(f'expected exactly one {name}, found {len(hits)}: {hits[:8]}')
     return hits[0]
@@ -179,7 +191,7 @@ if roundtrip.columns.tolist() != expected_columns:
     raise RuntimeError('CSV round-trip schema mismatch')
 if roundtrip.StudyInstanceUID.tolist() != test_ids:
     raise RuntimeError('CSV round-trip identity mismatch')
-if not np.array_equal(roundtrip[LABELS].to_numpy(np.float64), values):
+if not np.array_equal(roundtrip[LABELS].to_numpy(np.float32), prediction):
     raise RuntimeError('CSV round-trip numeric mismatch')
 
 receipt = {

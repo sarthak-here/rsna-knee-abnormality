@@ -1,0 +1,120 @@
+[{"stream_name":"stderr","time":6.236448961,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.236512041,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.236518361,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.236522001,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":6.827476302,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.827516732,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.827522084,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.827526126,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":607.838558828,"data":"competition: /kaggle/input/competitions/rsna-knee-abnormality-detection\n"}
+,{"stream_name":"stdout","time":607.838622027,"data":"source: /kaggle/input/datasets/goodpjw2008/rsna-knee-2-5d-convnext-reader\n"}
+,{"stream_name":"stdout","time":607.838627916,"data":"GPU: Tesla T4\n"}
+,{"stream_name":"stdout","time":656.030990512,"data":"evaluated 2/58\n"}
+,{"stream_name":"stdout","time":676.629648559,"data":"evaluated 12/58\n"}
+,{"stream_name":"stdout","time":678.962062144,"data":"evaluated 22/58\n"}
+,{"stream_name":"stdout","time":689.301456569,"data":"evaluated 32/58\n"}
+,{"stream_name":"stdout","time":696.8709536,"data":"evaluated 42/58\n"}
+,{"stream_name":"stdout","time":705.656036012,"data":"evaluated 52/58\n"}
+,{"stream_name":"stdout","time":854.215976816,"data":"{\n"}
+,{"stream_name":"stdout","time":854.216014663,"data":"  \"status\": \"COMPLETE\",\n"}
+,{"stream_name":"stdout","time":854.216021545,"data":"  \"contract\": \"fixed 50/50 anatomical-mirror TTA diagnostic on untouched organizer gold; no fitting and no submission\",\n"}
+,{"stream_name":"stdout","time":854.216028657,"data":"  \"source\": \"goodpjw2008/rsna-knee-2-5d-convnext-reader\",\n"}
+,{"stream_name":"stdout","time":854.216033936,"data":"  \"mirror_method_source\": \"nartaa/rsna-knee-0949-anatomical-mirror\",\n"}
+,{"stream_name":"stdout","time":854.216039753,"data":"  \"license\": \"Apache-2.0 public ConvNeXt reader; mirror method inspected from public notebook\",\n"}
+,{"stream_name":"stdout","time":854.216045464,"data":"  \"checkpoint_sha256\": \"0b64baa9d1c29c8d5c4dffe06d9ab2c941119b37738e5a2346e882ab694e7b80\",\n"}
+,{"stream_name":"stdout","time":854.216050628,"data":"  \"source_hashes\": {\n"}
+,{"stream_name":"stdout","time":854.216055579,"data":"    \"infer.py\": \"39d4517cc33c4bb1e4a03cfb49a0673a8789055de8c3cc0957c6e3035f6be4af\",\n"}
+,{"stream_name":"stdout","time":854.216060735,"data":"    \"knee.py\": \"314c2af387a5cbd1d25f192f19f4ecc6d4ae4b30403e92e9d9b3ed2c325880b1\",\n"}
+,{"stream_name":"stdout","time":854.216065866,"data":"    \"preprocess.py\": \"68601ad84ec3a0f030b5c2d37cc0d657cd3e12b17f7130e7385fba9648d324b6\"\n"}
+,{"stream_name":"stdout","time":854.216071393,"data":"  },\n"}
+,{"stream_name":"stdout","time":854.216075998,"data":"  \"checkpoint_args\": {\n"}
+,{"stream_name":"stdout","time":854.216080726,"data":"    \"name\": \"cnxt_v0\",\n"}
+,{"stream_name":"stdout","time":854.216086383,"data":"    \"fold\": 0,\n"}
+,{"stream_name":"stdout","time":854.216091726,"data":"    \"labels\": \"labels_v0\",\n"}
+,{"stream_name":"stdout","time":854.216097381,"data":"    \"backbone\": \"convnext_tiny.fb_in22k_ft_in1k\",\n"}
+,{"stream_name":"stdout","time":854.216113738,"data":"    \"res\": 256,\n"}
+,{"stream_name":"stdout","time":854.21611856,"data":"    \"k\": 8,\n"}
+,{"stream_name":"stdout","time":854.216123033,"data":"    \"k_eval\": 12,\n"}
+,{"stream_name":"stdout","time":854.216126934,"data":"    \"epochs\": 14,\n"}
+,{"stream_name":"stdout","time":854.216131033,"data":"    \"bs\": 8,\n"}
+,{"stream_name":"stdout","time":854.216135565,"data":"    \"lr\": 0.0001,\n"}
+,{"stream_name":"stdout","time":854.216139535,"data":"    \"lr_head\": 0.0005,\n"}
+,{"stream_name":"stdout","time":854.216143948,"data":"    \"wd\": 0.02,\n"}
+,{"stream_name":"stdout","time":854.216148235,"data":"    \"ema\": 0.998,\n"}
+,{"stream_name":"stdout","time":854.216152231,"data":"    \"workers\": 12,\n"}
+,{"stream_name":"stdout","time":854.216156343,"data":"    \"seed\": 0,\n"}
+,{"stream_name":"stdout","time":854.216160702,"data":"    \"limit\": 0\n"}
+,{"stream_name":"stdout","time":854.216165114,"data":"  },\n"}
+,{"stream_name":"stdout","time":854.216169541,"data":"  \"gold_count\": 58,\n"}
+,{"stream_name":"stdout","time":854.216173617,"data":"  \"gold_fit_count\": 0,\n"}
+,{"stream_name":"stdout","time":854.216177823,"data":"  \"plain_macro_auc\": 0.909258216048337,\n"}
+,{"stream_name":"stdout","time":854.216182197,"data":"  \"mirrored_macro_auc\": 0.9069213738773926,\n"}
+,{"stream_name":"stdout","time":854.216186886,"data":"  \"average_macro_auc\": 0.9103210669560049,\n"}
+,{"stream_name":"stdout","time":854.216191244,"data":"  \"average_minus_plain\": 0.0010628509076678894,\n"}
+,{"stream_name":"stdout","time":854.216195864,"data":"  \"per_target_plain_auc\": {\n"}
+,{"stream_name":"stdout","time":854.216199656,"data":"    \"ACL\": 0.9669117647058825,\n"}
+,{"stream_name":"stdout","time":854.216203413,"data":"    \"MCL\": 0.945578231292517,\n"}
+,{"stream_name":"stdout","time":854.216207576,"data":"    \"Medial Meniscus\": 0.9567307692307693,\n"}
+,{"stream_name":"stdout","time":854.216211781,"data":"    \"Lateral Meniscus\": 0.8894409937888198,\n"}
+,{"stream_name":"stdout","time":854.216216129,"data":"    \"Medial OA\": 0.9736434108527132,\n"}
+,{"stream_name":"stdout","time":854.216220532,"data":"    \"Lateral OA\": 0.8491295938104448,\n"}
+,{"stream_name":"stdout","time":854.216225235,"data":"    \"PF OA\": 0.8404118404118404,\n"}
+,{"stream_name":"stdout","time":854.216230326,"data":"    \"Effusion\": 0.8782608695652174,\n"}
+,{"stream_name":"stdout","time":854.216235475,"data":"    \"Synovitis\": 0.7455197132616487,\n"}
+,{"stream_name":"stdout","time":854.216239383,"data":"    \"Baker's\": 0.983695652173913,\n"}
+,{"stream_name":"stdout","time":854.21624309,"data":"    \"Contusion\": 0.9581646423751687,\n"}
+,{"stream_name":"stdout","time":854.216246723,"data":"    \"Fracture\": 0.923611111111111\n"}
+,{"stream_name":"stdout","time":854.216250506,"data":"  },\n"}
+,{"stream_name":"stdout","time":854.216254213,"data":"  \"per_target_mirror_auc\": {\n"}
+,{"stream_name":"stdout","time":854.216258026,"data":"    \"ACL\": 0.9620098039215685,\n"}
+,{"stream_name":"stdout","time":854.216261981,"data":"    \"MCL\": 0.9183673469387754,\n"}
+,{"stream_name":"stdout","time":854.216265591,"data":"    \"Medial Meniscus\": 0.9447115384615384,\n"}
+,{"stream_name":"stdout","time":854.216279081,"data":"    \"Lateral Meniscus\": 0.9068322981366459,\n"}
+,{"stream_name":"stdout","time":854.216282909,"data":"    \"Medial OA\": 0.965891472868217,\n"}
+,{"stream_name":"stdout","time":854.216286966,"data":"    \"Lateral OA\": 0.8375241779497099,\n"}
+,{"stream_name":"stdout","time":854.216293586,"data":"    \"PF OA\": 0.8404118404118405,\n"}
+,{"stream_name":"stdout","time":854.216302896,"data":"    \"Effusion\": 0.901863354037267,\n"}
+,{"stream_name":"stdout","time":854.216307702,"data":"    \"Synovitis\": 0.7335722819593787,\n"}
+,{"stream_name":"stdout","time":854.216312226,"data":"    \"Baker's\": 0.9873188405797101,\n"}
+,{"stream_name":"stdout","time":854.216316027,"data":"    \"Contusion\": 0.9581646423751686,\n"}
+,{"stream_name":"stdout","time":854.21631988,"data":"    \"Fracture\": 0.9263888888888889\n"}
+,{"stream_name":"stdout","time":854.216323633,"data":"  },\n"}
+,{"stream_name":"stdout","time":854.216327148,"data":"  \"per_target_average_auc\": {\n"}
+,{"stream_name":"stdout","time":854.216330868,"data":"    \"ACL\": 0.9656862745098038,\n"}
+,{"stream_name":"stdout","time":854.216334577,"data":"    \"MCL\": 0.9319727891156462,\n"}
+,{"stream_name":"stdout","time":854.216338289,"data":"    \"Medial Meniscus\": 0.954326923076923,\n"}
+,{"stream_name":"stdout","time":854.216342111,"data":"    \"Lateral Meniscus\": 0.8968944099378882,\n"}
+,{"stream_name":"stdout","time":854.216345855,"data":"    \"Medial OA\": 0.9767441860465116,\n"}
+,{"stream_name":"stdout","time":854.216349857,"data":"    \"Lateral OA\": 0.8433268858800773,\n"}
+,{"stream_name":"stdout","time":854.216373945,"data":"    \"PF OA\": 0.8442728442728443,\n"}
+,{"stream_name":"stdout","time":854.216382547,"data":"    \"Effusion\": 0.8968944099378882,\n"}
+,{"stream_name":"stdout","time":854.216387144,"data":"    \"Synovitis\": 0.7395459976105138,\n"}
+,{"stream_name":"stdout","time":854.216391536,"data":"    \"Baker's\": 0.9855072463768115,\n"}
+,{"stream_name":"stdout","time":854.21639597,"data":"    \"Contusion\": 0.9595141700404858,\n"}
+,{"stream_name":"stdout","time":854.216400239,"data":"    \"Fracture\": 0.9291666666666667\n"}
+,{"stream_name":"stdout","time":854.216404677,"data":"  },\n"}
+,{"stream_name":"stdout","time":854.216408396,"data":"  \"bootstrap_replicates\": 5000,\n"}
+,{"stream_name":"stdout","time":854.216412928,"data":"  \"bootstrap_p_improve\": 0.6666,\n"}
+,{"stream_name":"stdout","time":854.216417441,"data":"  \"bootstrap_q025\": -0.003861406410090199,\n"}
+,{"stream_name":"stdout","time":854.216421331,"data":"  \"bootstrap_q975\": 0.0058814656989452626,\n"}
+,{"stream_name":"stdout","time":854.216425173,"data":"  \"predeclared_pass_gate\": {\n"}
+,{"stream_name":"stdout","time":854.216428873,"data":"    \"delta_min\": 0.005,\n"}
+,{"stream_name":"stdout","time":854.216432682,"data":"    \"p_improve_min\": 0.95,\n"}
+,{"stream_name":"stdout","time":854.216436451,"data":"    \"q025_positive\": true,\n"}
+,{"stream_name":"stdout","time":854.216440228,"data":"    \"average_macro_auc_min\": 0.914\n"}
+,{"stream_name":"stdout","time":854.216444033,"data":"  },\n"}
+,{"stream_name":"stdout","time":854.216447615,"data":"  \"pass\": false,\n"}
+,{"stream_name":"stdout","time":854.216451361,"data":"  \"prediction_file_bytes\": 10973,\n"}
+,{"stream_name":"stdout","time":854.216455167,"data":"  \"prediction_file_sha256\": \"51bcab37e70740f7a22633d94a74a0758e6ec8d3e6c92352a8654e1825925ba6\",\n"}
+,{"stream_name":"stdout","time":854.216459228,"data":"  \"elapsed_seconds\": 215.23928809165955,\n"}
+,{"stream_name":"stdout","time":854.216475019,"data":"  \"submission_created\": false\n"}
+,{"stream_name":"stdout","time":854.216480485,"data":"}\n"}
+,{"stream_name":"stderr","time":859.518010568,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":859.518056766,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":859.683430886,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":859.683462542,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":860.525795917,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":860.605115773,"data":"[NbConvertApp] Writing 17520 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":863.299345119,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":863.845612081,"data":"[NbConvertApp] Writing 324595 bytes to __results__.html\n"}
+]
