@@ -1,0 +1,35 @@
+{
+  "id": "sarthaksharma14/rsna-knee-curia2-gpu-validation",
+  "title": "RSNA Knee Curia-2 GPU Private Validation",
+  "code_file": "curia2-gpu-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "dataset_sources": [
+    "marwanmath/resnet-50-radimagenet-marwan",
+    "stevenleehans/rsna-knee-llm-report-labels",
+    "lixin73/rsna-knee-llm-report-labels-sol56",
+    "pilkwang/rsna-knee-llm-labels",
+    "pilkwang/rsna-knee-weights",
+    "royceplayz/rsna-medicalnet-resnet50-weights",
+    "tonylica/rsna2026-models"
+  ],
+  "kernel_sources": [
+    "gourabroy553/rsna-knee-hybrid-dino-radiomics",
+    "blacklions/report-teacher-anatomy-aware-hierarchical-multimod"
+  ],
+  "model_sources": [
+    "mrquadian/biomedclip/PyTorch/default/1",
+    "metaresearch/dinov2/PyTorch/base/1",
+    "metaresearch/dinov2/PyTorch/small/1",
+    "timm/tf-efficientnet/PyTorch/tf-efficientnet-b3/1",
+    "olliebearman/curia-2/Transformers/default/1"
+  ]
+}
