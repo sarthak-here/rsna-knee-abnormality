@@ -1,0 +1,24 @@
+{
+  "id": "sarthaksharma14/rsna-knee-convnext-reader-oof-head",
+  "title": "RSNA Knee ConvNeXt Reader OOF Head",
+  "code_file": "convnext-reader-oof-head-validation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "dataset_sources": [
+    "goodpjw2008/rsna-knee-2-5d-convnext-reader",
+    "stevenleehans/rsna-knee-llm-report-labels"
+  ],
+  "kernel_sources": [
+    "sarthaksharma14/rsna-knee-convnext-reader-feature-cache",
+    "sarthaksharma14/rsna-knee-convnext-oof-teacher-audit"
+  ],
+  "model_sources": []
+}
