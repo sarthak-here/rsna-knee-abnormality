@@ -40,8 +40,41 @@ for cell in notebook["cells"]:
         cell["source"] = source.replace(old, new)
         patched += 1
 
+model_search_old = '''    candidates = []
+    for config in Path("/kaggle/input").rglob("config.json"):
+'''
+model_search_new = '''    configs = list(Path("/kaggle/input").rglob("config.json"))
+    try:
+        import kagglehub
+        downloaded = Path(kagglehub.model_download("olliebearman/curia-2/transformers/default"))
+        license_path = downloaded / "LICENSE"
+        if not license_path.is_file():
+            import urllib.request
+            urllib.request.urlretrieve(
+                "https://huggingface.co/raidium/curia/resolve/main/LICENSE",
+                license_path,
+            )
+        configs.extend(downloaded.rglob("config.json"))
+        audit["curia_model_delivery"] = "kagglehub pinned mirror plus official RAIL-M license"
+    except Exception as exc:
+        audit["curia_model_download_error"] = f"{type(exc).__name__}: {exc}"
+    candidates = []
+    for config in configs:
+'''
+
+model_search_patched = 0
+for cell in notebook["cells"]:
+    if cell.get("cell_type") != "code":
+        continue
+    source = "".join(cell.get("source", ""))
+    if model_search_old in source:
+        cell["source"] = source.replace(model_search_old, model_search_new)
+        model_search_patched += 1
+
 if patched != 1:
     raise RuntimeError(f"expected one Curia-2 accelerator patch, observed {patched}")
+if model_search_patched != 1:
+    raise RuntimeError(f"expected one Curia-2 delivery patch, observed {model_search_patched}")
 
 notebook["cells"].append({
     "cell_type": "code",
@@ -76,7 +109,7 @@ metadata = {
     "is_private": True,
     "enable_gpu": True,
     "enable_tpu": False,
-    "enable_internet": False,
+    "enable_internet": True,
     "machine_shape": "NvidiaTeslaT4",
     "competition_sources": ["rsna-knee-abnormality-detection"],
     "dataset_sources": [
