@@ -16,3 +16,11 @@ stronger representation.
 
 - `goodpjw2008/rsna-knee-2-5d-convnext-reader`, Apache-2.0
 
+## Result
+
+Version 2 completed and passed strict full-file validation. The cache contains
+features shaped `[4407, 6, 12, 768]` in FP16, 21,334 occupied slots, no empty
+studies, no zero occupied slots, and finite features and positions. The
+363,928,367-byte artifact has SHA-256
+`7f1986bb30cf92dbbf440b43a5a5933c1a3d13a0bb61d91950457cb0f8e018cc`.
+All checkpoint/source hashes and arguments matched. No submission was created.

@@ -1,0 +1,55 @@
+{
+  "status": "COMPLETE",
+  "contract": "public ConvNeXt fold0 representation cache; no fitting and no submission",
+  "source": "goodpjw2008/rsna-knee-2-5d-convnext-reader",
+  "license": "Apache-2.0",
+  "checkpoint_sha256": "0b64baa9d1c29c8d5c4dffe06d9ab2c941119b37738e5a2346e882ab694e7b80",
+  "source_hashes": {
+    "infer.py": "39d4517cc33c4bb1e4a03cfb49a0673a8789055de8c3cc0957c6e3035f6be4af",
+    "knee.py": "314c2af387a5cbd1d25f192f19f4ecc6d4ae4b30403e92e9d9b3ed2c325880b1",
+    "preprocess.py": "68601ad84ec3a0f030b5c2d37cc0d657cd3e12b17f7130e7385fba9648d324b6"
+  },
+  "checkpoint_args": {
+    "name": "cnxt_v0",
+    "fold": 0,
+    "labels": "labels_v0",
+    "backbone": "convnext_tiny.fb_in22k_ft_in1k",
+    "res": 256,
+    "k": 8,
+    "k_eval": 12,
+    "epochs": 14,
+    "bs": 8,
+    "lr": 0.0001,
+    "lr_head": 0.0005,
+    "wd": 0.02,
+    "ema": 0.998,
+    "workers": 12,
+    "seed": 0,
+    "limit": 0
+  },
+  "study_count": 4407,
+  "unique_study_count": 4407,
+  "feature_shape": [
+    4407,
+    6,
+    12,
+    768
+  ],
+  "feature_dtype": "float16",
+  "mask_shape": [
+    4407,
+    6
+  ],
+  "position_shape": [
+    4407,
+    6,
+    12
+  ],
+  "occupied_slot_count": 21334,
+  "empty_study_count": 0,
+  "finite": true,
+  "elapsed_seconds": 6663.227966070175,
+  "feature_file_bytes": 363928367,
+  "feature_file_sha256": "7f1986bb30cf92dbbf440b43a5a5933c1a3d13a0bb61d91950457cb0f8e018cc",
+  "submission_created": false
+}

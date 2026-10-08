@@ -1,0 +1,98 @@
+[{"stream_name":"stderr","time":7.320504853,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.320573572,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.32058483,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.320589458,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":7.958514872,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.958570338,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.958579111,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.958583578,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":970.066115328,"data":"competition: /kaggle/input/competitions/rsna-knee-abnormality-detection\n"}
+,{"stream_name":"stdout","time":970.066166734,"data":"source: /kaggle/input/datasets/goodpjw2008/rsna-knee-2-5d-convnext-reader\n"}
+,{"stream_name":"stdout","time":970.195971307,"data":"GPU: Tesla T4 bf16 native: True\n"}
+,{"stream_name":"stdout","time":1057.984830363,"data":"encoded 4/4407 in 30.0s\n"}
+,{"stream_name":"stdout","time":1325.989738448,"data":"encoded 204/4407 in 298.0s\n"}
+,{"stream_name":"stdout","time":1602.06662605,"data":"encoded 404/4407 in 574.0s\n"}
+,{"stream_name":"stdout","time":1861.030029954,"data":"encoded 604/4407 in 833.0s\n"}
+,{"stream_name":"stdout","time":2164.907574523,"data":"encoded 804/4407 in 1136.9s\n"}
+,{"stream_name":"stdout","time":2462.514239049,"data":"encoded 1004/4407 in 1434.5s\n"}
+,{"stream_name":"stdout","time":2713.760324675,"data":"encoded 1204/4407 in 1685.7s\n"}
+,{"stream_name":"stdout","time":2974.149873425,"data":"encoded 1404/4407 in 1946.1s\n"}
+,{"stream_name":"stdout","time":3393.04702473,"data":"encoded 1604/4407 in 2365.0s\n"}
+,{"stream_name":"stdout","time":3824.999503399,"data":"encoded 1804/4407 in 2797.0s\n"}
+,{"stream_name":"stdout","time":4173.076451409,"data":"encoded 2004/4407 in 3145.1s\n"}
+,{"stream_name":"stdout","time":4504.645720251,"data":"encoded 2204/4407 in 3476.6s\n"}
+,{"stream_name":"stdout","time":4775.918377428,"data":"encoded 2404/4407 in 3747.9s\n"}
+,{"stream_name":"stdout","time":5066.965825074,"data":"encoded 2604/4407 in 4038.9s\n"}
+,{"stream_name":"stdout","time":5346.318285621,"data":"encoded 2804/4407 in 4318.3s\n"}
+,{"stream_name":"stdout","time":5631.994061099,"data":"encoded 3004/4407 in 4604.0s\n"}
+,{"stream_name":"stdout","time":5944.953984779,"data":"encoded 3204/4407 in 4916.9s\n"}
+,{"stream_name":"stdout","time":6195.554795291,"data":"encoded 3404/4407 in 5167.5s\n"}
+,{"stream_name":"stdout","time":6469.751637602,"data":"encoded 3604/4407 in 5441.7s\n"}
+,{"stream_name":"stdout","time":6756.05104285,"data":"encoded 3804/4407 in 5728.0s\n"}
+,{"stream_name":"stdout","time":7048.761361595,"data":"encoded 4004/4407 in 6020.7s\n"}
+,{"stream_name":"stdout","time":7309.4903156,"data":"encoded 4204/4407 in 6281.5s\n"}
+,{"stream_name":"stdout","time":7661.198080617,"data":"encoded 4404/4407 in 6633.2s\n"}
+,{"stream_name":"stdout","time":7692.23722455,"data":"{\n"}
+,{"stream_name":"stdout","time":7692.237258324,"data":"  \"status\": \"COMPLETE\",\n"}
+,{"stream_name":"stdout","time":7692.237264198,"data":"  \"contract\": \"public ConvNeXt fold0 representation cache; no fitting and no submission\",\n"}
+,{"stream_name":"stdout","time":7692.237285501,"data":"  \"source\": \"goodpjw2008/rsna-knee-2-5d-convnext-reader\",\n"}
+,{"stream_name":"stdout","time":7692.237288493,"data":"  \"license\": \"Apache-2.0\",\n"}
+,{"stream_name":"stdout","time":7692.237290761,"data":"  \"checkpoint_sha256\": \"0b64baa9d1c29c8d5c4dffe06d9ab2c941119b37738e5a2346e882ab694e7b80\",\n"}
+,{"stream_name":"stdout","time":7692.237293257,"data":"  \"source_hashes\": {\n"}
+,{"stream_name":"stdout","time":7692.23731093,"data":"    \"infer.py\": \"39d4517cc33c4bb1e4a03cfb49a0673a8789055de8c3cc0957c6e3035f6be4af\",\n"}
+,{"stream_name":"stdout","time":7692.237315311,"data":"    \"knee.py\": \"314c2af387a5cbd1d25f192f19f4ecc6d4ae4b30403e92e9d9b3ed2c325880b1\",\n"}
+,{"stream_name":"stdout","time":7692.237319021,"data":"    \"preprocess.py\": \"68601ad84ec3a0f030b5c2d37cc0d657cd3e12b17f7130e7385fba9648d324b6\"\n"}
+,{"stream_name":"stdout","time":7692.237322251,"data":"  },\n"}
+,{"stream_name":"stdout","time":7692.237325189,"data":"  \"checkpoint_args\": {\n"}
+,{"stream_name":"stdout","time":7692.237328635,"data":"    \"name\": \"cnxt_v0\",\n"}
+,{"stream_name":"stdout","time":7692.237332081,"data":"    \"fold\": 0,\n"}
+,{"stream_name":"stdout","time":7692.237335295,"data":"    \"labels\": \"labels_v0\",\n"}
+,{"stream_name":"stdout","time":7692.237338705,"data":"    \"backbone\": \"convnext_tiny.fb_in22k_ft_in1k\",\n"}
+,{"stream_name":"stdout","time":7692.237341996,"data":"    \"res\": 256,\n"}
+,{"stream_name":"stdout","time":7692.237345116,"data":"    \"k\": 8,\n"}
+,{"stream_name":"stdout","time":7692.237348575,"data":"    \"k_eval\": 12,\n"}
+,{"stream_name":"stdout","time":7692.237352359,"data":"    \"epochs\": 14,\n"}
+,{"stream_name":"stdout","time":7692.23735587,"data":"    \"bs\": 8,\n"}
+,{"stream_name":"stdout","time":7692.237359676,"data":"    \"lr\": 0.0001,\n"}
+,{"stream_name":"stdout","time":7692.2373628,"data":"    \"lr_head\": 0.0005,\n"}
+,{"stream_name":"stdout","time":7692.237366064,"data":"    \"wd\": 0.02,\n"}
+,{"stream_name":"stdout","time":7692.237369518,"data":"    \"ema\": 0.998,\n"}
+,{"stream_name":"stdout","time":7692.23737318,"data":"    \"workers\": 12,\n"}
+,{"stream_name":"stdout","time":7692.237376766,"data":"    \"seed\": 0,\n"}
+,{"stream_name":"stdout","time":7692.237380428,"data":"    \"limit\": 0\n"}
+,{"stream_name":"stdout","time":7692.237384295,"data":"  },\n"}
+,{"stream_name":"stdout","time":7692.237387415,"data":"  \"study_count\": 4407,\n"}
+,{"stream_name":"stdout","time":7692.23739084,"data":"  \"unique_study_count\": 4407,\n"}
+,{"stream_name":"stdout","time":7692.237394091,"data":"  \"feature_shape\": [\n"}
+,{"stream_name":"stdout","time":7692.237397401,"data":"    4407,\n"}
+,{"stream_name":"stdout","time":7692.237400534,"data":"    6,\n"}
+,{"stream_name":"stdout","time":7692.237403875,"data":"    12,\n"}
+,{"stream_name":"stdout","time":7692.2374071,"data":"    768\n"}
+,{"stream_name":"stdout","time":7692.237415001,"data":"  ],\n"}
+,{"stream_name":"stdout","time":7692.237417848,"data":"  \"feature_dtype\": \"float16\",\n"}
+,{"stream_name":"stdout","time":7692.237420161,"data":"  \"mask_shape\": [\n"}
+,{"stream_name":"stdout","time":7692.237422295,"data":"    4407,\n"}
+,{"stream_name":"stdout","time":7692.237424458,"data":"    6\n"}
+,{"stream_name":"stdout","time":7692.23742651,"data":"  ],\n"}
+,{"stream_name":"stdout","time":7692.23742877,"data":"  \"position_shape\": [\n"}
+,{"stream_name":"stdout","time":7692.2374309,"data":"    4407,\n"}
+,{"stream_name":"stdout","time":7692.237433108,"data":"    6,\n"}
+,{"stream_name":"stdout","time":7692.237439416,"data":"    12\n"}
+,{"stream_name":"stdout","time":7692.23744167,"data":"  ],\n"}
+,{"stream_name":"stdout","time":7692.237443724,"data":"  \"occupied_slot_count\": 21334,\n"}
+,{"stream_name":"stdout","time":7692.23744604,"data":"  \"empty_study_count\": 0,\n"}
+,{"stream_name":"stdout","time":7692.237448202,"data":"  \"finite\": true,\n"}
+,{"stream_name":"stdout","time":7692.237450398,"data":"  \"elapsed_seconds\": 6663.227966070175,\n"}
+,{"stream_name":"stdout","time":7692.237452646,"data":"  \"feature_file_bytes\": 363928367,\n"}
+,{"stream_name":"stdout","time":7692.237454941,"data":"  \"feature_file_sha256\": \"7f1986bb30cf92dbbf440b43a5a5933c1a3d13a0bb61d91950457cb0f8e018cc\",\n"}
+,{"stream_name":"stdout","time":7692.237457269,"data":"  \"submission_created\": false\n"}
+,{"stream_name":"stdout","time":7692.23745952,"data":"}\n"}
+,{"stream_name":"stderr","time":7698.055361423,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":7698.055392949,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":7698.323956813,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":7698.323978786,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":7699.209521693,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":7699.290774664,"data":"[NbConvertApp] Writing 14664 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":7701.938563209,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":7702.514923163,"data":"[NbConvertApp] Writing 317465 bytes to __results__.html\n"}
+]
