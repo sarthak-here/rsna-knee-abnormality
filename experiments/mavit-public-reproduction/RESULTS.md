@@ -25,4 +25,14 @@ Version 2 completed with the exact pinned public assets, zero fallbacks, zero
 failures, valid official preview schema and IDs, finite probabilities in
 `[0,1]`, and a clean completion receipt. Exact notebook version 2 was submitted
 to the competition as submission `56949917` with full Hengck23/MAViT
-attribution. Its public score is pending.
+attribution. The hidden rerun threw an exception because the strict reproduction
+raised on the first atypical hidden study, while the upstream public notebook
+uses a per-study zero fallback.
+
+## Version 3: hidden-data robustness fix
+
+Version 3 restores the upstream public notebook's zero fallback, records every
+affected study and exception in the receipt, and enforces a hard cap of 1% of
+hidden studies (minimum three). Exceeding the cap still aborts publication.
+No model, checkpoint, preprocessing, or probability behavior changes for
+successfully decoded studies.

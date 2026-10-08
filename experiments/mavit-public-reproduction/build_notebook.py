@@ -143,12 +143,13 @@ reader = make_knee_dataset_reader(
 
 predictions = []
 failures = []
+max_fallbacks = max(3, int(np.ceil(0.01 * len(test_ids))))
 t0 = time.time()
 for i, study_id in enumerate(test_ids):
     study_series = series[series['StudyInstanceUID'] == study_id]
-    if study_series.empty:
-        raise RuntimeError(f'no series rows for hidden test study {study_id}')
     try:
+        if study_series.empty:
+            raise RuntimeError(f'no series rows for hidden test study {study_id}')
         item = reader(study_id, study_series, str(comp / 'test_series'), 'valid')
         volume = torch.from_numpy(item['volume']).unsqueeze(0).byte().to(DEVICE)
         view_mask = torch.from_numpy(item['view_mask']).unsqueeze(0).bool().to(DEVICE)
@@ -167,7 +168,14 @@ for i, study_id in enumerate(test_ids):
         predictions.append(probability[0])
     except Exception as exc:
         failures.append({'study_id': study_id, 'error': f'{type(exc).__name__}: {exc}'})
-        raise
+        # Preserve the upstream public notebook's per-study zero fallback for
+        # malformed or unsupported hidden DICOMs. A strict 1% cap prevents a
+        # broad preprocessing failure from silently producing a submission.
+        predictions.append(np.zeros(len(LABELS), dtype=np.float32))
+        print(f'fallback {len(failures)}/{max_fallbacks}: {study_id} '
+              f'{type(exc).__name__}: {exc}', flush=True)
+        if len(failures) > max_fallbacks:
+            raise RuntimeError(f'fallback cap exceeded: {len(failures)} > {max_fallbacks}') from exc
     if (i + 1) % 100 == 0 or i + 1 == len(test_ids):
         print(f'predicted {i+1}/{len(test_ids)} in {time.time()-t0:.1f}s', flush=True)
 
@@ -196,7 +204,7 @@ if not np.array_equal(roundtrip[LABELS].to_numpy(np.float32), prediction):
 
 receipt = {
     'status': 'COMPLETE',
-    'contract': 'strict source-faithful public MAViT 288 reproduction; raw probabilities; no fallback',
+    'contract': 'source-faithful public MAViT 288 reproduction; raw probabilities; audited capped fallback',
     'upstream_notebook': 'hengck23/mavit-288-baseline-01-1-5sec-study-1gpu',
     'upstream_notebook_sha256': PUBLIC_NOTEBOOK_SHA256,
     'dataset': 'hengck23/hengck23-rnsa-knee',
@@ -209,7 +217,8 @@ receipt = {
     'prediction_shape': list(prediction.shape),
     'probability_min': float(values.min()),
     'probability_max': float(values.max()),
-    'fallback_count': 0,
+    'fallback_count': len(failures),
+    'fallback_cap': max_fallbacks,
     'failures': failures,
     'elapsed_seconds': time.time() - t0,
     'submission_sha256': sha256(stage),
