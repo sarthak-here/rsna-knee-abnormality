@@ -18,3 +18,10 @@ p-improve at least 0.95, positive q025, and candidate absolute AUC at least 0.90
 - `goodpjw2008/rsna-knee-2-5d-convnext-reader`, Apache-2.0
 - `stevenleehans/rsna-knee-llm-report-labels`
 
+## Result
+
+Version 1 completed cleanly but was rejected. The corrected ensemble reached
+`0.900914` versus `0.897221` for its paired control (`+0.003693`), with four of
+five positive seeds. Bootstrap confidence was insufficient (`p_improve=0.7702`,
+q025 `-0.005978`), and the candidate remained below the original public fold-0
+head at `0.909258`. No submission was created.

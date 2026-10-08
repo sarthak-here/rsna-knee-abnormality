@@ -1,0 +1,102 @@
+{
+  "contract": "private paired ConvNeXt-reader head target audit; no submission",
+  "feature_sha256": "7f1986bb30cf92dbbf440b43a5a5933c1a3d13a0bb61d91950457cb0f8e018cc",
+  "checkpoint_sha256": "0b64baa9d1c29c8d5c4dffe06d9ab2c941119b37738e5a2346e882ab694e7b80",
+  "source_knee_sha256": "314c2af387a5cbd1d25f192f19f4ecc6d4ae4b30403e92e9d9b3ed2c325880b1",
+  "feature_shape": [
+    4407,
+    6,
+    12,
+    768
+  ],
+  "fit_studies_each_arm": 4349,
+  "corrected_studies": 2610,
+  "unchanged_studies": 1739,
+  "gold_fit_count": 0,
+  "gold_evaluation_count": 58,
+  "checkpoint_selection": "none; fixed 20 epochs",
+  "original_public_fold0_gold_auc": 0.909258216048337,
+  "seeds": [
+    {
+      "seed": 20261031,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.3301594731834571,
+      "candidate_final_loss": 0.36615258898645137,
+      "control_gold_auc": 0.874565353389008,
+      "candidate_gold_auc": 0.8841503766571578,
+      "delta_candidate_minus_control": 0.009585023268149806
+    },
+    {
+      "seed": 20261101,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.3314408081294367,
+      "candidate_final_loss": 0.3669162237882669,
+      "control_gold_auc": 0.881684369186862,
+      "candidate_gold_auc": 0.893962608045499,
+      "delta_candidate_minus_control": 0.012278238858636992
+    },
+    {
+      "seed": 20261102,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.33116286790872557,
+      "candidate_final_loss": 0.3666448251807462,
+      "control_gold_auc": 0.8841512943730169,
+      "candidate_gold_auc": 0.8934684025902803,
+      "delta_candidate_minus_control": 0.009317108217263392
+    },
+    {
+      "seed": 20261103,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.32924584411538643,
+      "candidate_final_loss": 0.3656234258370828,
+      "control_gold_auc": 0.884217341877537,
+      "candidate_gold_auc": 0.8980637623353892,
+      "delta_candidate_minus_control": 0.013846420457852227
+    },
+    {
+      "seed": 20261104,
+      "fit_studies": 4349,
+      "corrected_studies": 2610,
+      "unchanged_studies": 1739,
+      "epochs": 20,
+      "control_final_loss": 0.3309051132141845,
+      "candidate_final_loss": 0.36663552523207515,
+      "control_gold_auc": 0.897709462508225,
+      "candidate_gold_auc": 0.892832151783137,
+      "delta_candidate_minus_control": -0.004877310725088013
+    }
+  ],
+  "ensemble": {
+    "control_gold_auc": 0.8972214930667789,
+    "candidate_gold_auc": 0.9009144464643036,
+    "delta_candidate_minus_control": 0.003692953397524734,
+    "candidate_minus_original_public_fold0": -0.008343769584033378
+  },
+  "bootstrap": {
+    "mean": 0.003753290254900129,
+    "p_improve": 0.7702,
+    "q025": -0.0059781794772723745,
+    "q975": 0.014294702005697811
+  },
+  "gate": {
+    "delta_at_least_0_005": false,
+    "positive_seeds_at_least_4": true,
+    "bootstrap_p_at_least_0_95": false,
+    "bootstrap_q025_positive": false,
+    "candidate_absolute_at_least_0_90": true
+  },
+  "submission_created": false,
+  "passed": false
+}
