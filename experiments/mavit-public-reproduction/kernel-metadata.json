@@ -1,0 +1,20 @@
+{
+  "id": "sarthaksharma14/rsna-knee-mavit-public-reproduction",
+  "title": "RSNA Knee MAViT Public Reproduction",
+  "code_file": "mavit-public-reproduction.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "dataset_sources": [
+    "hengck23/hengck23-rnsa-knee"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}
