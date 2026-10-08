@@ -36,3 +36,10 @@ affected study and exception in the receipt, and enforces a hard cap of 1% of
 hidden studies (minimum three). Exceeding the cap still aborts publication.
 No model, checkpoint, preprocessing, or probability behavior changes for
 successfully decoded studies.
+
+Version 3 completed its public-preview run with all three studies processed,
+zero fallbacks, finite probabilities in `[0,1]`, exact pinned asset hashes, and
+submission SHA-256
+`374eb446bbed5eb1172bb6cea4ca880ca8053ffd77a285a7f59a7df3c2316573`.
+The exact notebook version was submitted as Kaggle submission `56961013`; its
+hidden rerun and public score are pending.
