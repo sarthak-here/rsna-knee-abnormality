@@ -42,4 +42,7 @@ zero fallbacks, finite probabilities in `[0,1]`, exact pinned asset hashes, and
 submission SHA-256
 `374eb446bbed5eb1172bb6cea4ca880ca8053ffd77a285a7f59a7df3c2316573`.
 The exact notebook version was submitted as Kaggle submission `56961013`; its
-hidden rerun and public score are pending.
+hidden rerun completed with public score `0.935`. This is below the locked
+`0.944` baseline, so MAViT is rejected as a replacement and retained only as
+evidence about an architecturally independent reader. No blend is justified by
+this leaderboard result alone.
