@@ -63,9 +63,9 @@ model_search_new = '''    configs = list(Path("/kaggle/input").rglob("config.jso
             staged / "LICENSE",
         )
         configs.extend(staged.rglob("config.json"))
-        audit["curia_model_delivery"] = "writable hash-pinned mirror plus official RAIL-M license"
+        globals()["_V64_CURIA_MODEL_DELIVERY"] = "writable hash-pinned mirror plus official RAIL-M license"
     except Exception as exc:
-        audit["curia_model_download_error"] = f"{type(exc).__name__}: {exc}"
+        globals()["_V64_CURIA_MODEL_DOWNLOAD_ERROR"] = f"{type(exc).__name__}: {exc}"
     candidates = []
     for config in configs:
 '''
