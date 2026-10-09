@@ -47,15 +47,23 @@ model_search_new = '''    configs = list(Path("/kaggle/input").rglob("config.jso
     try:
         import kagglehub
         downloaded = Path(kagglehub.model_download("olliebearman/curia-2/transformers/default"))
-        license_path = downloaded / "LICENSE"
-        if not license_path.is_file():
-            import urllib.request
-            urllib.request.urlretrieve(
-                "https://huggingface.co/raidium/curia/resolve/main/LICENSE",
-                license_path,
-            )
-        configs.extend(downloaded.rglob("config.json"))
-        audit["curia_model_delivery"] = "kagglehub pinned mirror plus official RAIL-M license"
+        import shutil
+        staged = Path("/kaggle/working/curia2-pinned")
+        staged.mkdir(parents=True, exist_ok=True)
+        for name in (
+            "model.safetensors",
+            "config.json",
+            "preprocessor_config.json",
+            "curia_image_processor.py",
+        ):
+            shutil.copy2(downloaded / name, staged / name)
+        import urllib.request
+        urllib.request.urlretrieve(
+            "https://huggingface.co/raidium/curia/resolve/main/LICENSE",
+            staged / "LICENSE",
+        )
+        configs.extend(staged.rglob("config.json"))
+        audit["curia_model_delivery"] = "writable hash-pinned mirror plus official RAIL-M license"
     except Exception as exc:
         audit["curia_model_download_error"] = f"{type(exc).__name__}: {exc}"
     candidates = []
