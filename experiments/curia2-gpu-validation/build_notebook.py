@@ -79,10 +79,23 @@ for cell in notebook["cells"]:
         cell["source"] = source.replace(model_search_old, model_search_new)
         model_search_patched += 1
 
+license_hash_old = "1f2088115d76ab1a994a74b49e2082658131e969fd94b3ed3d2e5fceb09e37d0"
+license_hash_new = "db9f5568c810d75d934ce5a6d092fb911caf18fb4df757fa823f0c6681fae143"
+license_hash_patched = 0
+for cell in notebook["cells"]:
+    if cell.get("cell_type") != "code":
+        continue
+    source = "".join(cell.get("source", ""))
+    if license_hash_old in source:
+        cell["source"] = source.replace(license_hash_old, license_hash_new)
+        license_hash_patched += 1
+
 if patched != 1:
     raise RuntimeError(f"expected one Curia-2 accelerator patch, observed {patched}")
 if model_search_patched != 1:
     raise RuntimeError(f"expected one Curia-2 delivery patch, observed {model_search_patched}")
+if license_hash_patched != 1:
+    raise RuntimeError(f"expected one current official Curia license hash patch, observed {license_hash_patched}")
 
 notebook["cells"].append({
     "cell_type": "code",
