@@ -46,3 +46,20 @@ Pinned identities:
 The source notebook's final audit cell stopped after training because two legacy public-family audit files were no longer mounted: `exact_public_family_oof.npz` and `expert_oof_all.csv`. Neither file contributes model predictions to the V64 gate. The gate was independently reproduced from the immutable V64 OOF output, the source-embedded V52 expert UIDs/predictions, the official `train.csv` gold labels, and the exact published fold/alpha logic. The reproduction returned the metrics above and satisfied every predeclared numerical gate.
 
 The next allowed step is an inference-capable private reproduction using these exact five heads and alpha 0.20, followed by strict hidden-runtime, schema, test-ID, provenance, and license validation. It is not yet a leaderboard submission.
+
+
+## Version 6 full-path confirmation
+
+Private notebook version 6 completed with `status=CANDIDATE_SELECTED` and independently reproduced the same OOF gate:
+
+- `selection_supported=true`
+- selected alpha: 0.20
+- nested macro AUC: 0.852098
+- final descriptive macro AUC: 0.852206
+- five trained heads and five positive-alpha outer folds
+- preview test: 3/3 official IDs, 64 available slice tokens, five-head inference
+- selected preview artifact SHA-256: `6c16b159361dd203cabe5f6348fbd0f1dfe952f0fb2837b65182ad5e38cc52fa`
+- fallback V52 preview SHA-256: `eb4b5d6f7aaa874edcc9f418672267436cab26e2df78b71d4d6b3940c8162e90`
+- cleanup removed 17 submission CSV artifacts; none remained in notebook output
+
+This confirms the complete preprocessing, five-fold training, Curia-2 test encoding, five-head inference, and 80/20 rank-blend path on the public preview. A separate private reproduction must retain and strictly validate its final `submission.csv` before any Kaggle submission.
