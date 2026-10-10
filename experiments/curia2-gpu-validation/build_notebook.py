@@ -90,12 +90,68 @@ for cell in notebook["cells"]:
         cell["source"] = source.replace(license_hash_old, license_hash_new)
         license_hash_patched += 1
 
+oof_mount_old = '''        exact_npz = find_input_file("exact_public_family_oof.npz")
+        expert_csv = find_input_file("expert_oof_all.csv")
+        expected_oof_hashes = {
+            str(exact_npz): "d8af61726d9ec07abba19cabfa9c548de05bdb11206c9442a3d72ede737eb004",
+            str(expert_csv): "c4c7cd8cadc67b2e88619ba10db355b5760c4a065b73a5445c4ef0caf9a86e0d",
+        }
+        observed_oof_hashes = {path: _v64_sha256(path) for path in expected_oof_hashes}
+        if observed_oof_hashes != expected_oof_hashes:
+            raise RuntimeError(f"official-label OOF artifact drift: {observed_oof_hashes}")
+        exact = np.load(exact_npz, allow_pickle=False)
+        expert = pd.read_csv(expert_csv, dtype={"StudyInstanceUID": str})
+        if len(expert) != 58 or expert.StudyInstanceUID.duplicated().any():
+            raise RuntimeError("expert OOF identity drift")
+        train_index = {uid: i for i, uid in enumerate(train.StudyInstanceUID)}
+        exact_index = {str(uid): i for i, uid in enumerate(exact["ids"].tolist())}
+        if not set(expert.StudyInstanceUID).issubset(train_index):
+            raise RuntimeError("expert UID absent from train.csv")
+        if not set(expert.StudyInstanceUID).issubset(exact_index):
+            raise RuntimeError("expert UID absent from exact public OOF")
+        train_rows = np.array([train_index[uid] for uid in expert.StudyInstanceUID])
+        exact_rows = np.array([exact_index[uid] for uid in expert.StudyInstanceUID])
+        gold_y = expert[[f"gold::{target}" for target in TARGETS]].to_numpy(np.float64)
+        train_gold_y = train.loc[train_rows, TARGETS].to_numpy(np.float64)
+        if not np.array_equal(gold_y, train_gold_y):
+            raise RuntimeError("expert labels do not exactly match train.csv")
+        if expert.StudyInstanceUID.astype(str).tolist() != V52_BASELINE_EXPERT_UIDS:
+            raise RuntimeError("embedded V52 expert OOF identity/order drift")
+'''
+oof_mount_new = '''        # The legacy public-family audit files are no longer mounted by Kaggle.
+        # They supplied only the 58-row identity/order and a duplicate of the
+        # official train.csv gold labels; no predictions from either file enter V64.
+        expert_uids = list(map(str, V52_BASELINE_EXPERT_UIDS))
+        if len(expert_uids) != 58 or len(set(expert_uids)) != 58:
+            raise RuntimeError("embedded V52 expert identity drift")
+        train_index = {uid: i for i, uid in enumerate(train.StudyInstanceUID)}
+        if not set(expert_uids).issubset(train_index):
+            raise RuntimeError("embedded expert UID absent from train.csv")
+        train_rows = np.array([train_index[uid] for uid in expert_uids])
+        gold_y = train.loc[train_rows, TARGETS].to_numpy(np.float64)
+        if gold_y.shape != (58, len(TARGETS)) or not np.isfinite(gold_y).all():
+            raise RuntimeError("official train.csv gold-label contract drift")
+        audit["legacy_oof_identity_source"] = (
+            "source-embedded V52 expert UID order plus official train.csv labels"
+        )
+'''
+oof_mount_patched = 0
+for cell in notebook["cells"]:
+    if cell.get("cell_type") != "code":
+        continue
+    source = "".join(cell.get("source", ""))
+    if oof_mount_old in source:
+        cell["source"] = source.replace(oof_mount_old, oof_mount_new)
+        oof_mount_patched += 1
+
 if patched != 1:
     raise RuntimeError(f"expected one Curia-2 accelerator patch, observed {patched}")
 if model_search_patched != 1:
     raise RuntimeError(f"expected one Curia-2 delivery patch, observed {model_search_patched}")
 if license_hash_patched != 1:
     raise RuntimeError(f"expected one current official Curia license hash patch, observed {license_hash_patched}")
+if oof_mount_patched != 1:
+    raise RuntimeError(f"expected one legacy OOF mount patch, observed {oof_mount_patched}")
 
 notebook["cells"].append({
     "cell_type": "code",
