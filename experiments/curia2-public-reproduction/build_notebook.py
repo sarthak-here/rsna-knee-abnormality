@@ -14,6 +14,51 @@ OUTPUT = ROOT / "curia2-public-reproduction.ipynb"
 runpy.run_path(str(VALIDATION_BUILDER), run_name="__main__")
 notebook = json.loads(VALIDATION_NOTEBOOK.read_text(encoding="utf-8"))
 
+# Kaggle code submissions must run with internet disabled. Replace only the
+# validated delivery helper: discover the exact public Curia assets from the
+# attached private offline mirror, verify the pinned model hash, then stage the
+# same model/config/preprocessor/source/license files into writable storage.
+old_delivery = '''def _v64_curia_configs():
+    configs = list(Path("/kaggle/input").rglob("config.json"))
+    import kagglehub, shutil, urllib.request
+    root = Path(kagglehub.model_download("olliebearman/curia-2/transformers/default"))
+    staged = Path("/kaggle/working/curia2-pinned"); staged.mkdir(parents=True, exist_ok=True); [shutil.copy2(root / name, staged / name) for name in ("model.safetensors", "config.json", "preprocessor_config.json", "curia_image_processor.py")]
+    if True:
+        urllib.request.urlretrieve("https://huggingface.co/raidium/curia/resolve/main/LICENSE", staged / "LICENSE")
+    configs.extend(staged.rglob("config.json"))
+    globals()["_V64_CURIA_MODEL_DELIVERY"] = "writable hash-pinned mirror plus official RAIL-M license"
+    return configs
+'''
+new_delivery = '''def _v64_curia_configs():
+    configs = list(Path("/kaggle/input").rglob("config.json"))
+    import shutil
+    expected_model = "403a02e27531d2858ecd1e9b1ec2d5ea7bfa909f10ff0d9e8416090a6a8c96ef"
+    mirrors = [
+        path for path in Path("/kaggle/input").rglob("model.safetensors")
+        if _v64_sha256(path) == expected_model
+    ]
+    if len(mirrors) != 1:
+        raise RuntimeError(f"expected one exact offline Curia-2 model mirror, found {len(mirrors)}")
+    root = mirrors[0].parent
+    staged = Path("/kaggle/working/curia2-pinned")
+    staged.mkdir(parents=True, exist_ok=True)
+    for name in ("model.safetensors", "config.json", "preprocessor_config.json", "curia_image_processor.py", "LICENSE"):
+        shutil.copy2(root / name, staged / name)
+    configs.extend(staged.rglob("config.json"))
+    globals()["_V64_CURIA_MODEL_DELIVERY"] = "offline hash-pinned mirror plus official RAIL-M license"
+    return configs
+'''
+delivery_replacements = 0
+for cell in notebook["cells"]:
+    if cell.get("cell_type") != "code":
+        continue
+    source = cell.get("source", "")
+    if old_delivery in source:
+        cell["source"] = source.replace(old_delivery, new_delivery)
+        delivery_replacements += 1
+if delivery_replacements != 1:
+    raise RuntimeError(f"expected exactly one Curia delivery helper, replaced {delivery_replacements}")
+
 before = len(notebook["cells"])
 notebook["cells"] = [
     cell for cell in notebook["cells"]
@@ -114,14 +159,14 @@ notebook.setdefault("metadata", {})["curia2_public_reproduction"] = {
 OUTPUT.write_text(json.dumps(notebook, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 metadata = json.loads((VALIDATION_ROOT / "kernel-metadata.json").read_text(encoding="utf-8"))
-metadata.update({
+metadata["dataset_sources"] = list(dict.fromkeys([\n    *metadata.get("dataset_sources", []),\n    "sarthaksharma14/rsna-knee-curia2-pinned-offline-assets",\n]))\nmetadata.update({
     "id": "sarthaksharma14/rsna-knee-curia-2-private-reproduction",
     "title": "RSNA Knee Curia-2 Private Reproduction",
     "code_file": OUTPUT.name,
     "is_private": True,
     "enable_gpu": True,
     "enable_tpu": False,
-    "enable_internet": True,
+    "enable_internet": False,
     "machine_shape": "NvidiaTeslaT4",
 })
 (ROOT / "kernel-metadata.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
