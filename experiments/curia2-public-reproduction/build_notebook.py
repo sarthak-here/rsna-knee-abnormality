@@ -159,7 +159,7 @@ notebook.setdefault("metadata", {})["curia2_public_reproduction"] = {
 OUTPUT.write_text(json.dumps(notebook, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 metadata = json.loads((VALIDATION_ROOT / "kernel-metadata.json").read_text(encoding="utf-8"))
-metadata["dataset_sources"] = list(dict.fromkeys([\n    *metadata.get("dataset_sources", []),\n    "sarthaksharma14/rsna-knee-curia2-pinned-offline-assets",\n]))\nmetadata.update({
+metadata["dataset_sources"] = list(dict.fromkeys([\n    *metadata.get("dataset_sources", []),\n    "sarthaksharma14/rsna-knee-curia2-pinned-offline-assets",\n]))\nmetadata["model_sources"] = [\n    source for source in metadata.get("model_sources", [])\n    if "olliebearman/curia-2" not in source.lower()\n]\nmetadata.update({
     "id": "sarthaksharma14/rsna-knee-curia-2-private-reproduction",
     "title": "RSNA Knee Curia-2 Private Reproduction",
     "code_file": OUTPUT.name,
