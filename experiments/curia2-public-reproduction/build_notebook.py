@@ -40,12 +40,11 @@ new_delivery = '''def _v64_curia_configs():
     if len(mirrors) != 1:
         raise RuntimeError(f"expected one exact offline Curia-2 model mirror, found {len(mirrors)}")
     root = mirrors[0].parent
-    staged = Path("/kaggle/working/curia2-pinned")
-    staged.mkdir(parents=True, exist_ok=True)
-    for name in ("model.safetensors", "config.json", "preprocessor_config.json", "curia_image_processor.py", "LICENSE"):
-        shutil.copy2(root / name, staged / name)
-    configs.extend(staged.rglob("config.json"))
-    globals()["_V64_CURIA_MODEL_DELIVERY"] = "offline hash-pinned mirror plus official RAIL-M license"
+    required = ("config.json", "preprocessor_config.json", "curia_image_processor.py", "LICENSE")
+    missing = [name for name in required if not (root / name).is_file()]
+    if missing:
+        raise RuntimeError(f"offline Curia-2 mirror is incomplete: {missing}")
+    globals()["_V64_CURIA_MODEL_DELIVERY"] = "direct offline hash-pinned mirror plus official RAIL-M license"
     return configs
 '''
 delivery_replacements = 0
