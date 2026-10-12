@@ -28,3 +28,23 @@ the release's stated 0.9029/0.908 gold result to support building full test infe
   `rsna-knee-500gb-to-11gib-cpu-pixel-cache`, preserving its attribution and physical
   DICOM ordering implementation.
 
+## Result
+
+Version 2 completed cleanly after resizing the documented 280 px physical crop to the
+checkpoint's required fixed 224 px CoAtNet grid immediately before encoding. Strict
+loading and all integrity checks passed: 58 unique organizer-gold studies, no fitting,
+no decode failures, finite predictions, matching prediction SHA-256, and no submission
+artifact.
+
+The reconstruction is rejected because it missed the predeclared transfer gate:
+
+- plain macro AUC: `0.871564`;
+- horizontal-flip macro AUC: `0.856583`;
+- predeclared 50/50 average macro AUC: `0.870237`;
+- required average macro AUC: `0.890000`.
+
+The average also underperformed the plain view, so this reconstructed contract will not
+be scaled, blended, or submitted. The result does not reproduce the release's documented
+approximately `0.903` organizer-gold AUC, which is consistent with the missing original
+model/preprocessing source being scientifically material.
+

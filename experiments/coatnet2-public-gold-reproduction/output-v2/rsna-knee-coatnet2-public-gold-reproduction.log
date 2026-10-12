@@ -1,0 +1,78 @@
+[{"stream_name":"stderr","time":9.766386597,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: DuplicateCellId: Non-unique cell id 'cell-01' detected. Corrected to '8ce3c0f1'.\n"}
+,{"stream_name":"stderr","time":9.766432101,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":11.207997731,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":11.2080271,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":11.20803243,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":11.208036792,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":11.980434237,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":11.980461357,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":11.980465814,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":11.980469367,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":13.417474273,"data":"RSNA_IMG = 280\n"}
+,{"stream_name":"stdout","time":13.417502098,"data":"RSNA_CROP_MM = 150\n"}
+,{"stream_name":"stdout","time":13.417508013,"data":"RSNA_N_GROUP_MAX = 5\n"}
+,{"stream_name":"stdout","time":905.059033598,"data":"[  875.3s] coatnet2-gold: cache (58, 6, 15, 280, 280) = 0.4 GB\n"}
+,{"stream_name":"stdout","time":905.060120155,"data":"[  875.3s] coatnet2-gold: decoding 309 slot-series\n"}
+,{"stream_name":"stdout","time":949.914189658,"data":"[  920.1s]   coatnet2-gold 309/309\n"}
+,{"stream_name":"stdout","time":949.915045064,"data":"[  920.1s] coatnet2-gold: slice ordering geometry 100.0%\n"}
+,{"stream_name":"stdout","time":949.915771295,"data":"[  920.1s] coatnet2-gold: physical scale applied 262 (84.8%), skipped_short_fov 47 (15.2%)\n"}
+,{"stream_name":"stdout","time":949.916506547,"data":"[  920.1s] coatnet2-gold: slices read 4635, decode failures 0, MONOCHROME1 inverted 0\n"}
+,{"stream_name":"stderr","time":950.388846803,"data":"/tmp/ipykernel_23/3801738169.py:53: RuntimeWarning: 15% of slots had a field of view at or below crop_mm=150mm, so no physical normalisation was applied to them and their mm/px came from the acquisition. Set RSNA_PAD_SHORT_FOV=1 to pad instead.\n"}
+,{"stream_name":"stderr","time":950.388890395,"data":"  studies, cache, slot_mask = build_cache(subset, plane_map, laterality, \"coatnet2-gold\", 5)\n"}
+,{"stream_name":"stderr","time":950.388897654,"data":"\n"}
+,{"stream_name":"stderr","time":950.388902741,"data":"/tmp/ipykernel_23/3801738169.py:53: RuntimeWarning: 15% of slots had a field of view at or below crop_mm=150mm, so no physical normalisation was applied to them and their mm/px came from the acquisition. Set RSNA_PAD_SHORT_FOV=1 to pad instead.\n"}
+,{"stream_name":"stderr","time":950.388908979,"data":"  studies, cache, slot_mask = build_cache(subset, plane_map, laterality, \"coatnet2-gold\", 5)\n"}
+,{"stream_name":"stdout","time":994.68758295,"data":"{\n"}
+,{"stream_name":"stdout","time":994.687611063,"data":"  \"status\": \"COMPLETE\",\n"}
+,{"stream_name":"stdout","time":994.68761678,"data":"  \"contract\": \"inference-only public checkpoint reconstruction; no fitting or submission\",\n"}
+,{"stream_name":"stdout","time":994.687623759,"data":"  \"source_model\": \"patimakornsrinamen/rsna-67knee-coatnet2/PyTorch/t4/1\",\n"}
+,{"stream_name":"stdout","time":994.68764053,"data":"  \"source_license\": \"Apache-2.0\",\n"}
+,{"stream_name":"stdout","time":994.687645908,"data":"  \"checkpoint_sha256\": \"5e9f9d3277924e2c0d86efc448447ef0f0c83dcf709078233403a50a5a9f2aca\",\n"}
+,{"stream_name":"stdout","time":994.687650278,"data":"  \"run_config_sha256\": \"a30775b2bcb494578eddba9a54d8d580b982d8e978edd2f3cac37e4021ce25ae\",\n"}
+,{"stream_name":"stdout","time":994.687653922,"data":"  \"documented_gold_auc\": 0.9029,\n"}
+,{"stream_name":"stdout","time":994.687657407,"data":"  \"documented_tta_gold_auc\": 0.9003,\n"}
+,{"stream_name":"stdout","time":994.68766086,"data":"  \"gold_count\": 58,\n"}
+,{"stream_name":"stdout","time":994.687664239,"data":"  \"fit_count\": 0,\n"}
+,{"stream_name":"stdout","time":994.687667652,"data":"  \"cache_shape\": [\n"}
+,{"stream_name":"stdout","time":994.687674206,"data":"    58,\n"}
+,{"stream_name":"stdout","time":994.687678411,"data":"    6,\n"}
+,{"stream_name":"stdout","time":994.687681681,"data":"    15,\n"}
+,{"stream_name":"stdout","time":994.687684889,"data":"    280,\n"}
+,{"stream_name":"stdout","time":994.687688299,"data":"    280\n"}
+,{"stream_name":"stdout","time":994.687691563,"data":"  ],\n"}
+,{"stream_name":"stdout","time":994.687701235,"data":"  \"occupied_slots\": 309,\n"}
+,{"stream_name":"stdout","time":994.687703817,"data":"  \"order_stats\": {\n"}
+,{"stream_name":"stdout","time":994.68770709,"data":"    \"geometry\": 309,\n"}
+,{"stream_name":"stdout","time":994.687709292,"data":"    \"slice_location\": 0,\n"}
+,{"stream_name":"stdout","time":994.687711562,"data":"    \"instance_number\": 0,\n"}
+,{"stream_name":"stdout","time":994.68771512,"data":"    \"filename\": 0\n"}
+,{"stream_name":"stdout","time":994.687730947,"data":"  },\n"}
+,{"stream_name":"stdout","time":994.687735455,"data":"  \"pixel_stats\": {\n"}
+,{"stream_name":"stdout","time":994.687739274,"data":"    \"crop_applied\": 262,\n"}
+,{"stream_name":"stdout","time":994.687743463,"data":"    \"crop_padded\": 0,\n"}
+,{"stream_name":"stdout","time":994.687747734,"data":"    \"crop_skipped_short_fov\": 47,\n"}
+,{"stream_name":"stdout","time":994.687751209,"data":"    \"crop_no_spacing\": 0,\n"}
+,{"stream_name":"stdout","time":994.687754524,"data":"    \"decode_failed\": 0,\n"}
+,{"stream_name":"stdout","time":994.687757889,"data":"    \"mono1_inverted\": 0,\n"}
+,{"stream_name":"stdout","time":994.687761234,"data":"    \"slices_read\": 4635\n"}
+,{"stream_name":"stdout","time":994.687764489,"data":"  },\n"}
+,{"stream_name":"stdout","time":994.687767627,"data":"  \"plain_gold_auc\": 0.8715636094576009,\n"}
+,{"stream_name":"stdout","time":994.687771742,"data":"  \"flipped_gold_auc\": 0.8565825965795205,\n"}
+,{"stream_name":"stdout","time":994.68777507,"data":"  \"predeclared_average_gold_auc\": 0.8702366764314778,\n"}
+,{"stream_name":"stdout","time":994.687778492,"data":"  \"reproduction_gate\": {\n"}
+,{"stream_name":"stdout","time":994.687781942,"data":"    \"minimum_average_auc\": 0.89,\n"}
+,{"stream_name":"stdout","time":994.687785412,"data":"    \"passed\": false\n"}
+,{"stream_name":"stdout","time":994.687788779,"data":"  },\n"}
+,{"stream_name":"stdout","time":994.687791908,"data":"  \"elapsed_seconds\": 89.62838053703308,\n"}
+,{"stream_name":"stdout","time":994.687795673,"data":"  \"prediction_sha256\": \"b2dd26ac64307dc34f00aff2f96b03de22fb42d70cb2db89aa3fd62673144560\",\n"}
+,{"stream_name":"stdout","time":994.68779943,"data":"  \"submission_created\": false\n"}
+,{"stream_name":"stdout","time":994.687808069,"data":"}\n"}
+,{"stream_name":"stderr","time":1000.211081421,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1000.211125294,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1000.423082769,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1000.423125991,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1001.385017668,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":1001.46985424,"data":"[NbConvertApp] Writing 178259 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":1003.985019668,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1004.920836464,"data":"[NbConvertApp] Writing 791203 bytes to __results__.html\n"}
+]

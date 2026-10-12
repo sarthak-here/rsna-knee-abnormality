@@ -1,0 +1,45 @@
+{
+  "status": "COMPLETE",
+  "contract": "inference-only public checkpoint reconstruction; no fitting or submission",
+  "source_model": "patimakornsrinamen/rsna-67knee-coatnet2/PyTorch/t4/1",
+  "source_license": "Apache-2.0",
+  "checkpoint_sha256": "5e9f9d3277924e2c0d86efc448447ef0f0c83dcf709078233403a50a5a9f2aca",
+  "run_config_sha256": "a30775b2bcb494578eddba9a54d8d580b982d8e978edd2f3cac37e4021ce25ae",
+  "documented_gold_auc": 0.9029,
+  "documented_tta_gold_auc": 0.9003,
+  "gold_count": 58,
+  "fit_count": 0,
+  "cache_shape": [
+    58,
+    6,
+    15,
+    280,
+    280
+  ],
+  "occupied_slots": 309,
+  "order_stats": {
+    "geometry": 309,
+    "slice_location": 0,
+    "instance_number": 0,
+    "filename": 0
+  },
+  "pixel_stats": {
+    "crop_applied": 262,
+    "crop_padded": 0,
+    "crop_skipped_short_fov": 47,
+    "crop_no_spacing": 0,
+    "decode_failed": 0,
+    "mono1_inverted": 0,
+    "slices_read": 4635
+  },
+  "plain_gold_auc": 0.8715636094576009,
+  "flipped_gold_auc": 0.8565825965795205,
+  "predeclared_average_gold_auc": 0.8702366764314778,
+  "reproduction_gate": {
+    "minimum_average_auc": 0.89,
+    "passed": false
+  },
+  "elapsed_seconds": 89.62838053703308,
+  "prediction_sha256": "b2dd26ac64307dc34f00aff2f96b03de22fb42d70cb2db89aa3fd62673144560",
+  "submission_created": false
+}
