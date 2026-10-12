@@ -1,0 +1,20 @@
+{
+  "id": "sarthaksharma14/rsna-knee-coatnet2-public-gold-reproduction",
+  "title": "RSNA Knee CoAtNet2 Public Gold Reproduction",
+  "code_file": "coatnet2-public-gold-reproduction.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "model_sources": [
+    "patimakornsrinamen/rsna-67knee-coatnet2/PyTorch/t4/1"
+  ]
+}
