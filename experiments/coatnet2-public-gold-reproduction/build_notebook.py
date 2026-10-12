@@ -113,6 +113,12 @@ class ReleasedCoAtNet2(nn.Module):
         if valid.any():
             x = flat[valid].float().div_(255.0)
             x = (x - self.mean) / self.std
+            # The released contract caches a 280 px physical crop, while the stated
+            # backbone is the fixed-grid 224 px CoAtNet variant. Its relative-position
+            # table is 14x14 and therefore proves that the cached crop must be resized
+            # to 224 immediately before encoding.
+            x = F.interpolate(x, size=(224, 224), mode="bilinear",
+                              align_corners=False, antialias=True)
             feat[valid] = self.backbone(x.contiguous(memory_format=torch.channels_last))
         h = self.proj(feat).view(b, s, g, 256)
         slot_index = torch.arange(s, device=h.device).view(1, s, 1)
