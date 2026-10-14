@@ -23,8 +23,8 @@ The other half is not independently clean enough to rescue the candidate:
 
 The implementation also retains fallback behavior: the 224 stage may be skipped on timeout or failure, and model failures can be replaced by another model's rank or `0.5`. That makes the displayed notebook score insufficient as a strict identity receipt for the exact intended three-leg blend without inspecting the hidden rerun logs.
 
-## Decision
+## Revised decision after the current rules check
 
-Rejected for reproduction, submission, and blending. The score is credible leaderboard evidence for the published stack, but the gain depends directly on OAI-trained weights and two `other`-licensed/private checkpoint bundles. No GPU run or Kaggle submission was launched. The locked submission remains `56877854` at public `0.944`.
+The initial audit rejected the stack because the source OAI scans are controlled-access. A direct check of the current competition rules changed that conclusion: the rules expressly permit external data and models when they are publicly and reasonably accessible at minimal cost, and the winner-license section anticipates pretrained models with incompatible licenses. The nartaa weights are public and free, and the publisher's 13 October model-use terms explicitly permit non-commercial RSNA Knee competition use, adaptation, and redistribution of the weights or adapted versions with attribution.
 
-The useful research takeaway is architectural rather than asset-level: a lower-resolution, tighter-field-of-view checkpoint can add rank diversity to a high-resolution reader. Any follow-up must reproduce that diversity with competition-only training data and a fully auditable checkpoint.
+The relevant external asset for this reproduction is the public pretrained model, not access to the source OAI records. On that basis, an exact private reproduction is permitted to proceed while retaining the OAI/NDA acknowledgement and attached-model terms. The original caution remains recorded here because final eligibility is always subject to the Host's reasonableness assessment.

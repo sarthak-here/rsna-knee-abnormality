@@ -1,0 +1,20 @@
+{
+  "id": "sarthaksharma14/rsna-knee-one-unused-checkpoint-0956-reproduction",
+  "title": "RSNA Knee Public 0.956 Exact Reproduction",
+  "code_file": "rsna-knee-one-unused-checkpoint-0956-reproduction.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "dataset_sources": [
+    "heliosli/rsna-knee-compact-r7cnxfsss",
+    "nartaa/rsna-knee-publication-swa-weights-20261007",
+    "heliosli/rsna-orthofoundation-fold0-epoch7-20261004"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "model_sources": []
+}
