@@ -24,3 +24,7 @@ Kaggle's weekly GPU quota prevented launching the duplicate private preview, but
 - Output: `submission.csv`
 - Initial status: `PENDING`
 - Submission message retains Varshitha Kolupuri, nartaa, heliosli, and dreaddevelopment attribution.
+
+## Scored result
+
+Submission `57190953` completed successfully at public macro AUC **`0.956`**, improving the previous locked submission `56877854` (`0.944`) by **`+0.012`**. The exact public-kernel reproduction is therefore promoted as the new locked public baseline. This is leaderboard evidence for the score, not evidence of first place; final standing still depends on the private leaderboard and competition review.
