@@ -9,3 +9,5 @@ Training targets are Steven v4 report labels for all non-gold studies. For the 2
 
 This notebook is private validation only and deletes any submission CSV. The pass gate is organizer-gold macro AUC >= 0.90 with all identity, coverage, and isolation checks satisfied. A pass permits scaling or building inference; it is not itself a submission.
 
+Version 1 established the full data path but Kaggle cancelled it after three epochs because each CoAtNet-384 epoch required about 3.7 hours on T4. It also exposed that the inherited gold-only AUC helper converted soft selection targets to integers, producing an undefined metric. Version 2 preserves the model, data, targets, split, and evaluation isolation, uses the predeclared two-epoch runtime-bounded screen, and computes selection AUC against a fixed 0.5 threshold on soft report targets.
+

@@ -18,6 +18,14 @@ replace_once(
     '    if set(selection_ids) & set(gold_ids):\n'
     '        raise RuntimeError("organizer gold entered checkpoint selection")\n'
     '    vds = StudyWindows(HERE, selection_ids, id2row, labels, a.res, a.k_eval, train=False, norm=a.norm, **_roi_kw)')
+replace_once(
+    '        for j, name in enumerate(LAB):\n'
+    '            if len(set(Y[:, j].astype(int))) > 1:\n'
+    '                aucs[name] = float(roc_auc_score(Y[:, j], P[:, j]))',
+    '        for j, name in enumerate(LAB):\n'
+    '            hard = (Y[:, j] >= 0.5).astype(np.int8)\n'
+    '            if len(set(hard)) > 1:\n'
+    '                aucs[name] = float(roc_auc_score(hard, P[:, j]))')
 source = source.replace('"gold_auc"', '"selection_auc"')
 source = source.replace('best_gold_auc', 'best_selection_auc')
 source = source.replace('GOLD macro-AUC', 'SELECTION macro-AUC')
@@ -30,8 +38,8 @@ run = '''
 import subprocess, sys
 cmd = [sys.executable, "-u", "train_knee.py",
        "--arch", "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
-       "--res", "384", "--epochs", "12", "--bs", "4", "--k", "12", "--k_eval", "24",
-       "--grad_ckpt", "--topk", "3", "--workers", "2", "--tag", "oofcorr_coatnet384_f0",
+       "--res", "384", "--epochs", "2", "--bs", "4", "--k", "12", "--k_eval", "24",
+       "--grad_ckpt", "--topk", "2", "--workers", "2", "--tag", "oofcorr_coatnet384_f0",
        "--labels", "/kaggle/working/labels_oof_corrected.parquet",
        "--folds", "5", "--fold", "0", "--fold_file", "/kaggle/working/folds.json"]
 print("RUN", " ".join(cmd), flush=True)
