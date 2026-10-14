@@ -11,3 +11,9 @@ This notebook is private validation only and deletes any submission CSV. The pas
 
 Version 1 established the full data path but Kaggle cancelled it after three epochs because each CoAtNet-384 epoch required about 3.7 hours on T4. It also exposed that the inherited gold-only AUC helper converted soft selection targets to integers, producing an undefined metric. Version 2 preserves the model, data, targets, split, and evaluation isolation, uses the predeclared two-epoch runtime-bounded screen, and computes selection AUC against a fixed 0.5 threshold on soft report targets.
 
+## Version 2 result
+
+Version 2 completed in about 9 hours 46 minutes and failed the predeclared gate decisively. The selected epoch-1 checkpoint reached selection AUC `0.724948`, but only `0.677085` macro AUC on the untouched 58-study organizer-gold diagnostic. SWA was lower at `0.663710`. The run retained the exact target contract (`4,349` non-gold fitting studies; `2,610` corrected and `1,739` unchanged), used zero organizer-gold studies for fitting or selection, produced finite predictions for all 58 evaluation studies, and created no submission.
+
+The result rejects this runtime-bounded CoAtNet-384 OOF-corrected contract. It must not be scaled, blended, or submitted. Small immutable result artifacts are retained in `output-v2`; the 293 MB checkpoint and generated training cache remain outside Git.
+

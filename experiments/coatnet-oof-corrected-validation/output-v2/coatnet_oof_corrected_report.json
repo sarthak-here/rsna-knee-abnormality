@@ -1,0 +1,38 @@
+{
+  "status": "COMPLETE",
+  "contract": "one-fold leakage-safe OOF-corrected CoAtNet-384 screen; no submission",
+  "upstream_source_sha256": "6953e8c46c714b0ee7ef6dc83dbd56232672941288953d7971f948282d92dedd",
+  "target_audit": {
+    "train_studies": 4407,
+    "gold_evaluation_only": 58,
+    "non_gold": 4349,
+    "corrected": 2610,
+    "unchanged": 1739,
+    "teacher_folds": [
+      0,
+      1,
+      2
+    ],
+    "oof_sha256": "60529a0ba00107abd7efd101f70454e7ce89407befbaa4107f24771ee088579e",
+    "target_contract": "50/50 Steven v4 and true fold-held-out ConvNeXt for covered studies; Steven unchanged otherwise",
+    "selection": "report-grouped fold 0 only; organizer gold excluded"
+  },
+  "gold_fit_count": 0,
+  "gold_selection_count": 0,
+  "gold_evaluation_count": 58,
+  "models": {
+    "best": {
+      "gold_auc": 0.6770854546679317,
+      "checkpoint_sha256": "92f575c1905848f9b04a969cba38d115975458730ad6657e8b8a07cfd7fbadfb"
+    },
+    "swa": {
+      "gold_auc": 0.6637102603165592,
+      "checkpoint_sha256": "751786ef34665738096bad3b68d0b9d3e87cd88626b2674e7f3c75246fae33fd"
+    }
+  },
+  "best_variant": "best",
+  "best_gold_auc": 0.6770854546679317,
+  "gate_auc_at_least_0_90": false,
+  "submission_created": false,
+  "passed": false
+}

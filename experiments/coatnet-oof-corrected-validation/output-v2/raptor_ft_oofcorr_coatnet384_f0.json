@@ -1,0 +1,41 @@
+{
+ "tag": "oofcorr_coatnet384_f0",
+ "src": "timm-pretrained",
+ "best_selection_auc": 0.7249481046890159,
+ "aucs": {
+  "ACL": 0.6426391575327745,
+  "MCL": 0.72092112477481,
+  "Medial Meniscus": 0.7224666195065876,
+  "Lateral Meniscus": 0.7163263146756957,
+  "Medial OA": 0.7780356883795154,
+  "Lateral OA": 0.7417062906487403,
+  "PF OA": 0.7151660262200107,
+  "Effusion": 0.7841514485978724,
+  "Synovitis": 0.815364238410596,
+  "Baker's": 0.7304703642731811,
+  "Contusion": 0.6273959571938169,
+  "Fracture": 0.7047340260545906
+ },
+ "hist": [
+  {
+   "ep": 0,
+   "loss": 0.9533237633139958,
+   "selection_auc": 0.6771381302802398
+  },
+  {
+   "ep": 1,
+   "loss": 0.9003641919519053,
+   "selection_auc": 0.7249481046890159
+  }
+ ],
+ "res": 384,
+ "epochs": 2,
+ "bb_lr": 3e-05,
+ "head_lr": 0.001,
+ "n_train": 3479,
+ "n_gold": 58,
+ "roi": false,
+ "roi_mode": "compartment",
+ "partial": false,
+ "epochs_done": 2
+}
