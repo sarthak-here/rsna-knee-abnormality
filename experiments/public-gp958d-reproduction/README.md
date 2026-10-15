@@ -29,3 +29,7 @@ Small immutable receipts are retained under `output-v1`.
 - Attribution: You WeiLin, Heliosli, nartaa, and dreaddevelopment.
 
 Submission `57197157` at displayed public macro AUC `0.957` remains locked until this candidate completes and exceeds it. No first-place claim is made; final standing depends on the private leaderboard and competition review.
+
+## Scored result
+
+Submission `57238441` completed successfully at public macro AUC **`0.956`**. It trails the locked `57197157` baseline (`0.957`) by `0.001`, so it is rejected as a replacement. The R7 result is retained only as diversity evidence; this exact contract will not be promoted, blindly blended, or resubmitted.
