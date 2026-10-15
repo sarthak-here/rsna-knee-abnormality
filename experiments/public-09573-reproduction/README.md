@@ -28,3 +28,7 @@ Small immutable receipts are retained under `output-v1`. Kaggle's API allowed do
 - Attribution: Heliosli, nartaa, and dreaddevelopment.
 
 Submission `57190953` at `0.956` remains locked until this candidate completes and exceeds it.
+
+## Scored result
+
+Submission `57197157` completed successfully at public macro AUC **`0.957`**. It improves the preceding locked submission `57190953` (`0.956`) by **`+0.001`** and the original `0.944` baseline by **`+0.013`**. Submission `57197157` is therefore promoted as the new locked public baseline. This is public-leaderboard evidence only; final placement still depends on the private leaderboard and competition review.
