@@ -28,3 +28,7 @@ The exact inputs were `heliosli/rsna-knee-r6-frozen-fe055406`, `nartaa/rsna-knee
 - Attribution: Heliosli, nartaa, and dreaddevelopment.
 
 Submission `57197157` at displayed public macro AUC `0.957` remains locked until this candidate completes and provides stronger score or rank evidence. No first-place claim is made; final standing depends on the private leaderboard and competition review.
+
+## Scored result
+
+Submission `57228245` completed successfully at displayed public macro AUC **`0.957`**. This ties submission `57197157` at Kaggle's displayed precision. Although the public kernel title reports `0.9576`, our submission result provides no direct unrounded score or rank evidence proving an improvement over the locked `0.9573`-title contract. Submission `57197157` therefore remains the locked baseline, while `57228245` is retained as validated flip-TTA diversity evidence.
