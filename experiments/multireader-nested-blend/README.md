@@ -88,10 +88,25 @@ preview prediction hash before it can be submitted.
 
 - [x] Predeclared scientific and runtime contract.
 - [x] Fail-closed nested optimizer.
-- [ ] Exact four-reader 58-study prediction notebook.
+- [x] Exact four-reader 58-study prediction notebook.
 - [ ] Private prediction-cache run and audit.
 - [ ] Nested gate result.
 - [ ] Inference notebook only if the gate passes.
 
 The Raptor checkpoints are OAI-trained. Any eventual submission remains subject
 to explicit user approval with that provenance disclosed.
+
+## Launch status
+
+The private notebook implementation was completed and pushed in commit
+`79e0710`. Its builder pins both public source notebooks, redirects their exact
+reader pipelines to a synthetic test-layout containing only the 58 labelled
+studies, adds zero-fallback receipts, retains the four arms in the required NPZ,
+runs the unchanged optimizer, and removes every CSV from the output directory.
+Local structural generation and optimizer tests passed.
+
+The first Kaggle launch attempt on 17 October 2026 was rejected before a kernel
+version was created because the account had reached its `30.00` hour weekly GPU
+quota. This is an infrastructure block, not an experiment result. No model code
+ran and no scientific gate was evaluated. Launch the exact committed notebook
+when GPU quota becomes available; do not alter its contract while waiting.
