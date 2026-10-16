@@ -125,6 +125,34 @@ Decision: reject as an unscored post-result reweight. The previously audited
 Heliosli `0.958` version remains the only exact candidate in this family worth
 an approval decision.
 
+### `prvsiyan/the-bee-s-knees-final-rsna-push`
+
+- Notebook SHA-256:
+  `07a50c3e6e5af6616cd6cd41a647adb40d30141e33f80cf9822e1cf8f8c41d3e`.
+- This is a carefully pinned canary for a global `55/45` R6/Raptor blend,
+  preserving the 35% Raptor-224 share inside the Raptor slot. Its output
+  receipt passes exact preview control, has zero reader failures, and records
+  candidate submission SHA-256
+  `ff4e63cb26dcc316dbb73eb3f8830cb9bfdaaab029223c5d8f53d454dcf7375c`.
+- The receipt explicitly says `COMPLETE_BLEND55_NO_OFFICIAL_SCORE`,
+  `submission_sent=false`, and `official_score=null`. It is a three-study
+  runtime canary, not validation evidence.
+- The author’s identifiable leaderboard row remains `0.957`; the public
+  canary therefore supplies no evidence that the `55/45` reweight improves the
+  locked submission.
+
+Decision: reject as an unscored global endpoint tweak. Preserve its strong
+receipt engineering as a reference, but do not spend a slot on the weight
+change without non-public-leaderboard validation.
+
+### Leading-team release check
+
+The leaderboard snapshot’s top four teams display `0.968`, `0.967`, `0.967`,
+and `0.967`. Public-kernel searches for their listed accounts (`centralyds`,
+`tomirol`, `azamat1ch`, and `sggpls`) found no RSNA Knee source or checkpoint
+release. Their scores establish the frontier but do not expose a reproducible
+candidate.
+
 ## Result
 
 No newly released exact public contract has credible scored evidence above
