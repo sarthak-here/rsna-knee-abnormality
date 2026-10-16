@@ -76,10 +76,61 @@ The release contains source and weak labels but no trained checkpoint. The
 author's current score is `0.891`. It is useful as implementation reference,
 not as a frontier candidate.
 
+### `goodpjw2008/rsna-knee-coatnet-r6-2-5d-mil-lb-0-958`
+
+- Latest public notebook SHA-256:
+  `a906df9328b6a53d7e0fe4e18962c655867c8617c54e6745a8af647033b2399c`.
+- The notebook says versions 25 and 26 scored `0.958`; the current version 27
+  restores version 25’s recipe. It adds a three-fold 2.5D ConvNeXt-Tiny MIL
+  reader at very small per-target weights on top of the already audited
+  R6-flip + Raptor384/224 per-finding blend.
+- The reader is materially distinct and its Apache-2.0 dataset publishes
+  training, preprocessing, inference source, and three checkpoints. Source
+  hashes are:
+  - `infer.py`: `39d4517cc33c4bb1e4a03cfb49a0673a8789055de8c3cc0957c6e3035f6be4af`;
+  - `knee.py`: `314c2af387a5cbd1d25f192f19f4ecc6d4ae4b30403e92e9d9b3ed2c325880b1`;
+  - `preprocess.py`: `68601ad84ec3a0f030b5c2d37cc0d657cd3e12b17f7130e7385fba9648d324b6`;
+  - `train.py`: `e41b26488ea5516c113f473c35f2391e0e97dc693b53d076f81b8953f169db2b`.
+- Standalone public evidence is only `0.929`. More importantly, the public
+  trainer evaluates all 58 organizer-labelled studies after every epoch.
+  Although the saved checkpoint is the final EMA rather than an explicitly
+  gold-selected checkpoint, this repeated monitoring means the 58-study set is
+  not a clean independent promotion screen for this reader.
+- The notebook’s Part B catches every exception and silently restores the base
+  submission. The public output contains `_own.csv`, showing that the preview
+  reader ran, but there is no fail-closed hidden receipt binding that leg to the
+  scored version.
+
+Decision: do not submit version 27 and do not add this reader to the predeclared
+58-study nested screen. It offers no displayed gain over the simpler Heliosli
+`0.958` candidate, and its gold-monitoring history invalidates that screen as
+independent evidence. Retain the source only as architecture reference.
+
+### `heliosli/this-is-best-public-dataset-new-version-0-9576`
+
+- Refreshed notebook SHA-256:
+  `cb0e1eac33a00f96b7d1bcc0e9914f7eb045af2bc9cd01bc290b2213e7f17ddd`.
+- Preview execution is healthy: three official IDs, zero Raptor/R6 failures,
+  zero R6 fallbacks, successful completion receipts, and final submission
+  SHA-256
+  `5e9ba665f3e30642e18dbb555eb7cbd16ab8a659ffb5f7226c72aaac44c9df1b`.
+- It is not the already audited scored Heliosli contract. It changes the
+  per-finding Raptor weights again (`0.85` Synovitis, `0.15` Lateral OA,
+  `0.65` PF OA, `0.30` Baker’s) and adds the same tiny 2.5D reader leg.
+- Heliosli’s leaderboard row still points to the 15 October scored submission;
+  this refreshed kernel ran on 16 October. Its `0.9576` title therefore does
+  not establish an exact score for these new weights.
+
+Decision: reject as an unscored post-result reweight. The previously audited
+Heliosli `0.958` version remains the only exact candidate in this family worth
+an approval decision.
+
 ## Result
 
 No newly released exact public contract has credible scored evidence above
-`0.958`. The best active work remains:
+`0.958`. The two newest apparent `0.958` paths either add a gold-monitored weak
+reader or change target weights after the last identifiable score. The best
+active work remains:
 
 1. run the committed four-reader nested screen when GPU quota resets;
 2. submit the already audited Heliosli `0.958` contract only after explicit
