@@ -65,3 +65,20 @@ tuning.
 
 The frozen Raptor arms are OAI-trained, as already disclosed for the locked
 baseline family. This screen creates no submission.
+
+## Terminal result
+
+Private Kaggle version 1 completed cleanly and was **rejected**. The five-seed
+cross-plane reader reached `0.893531` organizer-gold macro AUC. Its fixed 10%
+rank-residual blend reached `0.931236` versus `0.932553` for the immutable
+anchor, a change of `-0.001317`. All five seed blends were negative, only 6/12
+targets were nonnegative, bootstrap `p_improve` was `0.1102`, and q025 was
+`-0.003539`.
+
+All integrity checks passed: exact 4,349/2,610/1,739/58 counts, 58 unique IDs,
+five complete checkpoint hashes, finite `[58,12]` predictions, clean logs, and
+zero CSV artifacts. The prediction NPZ SHA-256 is
+`12db62d25e0f9cee1e6d5087f3503547d225a81ed0dac01836215933707fe31d`.
+
+This exact architecture/target/blend contract is closed. Do not tune, build
+hidden inference for, blend, or submit it.
