@@ -54,3 +54,19 @@ Failure closes this exact objective/head/blend contract without tuning.
 - `stevenleehans/rsna-knee-llm-report-labels`
 - Heliosli, nartaa, dreaddevelopment, and You WeiLin for the frozen evaluation
   anchor. Its Raptor arms are OAI-trained; this private screen cannot submit.
+
+## Terminal result
+
+Private Kaggle version 1 completed cleanly and was **rejected**. The five-seed
+pairwise reader reached `0.901438` organizer-gold macro AUC. Its fixed 10% rank
+blend reached `0.931124` versus `0.932553` for the frozen anchor, a change of
+`-0.001429`. Only one of five seed blends improved; 4/12 target deltas were
+nonnegative; bootstrap `p_improve` was `0.1180` and q025 was `-0.003851`.
+
+Every integrity check passed: exact input/source hashes, 4,349/2,610/1,739/58
+counts, 58 unique evaluation IDs, five complete checkpoint hashes, finite
+predictions, clean logs, and no CSV. The prediction NPZ SHA-256 is
+`57f49aef75fb1b2704faa6875347bb29f2eed31ed770d21cdc5c3ff7366e803f`.
+
+This exact objective/head/blend contract is closed. Do not tune, build hidden
+inference for, blend, or submit it.
