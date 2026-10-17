@@ -1,0 +1,25 @@
+{
+  "id": "sarthaksharma14/rsna-knee-pairwise-auc-head",
+  "title": "RSNA Knee Pairwise AUC Head",
+  "code_file": "pairwise-auc-head.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "dataset_sources": [
+    "goodpjw2008/rsna-knee-2-5d-convnext-reader",
+    "stevenleehans/rsna-knee-llm-report-labels"
+  ],
+  "kernel_sources": [
+    "sarthaksharma14/rsna-knee-convnext-reader-feature-cache",
+    "sarthaksharma14/rsna-knee-convnext-oof-teacher-audit",
+    "sarthaksharma14/rsna-knee-multireader-nested-blend-screen"
+  ],
+  "model_sources": []
+}
