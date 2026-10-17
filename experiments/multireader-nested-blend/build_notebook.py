@@ -138,7 +138,7 @@ GOLD.mkdir()
 roots = []
 for train_csv in Path("/kaggle/input").rglob("train.csv"):
     root = train_csv.parent
-    if (root / "train_series.csv").exists() and (root / "train_images").is_dir():
+    if (root / "train_series.csv").exists() and (root / "train_series").is_dir():
         roots.append(root)
 if len(roots) != 1:
     raise RuntimeError(f"expected one competition train root, found {roots}")
@@ -160,7 +160,7 @@ sample = gold[["StudyInstanceUID"]].copy()
 for target in TARGETS:
     sample[target] = 0.5
 sample.to_csv(GOLD / "sample_submission.csv", index=False)
-os.symlink(ROOT / "train_images", GOLD / "test_images", target_is_directory=True)
+os.symlink(ROOT / "train_series", GOLD / "test_series", target_is_directory=True)
 gold.to_csv(WORK / "gold_truth.csv", index=False)
 print("GOLD_EVAL_READY", len(gold), len(series), ROOT, flush=True)
 '''

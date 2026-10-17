@@ -110,3 +110,10 @@ version was created because the account had reached its `30.00` hour weekly GPU
 quota. This is an infrastructure block, not an experiment result. No model code
 ran and no scientific gate was evaluated. Launch the exact committed notebook
 when GPU quota becomes available; do not alter its contract while waiting.
+
+After quota reset, version 1 stopped before inference because the gold-layout
+adapter looked for a nonexistent `train_images` directory. The official raw
+DICOM directory is `train_series`, which is also the primary directory expected
+by both pinned public readers. The adapter now links that directory as
+`gold_eval/test_series`; no preprocessing, model, prediction, or gate logic was
+changed.
