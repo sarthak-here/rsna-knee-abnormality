@@ -322,6 +322,60 @@ an inactive sketch, not reproducible evidence and not ready for GPU screening.
 Decision: reject as an opaque launcher. Do not infer reproducibility or score
 identity from the public template or its attached public model datasets.
 
+## 22:55 UTC refresh
+
+### Leading-team release check
+
+Fresh per-user Kaggle kernel and dataset queries were repeated for every member
+of the teams currently occupying public ranks 1--4: `rashmibanthia`, `tomirol`,
+`tonylica`, `tuckerarrants`, `azamat1ch`, `matthewliew`, `centralyds`, and
+`sggpls`. Seven accounts still expose no matching RSNA Knee artifact. Tony Li's
+only matching notebook and dataset remain the September DINO/RadImageNet
+release already known to the project. There is still no public source or model
+identity for the `0.969`/`0.968`/`0.967` contracts.
+
+### `lavinwins/top-1-gold`
+
+- Source SHA-256:
+  `8fd35f21d4280c04e30c49a0e9347cb16edcd004eaeef4454ce6c44ddfd41561`.
+- The notebook proposes a competition-only 24-channel sagittal/coronal
+  ConvNeXt-Tiny trained on newly mined report labels, but its checked-in
+  configuration is `SMOKE_TEST=True`.
+- The public version has no executed code cells, output, checkpoint, OOF
+  receipt, leaderboard score, or immutable prediction artifact. Its own text
+  reports only `0.6896` gold AUC for the earlier report-label miner and presents
+  `0.80+` as an expectation rather than a result.
+
+Decision: retain the multi-plane channel-stack idea as architecture reference,
+but do not spend GPU on this exact unexecuted contract. Our stronger fixed OOF
+targets and multiple independently screened readers already show that a novel
+architecture without transfer evidence is not enough.
+
+### Other newest public notebooks
+
+- `masumhuq/rsna-knee-v7-fixed-fusion` (SHA-256
+  `28cee6c9101ed85ce1a61689addb1b6182c9c5b6f1c39c92970ccf8d592ee587`)
+  explicitly labels its weights "58-study tuned" and expects only
+  `0.952--0.955`; reject.
+- `masumhuq/rsna-knee-v8-58-study-weights` (SHA-256
+  `0e9ee7b698c65c783e8ef082d8c0ba85e1de546dbcd3906b9eafcf6e976ebd46`)
+  is another gold-tuned OAI/Raptor fusion with no executed output; reject.
+- `yuvrajlamba01/rsna-knee-lupi-multi-plane-mil-sota-blend-0-957`
+  (SHA-256
+  `b1c5f83277ad00ebaf0189a84c443fe144701b8731664c5464293285343a4403`)
+  is an unexecuted repackaging of the same R6/Raptor/OAI family and exposes no
+  evidence above `0.957`; reject as a frontier candidate.
+- The refreshed `laimerbotrolenk/rsna-four-model-ensemble` remains byte-identical
+  to SHA-256
+  `50ded2186d86e172e85a8928e8b93b3cdd0c9112117d2267ac059e651793a003`,
+  unexecuted, and explicitly unscored; the earlier S6 rejection still applies.
+- `toghrulaliyev/rsna-knee-aze-team-dd6d24` (SHA-256
+  `9ba1feafec6ec133f2cac2c1dd0b15266c46f84aa5c5f1ffe8d00cb949ff1ae1`)
+  is a 164-cell unexecuted exploratory notebook with no pinned checkpoint,
+  validation receipt, or scored inference contract; reject.
+
+This refresh produced no candidate that justifies a GPU or submission slot.
+
 ## Result
 
 No newly released exact public contract has credible scored evidence above
