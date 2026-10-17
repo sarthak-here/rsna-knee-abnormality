@@ -2,9 +2,11 @@
 
 ## Decision
 
-Keep S6 as a predeclared fifth reader for a future no-submission gold-cache
-screen. Do not treat it as a standalone replacement for submission `57197157`:
-its source-faithful public score is `0.950`, below the locked `0.957` stack.
+Reject and close the S6 fifth-arm experiment before GPU use. Do not treat S6 as
+a standalone replacement for submission `57197157`: its source-faithful public
+score is `0.950`, below the locked `0.957` stack. More importantly, a later
+public direct comparison added S6 at weight `0.30` beside the R6 recipe and
+scored `0.957`, versus `0.958` for the corresponding recipe without S6.
 
 S6 is still scientifically useful as a diversity arm because it differs from
 the locked family: it is a ConvNeXt-small reader using anatomy-V-Net-placed
@@ -52,23 +54,17 @@ wrapper (`W_A=0`, `W_B=1` inside S6; the outer notebook currently gives S6
 zero weight). This prevents a title-only or silently changed S6 asset from
 entering a future experiment.
 
-## Future GPU contract
+## Terminal evidence
 
-Do not modify the pending four-reader experiment. After it finishes, a separate
-five-reader cache may append `s6` to the exact four immutable arms and rerun a
-newly predeclared nested screen. The cache must contain exactly 58 unique gold
-IDs, 12 targets, predictions shaped `[58,5,12]`, zero S6 failures/fallbacks,
-exact receipts, and no submission CSV.
+The four-reader nested experiment completed after the quota reset but failed
+its predeclared robustness gates despite a positive descriptive gain. Before
+spending more GPU, the newer public notebook
+`goodpjw2008/rsna-knee-does-s6-help-next-to-r6-lb-0-957` supplied the direct S6
+A/B result above. Its latest version 7 removes S6 and instead uses all 58 gold
+studies to choose aggressive per-finding weights; it was unscored at audit time
+and also permits silent fallback for its optional reader.
 
-S6 advances only if nested evidence supports it independently of the public
-leaderboard: at least one target must select positive S6 weight in at least
-three outer folds, the five-reader candidate must beat both the locked anchor
-and the four-reader nested candidate by at least `+0.001`, and all existing
-four-reader uncertainty/integrity gates must still pass. No weights will be
-chosen from the public score.
-
-## Current block
-
-The Kaggle account is at its 30-hour weekly GPU quota. No S6 GPU run has been
-launched. This audit and the four-reader implementation are ready for the quota
-reset; neither state is a scientific result.
+That evidence reverses the earlier provisional plan to retain S6 as a fifth
+arm. No S6 cache, nested optimization, or submission will be launched. Reopen
+only if genuinely independent evidence—not organizer-gold or public-leaderboard
+weight selection—shows that an exact, zero-fallback S6 contract adds value.

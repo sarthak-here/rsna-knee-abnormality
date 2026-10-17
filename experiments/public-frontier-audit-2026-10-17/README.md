@@ -177,18 +177,40 @@ Decision: retain the fail-closed launcher as implementation evidence for the
 already planned S6 fifth-arm audit, but do not treat this source-only bundle as
 a runnable or scored candidate. No GPU or submission slot is justified.
 
+### `goodpjw2008/rsna-knee-does-s6-help-next-to-r6-lb-0-957`
+
+- Latest public notebook SHA-256:
+  `4cdb68479c362408f82621ae6ff0759c6e04951d04c2de4ffed10fb47014e797`.
+- The public write-up records the relevant direct comparison: versions 4 and 5
+  added S6 at weight `0.30` to the R6 recipe and scored `0.957`, while the
+  corresponding recipe without S6 scored `0.958`. This is negative evidence
+  for S6 beside R6, not support for launching a fifth-arm GPU screen.
+- Despite the notebook slug, latest version 7 drops S6. It instead sets
+  per-finding blend weights from all 58 organizer-labelled studies, explicitly
+  describes the setting as aggressive and likely to overfit, and was still
+  unscored when audited.
+- Its optional 2.5D reader is wrapped in a broad exception handler that restores
+  the public base stack on failure, so the output does not fail closed on the
+  materially distinct arm.
+
+Decision: reject version 7 and close the planned S6 fifth-arm path. The only
+direct public A/B evidence shows a `-0.001` change, while the latest replacement
+is organizer-gold-tuned, unscored, and permits silent fallback. No GPU run or
+submission is justified.
+
 ## Result
 
 No newly released exact public contract has credible scored evidence above
 `0.958`. The two newest apparent `0.958` paths either add a gold-monitored weak
-reader or change target weights after the last identifiable score. The best
+reader or change target weights after the last identifiable score. The
+four-reader nested screen has now completed and failed its uncertainty gates,
+and the public S6 A/B result closes the planned fifth-arm extension. The best
 active work remains:
 
-1. run the committed four-reader nested screen when GPU quota resets;
-2. submit the already audited Heliosli `0.958` contract only after explicit
+1. submit the already audited Heliosli `0.958` contract only after explicit
    user approval;
-3. consider the S6 reader as a fifth nested arm only if it can produce an exact,
-   zero-fallback 58-study cache and improve the nested gate.
+2. audit or build a materially distinct reader with independent evidence rather
+   than tuning this rejected family.
 
 No competition submission was created by this audit.
 
