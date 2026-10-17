@@ -241,6 +241,30 @@ negative measured blend evidence.
 Decision: monitor RANA only if a model and independently validated checkpoint
 are released. The present volume builder is infrastructure, not a candidate.
 
+### `neronrx/mycelis-rsna-knee-4fold-hive`
+
+- New CC0 bundle with four 200 MB ConvNeXt-small 384px checkpoints, per-fold
+  logs and prediction CSVs, plus shared model/inference source. The shared
+  `knee.py` SHA-256 is
+  `dbcb103e916b1050d4bad11c91cdee7933fe66163d4374f03513fc3d0f23f248`.
+- The architecture is materially distinct: six sequence slots, eight to twelve
+  3-slice windows per slot, ConvNeXt-small tokens, a two-layer transformer and
+  target-specific attention pooling.
+- Each public fold file includes exactly 58 organizer-gold predictions in
+  addition to 870 pseudo-label validation rows. Aligning those immutable gold
+  predictions to the independently preserved official truth gives fold macro
+  AUCs `0.584348`, `0.586904`, `0.588210`, and `0.580780`; averaging all four
+  folds reaches only `0.601871`.
+- The logs report strong pseudo-label validation AUC (`~0.91–0.93`) but confirm
+  the same severe gold transfer failure. Training also initializes from an
+  external `E_lrprior_s0_f0.pt`, while the bundle omits the complete trainer,
+  target-generation provenance and that initialization checkpoint's identity.
+
+Decision: reject before downloading the large checkpoints or spending GPU.
+This is useful negative evidence that high pseudo-label validation does not
+predict organizer-label transfer; it is not competitive diversity for the
+locked `0.957` stack.
+
 ## Result
 
 No newly released exact public contract has credible scored evidence above
