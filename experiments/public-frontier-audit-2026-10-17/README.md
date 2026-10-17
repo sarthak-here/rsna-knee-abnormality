@@ -265,6 +265,33 @@ This is useful negative evidence that high pseudo-label validation does not
 predict organizer-label transfer; it is not competitive diversity for the
 locked `0.957` stack.
 
+### `kritikabenjwal/rsna-knee-labels-soft-v2`
+
+- New Apache-2.0 table release covering all 4,407 studies. The target-table
+  SHA-256 is
+  `a07f0b972e837cf3fb5a46ba83f9ccb934294112446f19af1e028be91bdcfe4f`;
+  the state-table SHA-256 is
+  `03a4e9a748885974f87e036aeba26ee128e65ad4d2653669ff5051a6f6129aba`.
+- The 4,349 non-gold rows have complete `prior` probabilities in `[0.01,
+  0.9556]`, and all 58 gold rows are blank in the target table. However, every
+  `strict` target is blank, every fold is `0`, and every `review_holdout` flag
+  is `0`; the release therefore contains no usable grouped split or independent
+  validation contract.
+- No public notebook currently identifies itself as the exact generator or
+  consumer of this v2 dataset. The author's public Qwen lineage explicitly
+  tests and iterates report-state prompts on all 58 organizer-gold reports
+  (`rsna-knee-qwen-labeler-full` SHA-256
+  `155262c9d6503b4efe85c4eef7c57dc7201fe5669403575a0d7830b2652e8897`),
+  while the later MIL notebook repeatedly reports gold AUC during training
+  (`rsna-knee-labelrefine-mil` SHA-256
+  `ea4f74250bf31d7ec9a1b4cd21daa600f451982be722dd25301effe5a0ab388c`).
+
+Decision: do not use the new targets for training or candidate selection. A
+license and complete ID coverage do not establish how probabilities were
+calibrated, whether v2 was selected using gold feedback, or how to reproduce a
+leakage-safe fold. Reconsider only with exact generation source, frozen mapping
+provenance and independent validation evidence.
+
 ## Result
 
 No newly released exact public contract has credible scored evidence above
