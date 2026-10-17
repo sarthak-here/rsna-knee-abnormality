@@ -1,0 +1,23 @@
+{
+  "id": "sarthaksharma14/rsna-knee-quantitative-morphology-specialist",
+  "title": "RSNA Knee Quantitative Morphology Specialist",
+  "code_file": "quantitative-morphology-specialist.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "dataset_sources": [
+    "stevenleehans/rsna-knee-llm-report-labels"
+  ],
+  "kernel_sources": [
+    "sarthaksharma14/rsna-knee-288px-12-slice-cache",
+    "sarthaksharma14/rsna-knee-convnext-oof-teacher-audit",
+    "sarthaksharma14/rsna-knee-multireader-nested-blend-screen"
+  ],
+  "model_sources": []
+}
