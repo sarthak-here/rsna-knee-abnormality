@@ -1,0 +1,20 @@
+{
+  "id": "sarthaksharma14/rsna-knee-biomedclip-feature-cache",
+  "title": "RSNA Knee BiomedCLIP Feature Cache",
+  "code_file": "biomedclip-feature-cache.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [],
+  "dataset_sources": [
+    "kayven/microsoft-biomedclip-official-visual-checkpoint"
+  ],
+  "kernel_sources": [
+    "sarthaksharma14/rsna-knee-288px-12-slice-cache"
+  ],
+  "model_sources": []
+}
