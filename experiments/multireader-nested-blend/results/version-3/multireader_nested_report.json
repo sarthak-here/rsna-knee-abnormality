@@ -1,0 +1,595 @@
+{
+  "status": "REJECTED",
+  "contract": "four-reader target-specific nested blend; no submission",
+  "input_path": "/kaggle/working/multireader_gold_predictions.npz",
+  "input_sha256": "6cdea905549c3df74d94c08a0547a556c9b3a890f6b1d90e432f0b79d3b0c124",
+  "study_count": 58,
+  "target_count": 12,
+  "arm_names": [
+    "r6_flip",
+    "raptor384",
+    "raptor224",
+    "r7"
+  ],
+  "anchor_weights": [
+    0.5,
+    0.325,
+    0.175,
+    0.0
+  ],
+  "grid_step": 0.1,
+  "grid_size": 286,
+  "l2_penalty": 0.01,
+  "outer_splits": 5,
+  "nested_coverage_complete": true,
+  "anchor_macro_auc": 0.9388184191992988,
+  "nested_candidate_macro_auc": 0.9424968020726728,
+  "nested_delta": 0.0036783828733740753,
+  "outer_fold_deltas": [
+    -0.005580357142857151,
+    0.008380180776014092,
+    -0.004761904761904763,
+    0.004629629629629627,
+    -0.0029761904761904843
+  ],
+  "targets": [
+    {
+      "target": "ACL",
+      "anchor_auc": 0.9877450980392156,
+      "nested_candidate_auc": 0.9938725490196079,
+      "delta": 0.006127450980392246,
+      "outer_weights": [
+        [
+          0.7,
+          0.2,
+          0.0,
+          0.1
+        ],
+        [
+          0.7,
+          0.0,
+          0.1,
+          0.2
+        ],
+        [
+          0.7,
+          0.0,
+          0.1,
+          0.2
+        ],
+        [
+          0.7,
+          0.0,
+          0.1,
+          0.2
+        ],
+        [
+          0.7,
+          0.2,
+          0.1,
+          0.0
+        ]
+      ],
+      "r7_positive_outer_folds": 4
+    },
+    {
+      "target": "MCL",
+      "anchor_auc": 0.9659863945578231,
+      "nested_candidate_auc": 0.963718820861678,
+      "delta": -0.0022675736961450532,
+      "outer_weights": [
+        [
+          0.3,
+          0.3,
+          0.4,
+          0.0
+        ],
+        [
+          0.4,
+          0.1,
+          0.4,
+          0.1
+        ],
+        [
+          0.4,
+          0.1,
+          0.4,
+          0.1
+        ],
+        [
+          0.4,
+          0.1,
+          0.4,
+          0.1
+        ],
+        [
+          0.6,
+          0.3,
+          0.1,
+          0.0
+        ]
+      ],
+      "r7_positive_outer_folds": 3
+    },
+    {
+      "target": "Medial Meniscus",
+      "anchor_auc": 0.9795673076923077,
+      "nested_candidate_auc": 0.9807692307692308,
+      "delta": 0.0012019230769231282,
+      "outer_weights": [
+        [
+          0.1,
+          0.7,
+          0.2,
+          0.0
+        ],
+        [
+          0.1,
+          0.7,
+          0.2,
+          0.0
+        ],
+        [
+          0.3,
+          0.4,
+          0.3,
+          0.0
+        ],
+        [
+          0.1,
+          0.6,
+          0.3,
+          0.0
+        ],
+        [
+          0.1,
+          0.7,
+          0.2,
+          0.0
+        ]
+      ],
+      "r7_positive_outer_folds": 0
+    },
+    {
+      "target": "Lateral Meniscus",
+      "anchor_auc": 0.9167701863354036,
+      "nested_candidate_auc": 0.9074534161490683,
+      "delta": -0.009316770186335366,
+      "outer_weights": [
+        [
+          0.3,
+          0.2,
+          0.2,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.0,
+          0.4
+        ],
+        [
+          0.0,
+          0.3,
+          0.3,
+          0.4
+        ],
+        [
+          0.3,
+          0.2,
+          0.2,
+          0.3
+        ],
+        [
+          0.3,
+          0.2,
+          0.1,
+          0.4
+        ]
+      ],
+      "r7_positive_outer_folds": 5
+    },
+    {
+      "target": "Medial OA",
+      "anchor_auc": 0.9906976744186047,
+      "nested_candidate_auc": 0.986046511627907,
+      "delta": -0.0046511627906976605,
+      "outer_weights": [
+        [
+          0.5,
+          0.3,
+          0.1,
+          0.1
+        ],
+        [
+          0.6,
+          0.2,
+          0.1,
+          0.1
+        ],
+        [
+          0.5,
+          0.4,
+          0.1,
+          0.0
+        ],
+        [
+          0.5,
+          0.4,
+          0.1,
+          0.0
+        ],
+        [
+          0.6,
+          0.4,
+          0.0,
+          0.0
+        ]
+      ],
+      "r7_positive_outer_folds": 2
+    },
+    {
+      "target": "Lateral OA",
+      "anchor_auc": 0.8220502901353965,
+      "nested_candidate_auc": 0.8665377176015474,
+      "delta": 0.044487427466150864,
+      "outer_weights": [
+        [
+          0.3,
+          0.0,
+          0.0,
+          0.7
+        ],
+        [
+          0.1,
+          0.0,
+          0.0,
+          0.9
+        ],
+        [
+          0.3,
+          0.0,
+          0.0,
+          0.7
+        ],
+        [
+          0.8,
+          0.0,
+          0.0,
+          0.2
+        ],
+        [
+          0.3,
+          0.0,
+          0.0,
+          0.7
+        ]
+      ],
+      "r7_positive_outer_folds": 5
+    },
+    {
+      "target": "PF OA",
+      "anchor_auc": 0.8944658944658944,
+      "nested_candidate_auc": 0.9118404118404119,
+      "delta": 0.01737451737451745,
+      "outer_weights": [
+        [
+          0.7,
+          0.0,
+          0.1,
+          0.2
+        ],
+        [
+          0.8,
+          0.1,
+          0.0,
+          0.1
+        ],
+        [
+          0.8,
+          0.0,
+          0.0,
+          0.2
+        ],
+        [
+          0.8,
+          0.0,
+          0.0,
+          0.2
+        ],
+        [
+          0.8,
+          0.2,
+          0.0,
+          0.0
+        ]
+      ],
+      "r7_positive_outer_folds": 4
+    },
+    {
+      "target": "Effusion",
+      "anchor_auc": 0.9801242236024844,
+      "nested_candidate_auc": 0.9726708074534162,
+      "delta": -0.007453416149068248,
+      "outer_weights": [
+        [
+          0.1,
+          0.5,
+          0.4,
+          0.0
+        ],
+        [
+          0.2,
+          0.4,
+          0.2,
+          0.2
+        ],
+        [
+          0.4,
+          0.2,
+          0.4,
+          0.0
+        ],
+        [
+          0.4,
+          0.2,
+          0.4,
+          0.0
+        ],
+        [
+          0.3,
+          0.3,
+          0.4,
+          0.0
+        ]
+      ],
+      "r7_positive_outer_folds": 1
+    },
+    {
+      "target": "Synovitis",
+      "anchor_auc": 0.8566308243727598,
+      "nested_candidate_auc": 0.8536439665471923,
+      "delta": -0.0029868578255675127,
+      "outer_weights": [
+        [
+          0.4,
+          0.6,
+          0.0,
+          0.0
+        ],
+        [
+          0.8,
+          0.2,
+          0.0,
+          0.0
+        ],
+        [
+          0.8,
+          0.2,
+          0.0,
+          0.0
+        ],
+        [
+          0.8,
+          0.2,
+          0.0,
+          0.0
+        ],
+        [
+          0.8,
+          0.2,
+          0.0,
+          0.0
+        ]
+      ],
+      "r7_positive_outer_folds": 0
+    },
+    {
+      "target": "Baker's",
+      "anchor_auc": 0.9782608695652174,
+      "nested_candidate_auc": 0.9782608695652174,
+      "delta": 0.0,
+      "outer_weights": [
+        [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.3,
+          0.2,
+          0.0
+        ],
+        [
+          0.5,
+          0.3,
+          0.2,
+          0.0
+        ],
+        [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
+      ],
+      "r7_positive_outer_folds": 0
+    },
+    {
+      "target": "Contusion",
+      "anchor_auc": 0.9601889338731443,
+      "nested_candidate_auc": 0.9520917678812416,
+      "delta": -0.008097165991902688,
+      "outer_weights": [
+        [
+          0.8,
+          0.1,
+          0.0,
+          0.1
+        ],
+        [
+          0.5,
+          0.3,
+          0.2,
+          0.0
+        ],
+        [
+          0.6,
+          0.4,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.3,
+          0.2,
+          0.0
+        ],
+        [
+          0.7,
+          0.1,
+          0.0,
+          0.2
+        ]
+      ],
+      "r7_positive_outer_folds": 2
+    },
+    {
+      "target": "Fracture",
+      "anchor_auc": 0.9333333333333333,
+      "nested_candidate_auc": 0.9430555555555555,
+      "delta": 0.009722222222222188,
+      "outer_weights": [
+        [
+          0.0,
+          0.6,
+          0.3,
+          0.1
+        ],
+        [
+          0.3,
+          0.4,
+          0.2,
+          0.1
+        ],
+        [
+          0.0,
+          0.6,
+          0.4,
+          0.0
+        ],
+        [
+          0.0,
+          0.9,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.9,
+          0.1,
+          0.0
+        ]
+      ],
+      "r7_positive_outer_folds": 2
+    }
+  ],
+  "final_weights": {
+    "ACL": [
+      0.7,
+      0.0,
+      0.1,
+      0.2
+    ],
+    "MCL": [
+      0.4,
+      0.1,
+      0.4,
+      0.1
+    ],
+    "Medial Meniscus": [
+      0.1,
+      0.7,
+      0.2,
+      0.0
+    ],
+    "Lateral Meniscus": [
+      0.2,
+      0.2,
+      0.2,
+      0.4
+    ],
+    "Medial OA": [
+      0.5,
+      0.4,
+      0.1,
+      0.0
+    ],
+    "Lateral OA": [
+      0.3,
+      0.0,
+      0.0,
+      0.7
+    ],
+    "PF OA": [
+      0.8,
+      0.0,
+      0.0,
+      0.2
+    ],
+    "Effusion": [
+      0.3,
+      0.3,
+      0.4,
+      0.0
+    ],
+    "Synovitis": [
+      0.8,
+      0.2,
+      0.0,
+      0.0
+    ],
+    "Baker's": [
+      0.5,
+      0.5,
+      0.0,
+      0.0
+    ],
+    "Contusion": [
+      0.7,
+      0.3,
+      0.0,
+      0.0
+    ],
+    "Fracture": [
+      0.0,
+      0.7,
+      0.3,
+      0.0
+    ]
+  },
+  "bootstrap": {
+    "draws": 5000,
+    "mean_delta": 0.00372913098495642,
+    "p_improve": 0.8676,
+    "q025": -0.0029734426657812953,
+    "q975": 0.01085605815402192
+  },
+  "gates": {
+    "nested_delta_at_least_0_002": true,
+    "nonnegative_targets_at_least_8": false,
+    "positive_outer_folds_at_least_4": false,
+    "bootstrap_p_at_least_0_90": false,
+    "bootstrap_q025_above_minus_0_001": false,
+    "r7_supported_by_three_outer_folds": true
+  },
+  "submission_created": false
+}

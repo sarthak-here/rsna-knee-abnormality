@@ -1,0 +1,21 @@
+{
+  "status": "REJECTED",
+  "cache_status": "PREDICTION_CACHE_COMPLETE",
+  "source_notebook_sha256": {
+    "r6": "16a9d953972d9d82717f279f75e57e798d3902f93d1071c30f3caa67326e3601",
+    "r7": "85c694c903ec6841488b49d5ecbe2838b8fad7db283f1f952c59f48d936e0b24"
+  },
+  "optimizer_sha256": "6bccb64065c48e68fb2a232653deb4fd8b66ea0617f6fee86293b2714725f087",
+  "prediction_npz_sha256": "6cdea905549c3df74d94c08a0547a556c9b3a890f6b1d90e432f0b79d3b0c124",
+  "nested_delta": 0.0036783828733740753,
+  "gates": {
+    "nested_delta_at_least_0_002": true,
+    "nonnegative_targets_at_least_8": false,
+    "positive_outer_folds_at_least_4": false,
+    "bootstrap_p_at_least_0_90": false,
+    "bootstrap_q025_above_minus_0_001": false,
+    "r7_supported_by_three_outer_folds": true
+  },
+  "submission_created": false,
+  "retained_csv_count": 0
+}

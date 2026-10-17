@@ -89,8 +89,8 @@ preview prediction hash before it can be submitted.
 - [x] Predeclared scientific and runtime contract.
 - [x] Fail-closed nested optimizer.
 - [x] Exact four-reader 58-study prediction notebook.
-- [ ] Private prediction-cache run and audit.
-- [ ] Nested gate result.
+- [x] Private prediction-cache run and audit.
+- [x] Nested gate result: **REJECTED**.
 - [ ] Inference notebook only if the gate passes.
 
 The Raptor checkpoints are OAI-trained. Any eventual submission remains subject
@@ -127,3 +127,32 @@ manifest SHA-256
 and bundle ID `fe055406fad6a12f`, matching the pinned R6 source. The notebook now
 mounts that mirror under its distinct slug for R6 while retaining the original
 latest slug for R7. This changes only unambiguous asset delivery.
+
+## Terminal result
+
+Private version 3 completed all four exact readers on the 58 evaluation-only
+studies. The immutable cache contains 58 unique IDs, 12 binary targets, arm
+order `[r6_flip, raptor384, raptor224, r7]`, prediction shape `[58,4,12]`,
+finite probabilities in `[2.438165154217131e-07, 1.0]`, and zero reader
+fallbacks. Its SHA-256 is
+`6cdea905549c3df74d94c08a0547a556c9b3a890f6b1d90e432f0b79d3b0c124`.
+The downloaded optimizer exactly matches the committed optimizer at SHA-256
+`6bccb64065c48e68fb2a232653deb4fd8b66ea0617f6fee86293b2714725f087`;
+an independent local rerun reproduced every reported metric.
+
+The candidate improved nested macro AUC from `0.9388184192` to `0.9424968021`
+(`+0.0036783829`) and selected R7 consistently for several findings, but it
+failed four stability gates:
+
+- only 6/12 targets were non-negative (required 8);
+- only 2/5 outer folds improved (required 4);
+- paired-bootstrap probability of improvement was `0.8676` (required `0.90`);
+- bootstrap q025 was `-0.00297344` (required greater than `-0.001`).
+
+All integrity checks passed, no fatal log markers were found, and no CSV was
+retained. Per the predeclared contract this branch is closed: do not build or
+submit its hidden-inference form, refine its grid, remove adverse targets, or
+tune its weights against the public leaderboard. The terminal reports in
+`results/version-3` preserve the non-identifying gate evidence; the prediction
+cache remains outside Git because it contains official evaluation identifiers
+and labels.
