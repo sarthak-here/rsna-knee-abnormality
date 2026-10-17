@@ -153,6 +153,30 @@ and `0.967`. Public-kernel searches for their listed accounts (`centralyds`,
 release. Their scores establish the frontier but do not expose a reproducible
 candidate.
 
+### `dkim54/rsna-knee-blend-code`
+
+- The 16 October upload is a source-only delivery bundle. Its archive SHA-256
+  is `563d9663fccaca21357bd5ec771571d15663aea07c985d56ce275c37c6c381f8`;
+  it contains no checkpoints or prediction files.
+- The manifest pins Heliosli's S6 and R6 implementations. Verified full hashes
+  include S6 `compact_infer.py`
+  `34f433fe72b732543813165c3397ec80cef01b0d49b25b7b22668714f0b0ef4a`,
+  R6 `compact_infer.py`
+  `8401812cd63737ec99839d317c4037c4efb445d1baec892fa7481bb30399cc2d`,
+  and launcher
+  `650028b7aaebfe01c8ce66a9fddc00516a64d6e6062e1b77cd29a8830b24d269`.
+- The launcher adds fail-closed S6 anchor checks, worker reinitialization after
+  setup failure, and optional pixel hashing. Those guards are useful for a
+  future exact S6 cache because they prevent silent field-centre scoring when
+  the SKM-TEA anchor bank fails to load.
+- Kaggle labels the dataset license as `other`, and the bundle provides neither
+  the required S6/R6 weights nor a score receipt. The dataset owner's public
+  kernel list exposes no matching scored notebook.
+
+Decision: retain the fail-closed launcher as implementation evidence for the
+already planned S6 fifth-arm audit, but do not treat this source-only bundle as
+a runnable or scored candidate. No GPU or submission slot is justified.
+
 ## Result
 
 No newly released exact public contract has credible scored evidence above
