@@ -128,12 +128,16 @@ for row in range(4407):
             raise RuntimeError(f"feature/mask mismatch at {row},{slot}")
 
 feature_path = OUT / "biomedclip_physical_features.npz"
-np.savez_compressed(feature_path, ids=ids, features=features, masks=all_masks,
+safe_ids = ids.astype("U")
+if safe_ids.dtype.kind != "U":
+    raise RuntimeError("study IDs must be pickle-free Unicode")
+np.savez_compressed(feature_path, ids=safe_ids, features=features, masks=all_masks,
                     model_sha256=MODEL_SHA, config_sha256=CONFIG_SHA,
                     h5_sha256=H5_SHA, studies_sha256=STUDIES_SHA)
 receipt = {
     "status": "COMPLETE", "contract": "frozen BiomedCLIP physical feature cache; no labels; no submission",
     "study_count": 4407, "unique_studies": int(len(set(ids))),
+    "ids_dtype": str(safe_ids.dtype), "pickle_free": True,
     "feature_shape": list(features.shape), "feature_dtype": str(features.dtype),
     "occupied_slots": int(all_masks.sum()), "finite": bool(np.isfinite(features).all()),
     "model_sha256": MODEL_SHA, "config_sha256": CONFIG_SHA,
