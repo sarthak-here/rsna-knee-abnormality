@@ -107,7 +107,7 @@ Decision: do not submit version 27 and do not add this reader to the predeclared
 `0.958` candidate, and its gold-monitoring history invalidates that screen as
 independent evidence. Retain the source only as architecture reference.
 
-### `heliosli/this-is-best-public-dataset-new-version-0-9576`
+### `heliosli/this-is-best-public-dataset-new-version-0-9586`
 
 - Refreshed notebook SHA-256:
   `cb0e1eac33a00f96b7d1bcc0e9914f7eb045af2bc9cd01bc290b2213e7f17ddd`.
@@ -118,9 +118,13 @@ independent evidence. Retain the source only as architecture reference.
 - It is not the already audited scored Heliosli contract. It changes the
   per-finding Raptor weights again (`0.85` Synovitis, `0.15` Lateral OA,
   `0.65` PF OA, `0.30` Baker’s) and adds the same tiny 2.5D reader leg.
-- Heliosli’s leaderboard row still points to the 15 October scored submission;
-  this refreshed kernel ran on 16 October. Its `0.9576` title therefore does
-  not establish an exact score for these new weights.
+- The author renamed the slug/title from `0.9576` to `0.9586` without changing
+  the notebook: the refreshed source SHA-256 remains exactly the same.
+- Heliosli’s leaderboard row has its last submission at
+  `2026-10-16 20:44:08`, while this kernel completed at
+  `2026-10-17 04:21:38`. The leaderboard event therefore predates the kernel
+  by more than seven hours and cannot be its score receipt. The new `0.9586`
+  title is title-only evidence.
 
 Decision: reject as an unscored post-result reweight. The previously audited
 Heliosli `0.958` version remains the only exact candidate in this family worth
