@@ -10,6 +10,7 @@
   "enable_internet": false,
   "dataset_sources": [
     "heliosli/rsna-knee-r6-frozen-fe055406",
+    "heliosli/rsna-knee-r6-frozen-fe055406-w1",
     "nartaa/rsna-knee-publication-swa-weights-20261007",
     "heliosli/rsna-orthofoundation-fold0-epoch7-20261004"
   ],

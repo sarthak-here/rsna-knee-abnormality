@@ -53,6 +53,15 @@ def patch_gold_root(source: str) -> str:
     return source
 
 
+def patch_r6_frozen_mount(source: str) -> str:
+    """Point R6 at the byte-identical v1 mirror while R7 uses v2 of the original slug."""
+    old = "C_SLUG = 'rsna-knee-r6-frozen-fe055406'"
+    new = "C_SLUG = 'rsna-knee-r6-frozen-fe055406-w1'"
+    if source.count(old) != 1:
+        raise RuntimeError("R6 frozen-mount patch anchor missing or ambiguous")
+    return source.replace(old, new, 1)
+
+
 def patch_raptor_receipt(source: str, stem: str) -> str:
     source = patch_gold_root(source)
     old_pre = '''def _pre_one(sid):
@@ -296,7 +305,7 @@ def build(r6_path: Path, r7_path: Path, output: Path) -> None:
     optimizer_source = (HERE / "optimize_nested_blend.py").read_text(encoding="utf-8")
     optimizer_sha = hashlib.sha256(optimizer_source.encode()).hexdigest()
 
-    r6_stage = patch_gold_root(cell_source(r6, 6))
+    r6_stage = patch_r6_frozen_mount(patch_gold_root(cell_source(r6, 6)))
     r7_stage = patch_gold_root(cell_source(r7, 6))
     final = (
         FINAL.replace("__OPTIMIZER_SHA__", optimizer_sha)

@@ -117,3 +117,13 @@ DICOM directory is `train_series`, which is also the primary directory expected
 by both pinned public readers. The adapter now links that directory as
 `gold_eval/test_series`; no preprocessing, model, prediction, or gate logic was
 changed.
+
+Version 2 then completed both Raptor readers with all 58 studies and zero
+fallbacks before exposing a Kaggle dataset-version collision: the R6 and R7
+public notebooks reference different versions of the same bundle slug, so the
+latest R7 manifest was presented to R6. The exact frozen R6-v1 mirror has
+manifest SHA-256
+`6508ce6921eda986c885b2226fa55dd4d2aa8e5fc570b4c007c9a60c05bfc648`
+and bundle ID `fe055406fad6a12f`, matching the pinned R6 source. The notebook now
+mounts that mirror under its distinct slug for R6 while retaining the original
+latest slug for R7. This changes only unambiguous asset delivery.
