@@ -342,7 +342,7 @@ notebook = {
 (ROOT / "crossplane-token-residual.ipynb").write_text(json.dumps(notebook, indent=1))
 
 metadata = {
-    "id": "sarthaksharma14/rsna-knee-crossplane-token-residual",
+    "id": "sarthaksharma14/rsna-knee-cross-plane-token-residual",
     "title": "RSNA Knee Cross-plane Token Residual",
     "code_file": "crossplane-token-residual.ipynb",
     "language": "python",
