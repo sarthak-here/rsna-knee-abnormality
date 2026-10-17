@@ -167,3 +167,14 @@ active work remains:
    zero-fallback 58-study cache and improve the nested gate.
 
 No competition submission was created by this audit.
+
+## Reusable artifact audit
+
+`audit_kernel_artifacts.py` now makes future CPU-side public-kernel checks
+repeatable. It binds the downloaded notebook, metadata, preview submission,
+receipts, and logs by SHA-256; verifies the official 13-column schema, exact
+three preview IDs and order, unique IDs, finite `[0,1]` probabilities, public
+offline competition metadata, completion markers, and absence of fatal log
+markers. It explicitly records that a passing artifact audit does **not**
+verify a leaderboard score. The tool executes no notebook code and creates no
+competition submission.
