@@ -2,13 +2,14 @@
 
 ## Current leaderboard frontier
 
-The complete public leaderboard snapshot downloaded at the 17 October heartbeat
-has SHA-256
-`e71640bb872087695d3c85dd1a76a32f592098b048873c68958fe45c928836be`.
+The refreshed complete public leaderboard archive downloaded at 07:31 UTC on
+17 October has SHA-256
+`6f0cc01cbdc0d0f3f826ad95026ca0251a9c97f741d74e5cbf7871202426fad1`.
 Its displayed frontier has moved materially:
 
-- rank 1 `CentralyDS`: `0.968`;
-- ranks 2–4: `0.967`;
+- rank 1 `RB & Matheus & Tucker & Tony`: `0.969`;
+- ranks 2–3: `0.968`;
+- rank 4: `0.967`;
 - locked submission `57197157`: `0.957`.
 
 The leading teams do not currently expose an exact public inference contract
@@ -147,11 +148,14 @@ change without non-public-leaderboard validation.
 
 ### Leading-team release check
 
-The leaderboard snapshot’s top four teams display `0.968`, `0.967`, `0.967`,
-and `0.967`. Public-kernel searches for their listed accounts (`centralyds`,
-`tomirol`, `azamat1ch`, and `sggpls`) found no RSNA Knee source or checkpoint
-release. Their scores establish the frontier but do not expose a reproducible
-candidate.
+The refreshed top four teams display `0.969`, `0.968`, `0.968`, and `0.967`.
+Their member accounts are now exactly identified from the full leaderboard:
+`rashmibanthia`, `tomirol`, `tonylica`, `tuckerarrants`, `azamat1ch`,
+`matthewliew`, `centralyds`, and `sggpls`. Fresh per-user kernel and dataset
+queries found no newly released RSNA Knee source or checkpoint behind those
+scores. Tony Li's only public competition kernels/assets remain the older DINO
+RadImageNet releases, not the team's 17 October `0.969` contract. The scores
+establish the frontier but do not expose a reproducible candidate.
 
 ### `dkim54/rsna-knee-blend-code`
 
@@ -197,6 +201,41 @@ Decision: reject version 7 and close the planned S6 fifth-arm path. The only
 direct public A/B evidence shows a `-0.001` change, while the latest replacement
 is organizer-gold-tuned, unscored, and permits silent fallback. No GPU run or
 submission is justified.
+
+### Refreshed `nartaa/rsna-knee-s6fall-weights`
+
+- The 17 October dataset update publishes the exact S6 training source,
+  production argv, frozen pool, soft targets, manifests, and hashes. The
+  training README SHA-256 is
+  `f86f136760ccef8afe2414e4e1693f4570fb29e707a5022a8dfaed95b7201b9c`;
+  its full source checksum manifest is
+  `0cb063bfc58d64b89bd65e6aa7da8c7946b27c8c3188227d651e4778aef0be6b`.
+- This resolves the earlier source-availability question but does not improve
+  the scientific evidence. The release confirms that the `4,263`-study run
+  omitted 86 otherwise eligible competition studies only because their local
+  DICOM copies had been deleted to save disk space; it was not a quality-filter
+  decision.
+- The selected epoch-16 S6 checkpoint remains the same public `0.950` model,
+  and the direct R6-plus-S6 comparison above remains `0.001` worse than R6
+  without S6.
+
+Decision: retain the newly complete source as reproducibility evidence, but do
+not reopen the rejected S6 GPU path. A source release cannot override the
+negative measured blend evidence.
+
+### `shardulsalodkar/rana-knee-abnormality-v2`
+
+- Notebook SHA-256:
+  `31f6d315b0c8b0ae7d32fcfff1362e3cdaea7e70d4ce18f0d38efc9386d3a141`.
+- This is a CPU preprocessing shard that converts selected DICOM series to
+  zipped native 3D volumes. It contains no model, checkpoint, validation
+  metric, inference contract, or submission output.
+- Its current run selects studies `400:1000`; failures are merely warned about
+  and the ZIP is still created without failed series, so it is not yet a
+  fail-closed immutable training corpus.
+
+Decision: monitor RANA only if a model and independently validated checkpoint
+are released. The present volume builder is infrastructure, not a candidate.
 
 ## Result
 
