@@ -292,6 +292,36 @@ calibrated, whether v2 was selected using gold feedback, or how to reproduce a
 leakage-safe fold. Reconsider only with exact generation source, frozen mapping
 provenance and independent validation evidence.
 
+### `shardulsalodkar/rana-knee-abnormality-v4`
+
+- Notebook SHA-256:
+  `a0b05bb641b9856ee7c4f92adc1032c1f93174f810aacd910df61ad6fb989fc6`.
+- V4 proposes resizing each native 3D series to `96x96x96` and extracting
+  pooled SwinUNETR encoder features from an `ssl_pretrained_weights.pth`
+  checkpoint. Every executable cell is commented out; the public run creates
+  no embeddings, model, validation result, receipt or submission.
+- The external SSL checkpoint and three input datasets are blank in downloaded
+  metadata, with no pinned model identity or training-data provenance.
+
+Decision: retain the volumetric Swin idea as architecture research only. V4 is
+an inactive sketch, not reproducible evidence and not ready for GPU screening.
+
+### `kiyoshiohno/rsna-knee-template`
+
+- Refreshed notebook SHA-256:
+  `66fbf17addfacbaca201153700220102ce8dda636d6e2b4851a8ac5150a7c66e`.
+- The notebook contains no inference implementation. Its only code searches
+  Kaggle inputs for a manifest declaring `bundle_id=rsna-knee-local-logic` and
+  dynamically executes `rsna_knee_pipeline.py` from that dataset.
+- The required logic dataset appears as a blank/private source in downloaded
+  metadata. No runner hash, model contract, score receipt or public source
+  binds the current template to a candidate; changing the attached dataset can
+  silently change all preprocessing, models and blending while the notebook
+  hash stays fixed.
+
+Decision: reject as an opaque launcher. Do not infer reproducibility or score
+identity from the public template or its attached public model datasets.
+
 ## Result
 
 No newly released exact public contract has credible scored evidence above
