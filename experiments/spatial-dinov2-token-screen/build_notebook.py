@@ -219,7 +219,9 @@ feature_sha = sha256(feature_path)
 del encoder; gc.collect(); torch.cuda.empty_cache()
 features = np.load(feature_path, mmap_mode="r")
 with h5py.File(h5_path, "r", swmr=True) as handle:
-    masks = np.asarray(handle["masks"], dtype=bool)
+    # h5py 3.14 cannot perform this dataset's uint8 -> bool conversion in the
+    # HDF5 read path. Read its native dtype first, then convert in NumPy.
+    masks = np.asarray(handle["masks"][:]).astype(bool, copy=False)
 if features.shape != FEATURE_SHAPE or features.dtype != np.float16 or not np.isfinite(features).all():
     raise RuntimeError("spatial feature cache integrity failure")
 
