@@ -84,5 +84,10 @@ JSON and the collector requires two disjoint 29-ID files whose union is exactly
 the 58 evaluation IDs. Inference, predictions, routing formula, and gates are
 unchanged.
 
+Version 3 stopped before R6 inference because the worker-source checksum still
+expected the upstream byte identity after the diagnostic writer was patched.
+Version 4 updates that checksum to the SHA-256 of the mechanically patched
+worker. No model, pixel, prediction, routing, or gate code changed.
+
 The Raptor checkpoints are OAI-trained and retain their existing provenance and
 acknowledgements. No first-place claim is made.

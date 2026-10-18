@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
 import importlib.util
 import json
@@ -37,7 +38,23 @@ def patch_r6_logit_dump(source: str) -> str:
     )
     if source.count(old_dump) != 1:
         raise RuntimeError("R6 dump writer patch anchor missing or ambiguous")
-    return source.replace(old_dump, new_dump, 1)
+    source = source.replace(old_dump, new_dump, 1)
+    tree = ast.parse(source)
+    assignment = next(
+        node
+        for node in tree.body
+        if isinstance(node, ast.Assign)
+        and any(
+            isinstance(target, ast.Name) and target.id == "SOURCES"
+            for target in node.targets
+        )
+    )
+    embedded = ast.literal_eval(assignment.value)["compact_infer.py"]
+    patched_sha = hashlib.sha256(embedded.encode()).hexdigest()
+    original_sha = "8401812cd63737ec99839d317c4037c4efb445d1baec892fa7481bb30399cc2d"
+    if source.count(original_sha) != 1:
+        raise RuntimeError("R6 compact worker hash anchor missing or ambiguous")
+    return source.replace(original_sha, patched_sha, 1)
 
 
 COLLECT = r'''from pathlib import Path
