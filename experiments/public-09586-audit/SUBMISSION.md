@@ -1,4 +1,4 @@
-# Submission launch
+# Submission launch and correction
 
 The user explicitly approved submitting the exact audited public kernel after
 disclosure of its OAI-trained Raptor provenance and the unrounded-score identity
@@ -17,3 +17,17 @@ caveat.
 The locked baseline remains submission `57197157` at public `0.957` until this
 run completes and exceeds it. Do not launch a duplicate while `57336570` is
 pending or running.
+
+## Identity correction
+
+After launch, comparison with the earlier reproduction proved that the URL pins
+the same `scriptVersionId=358332966` used by submission `57228245`. The exact
+model/data/checkpoint family is unchanged; only five per-finding blend weights
+arrived through a mutable upstream dependency. A fixed offline evaluation on
+the immutable 58-study cache found macro delta `-0.0004427250` versus the
+earlier 50/50 contract.
+
+This launch consumed a slot because the identity gate failed to compare the
+script version before submission. Kaggle offers no cancellation endpoint for
+the pending code submission. Record its terminal state, but do not call it a
+new model, do not resubmit it, and do not promote it as research progress.
