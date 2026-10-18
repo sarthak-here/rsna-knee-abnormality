@@ -64,8 +64,8 @@ target subset, or uncertainty definitions after seeing gold results.
 
 - [x] Predeclare the routing formula and gates.
 - [x] Implement a fail-closed evaluator with synthetic tests.
-- [ ] Patch the exact 58-study adapter to retain four-fold R6 plain/flip logits.
-- [ ] Launch the private no-submission cache and run the evaluator unchanged.
+- [x] Patch the exact 58-study adapter to retain four-fold R6 plain/flip logits.
+- [x] Launch the private no-submission cache and run the evaluator unchanged.
 - [ ] Build hidden inference only if every gate passes.
 
 ## Launch status
@@ -88,6 +88,29 @@ Version 3 stopped before R6 inference because the worker-source checksum still
 expected the upstream byte identity after the diagnostic writer was patched.
 Version 4 updates that checksum to the SHA-256 of the mechanically patched
 worker. No model, pixel, prediction, routing, or gate code changed.
+
+## Terminal result
+
+Version 4 completed with full cache integrity and was **rejected**. The exact
+static anchor scored macro AUC `0.9392432925`; the dynamic router scored
+`0.9381243950`, a delta of `-0.0011188975`. Only 4/12 targets were
+nonnegative, versus the required 8. The paired-bootstrap positive probability
+was `0.156`, versus the required `0.90`. Bootstrap quantiles serialized as NaN
+because some class-degenerate resamples returned NaN rather than raising; this
+does not affect the decision because the macro-gain and target-count gates
+already fail decisively.
+
+Strict local validation passed with `allow_pickle=False`: 58 unique Unicode
+IDs, binary truth `[58,12]`, exact R6 probabilities `[58,12]`, aligned R6
+logits `[58,4,2,12]`, Raptor probabilities `[58,2,12]`, all finite, zero
+reader fallbacks, zero retained CSVs, and no submission. The cache SHA-256 is
+`92ef1f26200069ae7b3e7e679b59bf30ed3556cf669ccdfe40fccb0cb1046623`;
+the evaluator SHA-256 is
+`8804bd1af210c44e207052a7894de5130c3db7868e5c11e527c68de4d83008f4`.
+
+This exact uncertainty formula is closed. Do not tune its scale, bounds,
+uncertainty definitions, or target subset; do not build hidden inference or
+submit it.
 
 The Raptor checkpoints are OAI-trained and retain their existing provenance and
 acknowledgements. No first-place claim is made.

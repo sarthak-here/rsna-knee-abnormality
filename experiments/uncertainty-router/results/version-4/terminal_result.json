@@ -1,0 +1,27 @@
+{
+  "status": "REJECTED",
+  "contract": "fold_uncertainty_router_v1",
+  "studies": 58,
+  "targets": 12,
+  "anchor_macro_auc": 0.9392432924570642,
+  "candidate_macro_auc": 0.9381243949650369,
+  "macro_delta": -0.0011188974920273154,
+  "nonnegative_targets": 4,
+  "bootstrap_probability_positive": 0.156,
+  "raptor_share_min": 0.45,
+  "raptor_share_max": 0.55,
+  "cache_sha256": "92ef1f26200069ae7b3e7e679b59bf30ed3556cf669ccdfe40fccb0cb1046623",
+  "evaluator_sha256": "8804bd1af210c44e207052a7894de5130c3db7868e5c11e527c68de4d83008f4",
+  "integrity": {
+    "allow_pickle_false": true,
+    "unique_unicode_ids": 58,
+    "r6_probability_shape": [58, 12],
+    "r6_logit_shape": [58, 4, 2, 12],
+    "raptor_probability_shape": [58, 2, 12],
+    "finite": true,
+    "reader_fallbacks": 0,
+    "retained_csv_count": 0,
+    "submission_created": false
+  },
+  "decision": "Do not tune, build hidden inference, blend, or submit this contract."
+}
