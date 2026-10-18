@@ -11,12 +11,14 @@ caveat.
 - Output: `submission.csv`
 - Submitted at: `2026-10-18T03:25:29.543000Z`
 - Initial state: `SubmissionStatus.PENDING`
+- Terminal state: `SubmissionStatus.COMPLETE`
+- Terminal public macro AUC: **`0.957`**
 - Remaining daily submissions after launch: `4`
 - Description: `Exact public Heliosli 0.9586-title v1; Heliosli/nartaa/dreaddevelopment attribution; OAI-trained Raptor provenance acknowledged`
 
-The locked baseline remains submission `57197157` at public `0.957` until this
-run completes and exceeds it. Do not launch a duplicate while `57336570` is
-pending or running.
+The run tied the displayed score of locked submission `57197157` at public
+`0.957`. It supplies no evidence of an improvement, so `57197157` remains the
+locked baseline. Do not launch a duplicate.
 
 ## Identity correction
 
@@ -29,5 +31,6 @@ earlier 50/50 contract.
 
 This launch consumed a slot because the identity gate failed to compare the
 script version before submission. Kaggle offers no cancellation endpoint for
-the pending code submission. Record its terminal state, but do not call it a
-new model, do not resubmit it, and do not promote it as research progress.
+the pending code submission. Its terminal `0.957` receipt confirms that it did
+not improve the locked baseline. Do not call it a new model, resubmit it, or
+promote it as research progress.

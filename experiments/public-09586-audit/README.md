@@ -15,6 +15,10 @@ changed five per-finding blend weights. Treating the renamed title and refreshed
 output as a materially new kernel was an identity-check failure. Submission
 `57336570` is therefore a duplicate-family reweight, not model progress.
 
+It completed at displayed public macro AUC **`0.957`**, tying rather than
+improving locked submission `57197157`. This terminal receipt agrees with the
+negative independent cache result and closes the exact reweight permanently.
+
 ## Exact receipts
 
 - Notebook SHA-256:

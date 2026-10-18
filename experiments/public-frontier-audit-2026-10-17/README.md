@@ -392,6 +392,57 @@ active work remains:
 
 No competition submission was created by this audit.
 
+## 18 October refresh
+
+### `yeshawang/rsna-20261013-top6-velciraptor`
+
+- Public notebook SHA-256:
+  `ac05affa2fbe7b8a9f72120769abcbb14493511fc8c3d2bd7741cde02b19ad9c`.
+- The author's team `66game` now displays public `0.960`; its latest
+  submission was at `2026-10-18 07:11:59`, after the notebook's listed run at
+  `04:23:11`.
+- The downloadable notebook is nevertheless unexecuted: all cells have null
+  execution counts, its output contains only the notebook-render log, and it
+  emits no submission, model receipt, or checkpoint identity.
+- Its final inference cell requires a private/inaccessible
+  `rsna-resnet2027-single` dataset containing `inference.py` and
+  `resnet50.0000.pt`. The newly public `yeshawang/model231` contains only a
+  1.61 GB `latest_epoch.pth`, has license `unknown`, and provides no source or
+  mapping to that private contract. `yeshawang/model412` is the already closed
+  S6 family, not the missing ResNet reader.
+
+Decision: the `0.960` leaderboard row is meaningful frontier evidence, but the
+public release does not expose a reproducible contract. Do not infer that the
+unexecuted notebook produced the score and do not reconstruct the private model
+from an unrelated filename.
+
+### `notfu4y/rsna-knee-deterministic-report-svmri-infer`
+
+- Public notebook SHA-256:
+  `530c4322fdda55e751effa616e9e2c5bb4a6d7b3c3594d1d1524d4020a1b8f57`.
+- The public preview completed five DINOv2 folds over the three official test
+  IDs in 0.3 minutes with a valid `3 x 13` submission, no decode errors and
+  pinned pipeline signature
+  `6ce65ee374911b43993b30b8ba7531c9e6f6eb96d22c51a08e28113ec6e790d5`.
+- The required checkpoint directory is a private/inaccessible
+  `notfu4y/rsna-artifacts` dataset. Kaggle's public output includes only the
+  three-study features, image cache and submission receipt, not the five
+  checkpoints or manifest.
+- The author's displayed public score remains `0.956`, dated three days before
+  this notebook run, so it is neither evidence above the locked `0.957` nor an
+  exact score receipt for the release.
+
+Decision: retain its fail-closed preprocessing and attention-head source as an
+implementation reference, but do not submit or claim the inaccessible
+checkpoint ensemble. The next private screen must change the representation
+materially and train only on the project's frozen non-gold target contract.
+
+### `shardulsalodkar/rana-knee-abnormality-v4`
+
+V4 remains an unexecuted 96-cube SwinUNETR embedding sketch. Its public output
+contains only a render log, and it still exposes no model, validation result or
+submission contract. The prior rejection remains unchanged.
+
 ## Reusable artifact audit
 
 `audit_kernel_artifacts.py` now makes future CPU-side public-kernel checks
