@@ -76,5 +76,13 @@ reported the source as invalid at push time. Version 2 corrects only the dataset
 owner from `sarthaksharma14` to `heliosli`; model code, identities, routing
 formula, evaluator, and gates are unchanged.
 
+Version 2 completed both Raptor readers and all 58 R6 predictions with zero
+fallbacks, then failed at cache assembly because both GPU workers wrote their
+per-fold diagnostic logits to the same path; the last writer left only 29 IDs.
+Version 3 changes only diagnostic packaging: each worker writes a GPU-suffixed
+JSON and the collector requires two disjoint 29-ID files whose union is exactly
+the 58 evaluation IDs. Inference, predictions, routing formula, and gates are
+unchanged.
+
 The Raptor checkpoints are OAI-trained and retain their existing provenance and
 acknowledgements. No first-place claim is made.

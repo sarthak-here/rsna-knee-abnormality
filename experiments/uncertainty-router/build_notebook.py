@@ -26,7 +26,18 @@ def patch_r6_logit_dump(source: str) -> str:
         "WORKER_ARGS += ['--dump-logits', '/kaggle/working/r6_fold_logits.json']\n"
         + marker
     )
-    return source.replace(marker, addition, 1)
+    source = source.replace(marker, addition, 1)
+    old_dump = '    if a.dump_logits:\\n        Path(a.dump_logits).write_text(json.dumps(dump), encoding="utf-8")'
+    new_dump = (
+        '    if a.dump_logits:\\n'
+        '        _dump_path = Path(a.dump_logits)\\n'
+        '        _gpu_tag = os.environ.get("CUDA_VISIBLE_DEVICES", "single")\\n'
+        '        _dump_path = _dump_path.with_name(_dump_path.stem + "_worker" + _gpu_tag + _dump_path.suffix)\\n'
+        '        _dump_path.write_text(json.dumps(dump), encoding="utf-8")'
+    )
+    if source.count(old_dump) != 1:
+        raise RuntimeError("R6 dump writer patch anchor missing or ambiguous")
+    return source.replace(old_dump, new_dump, 1)
 
 
 COLLECT = r'''from pathlib import Path
@@ -60,7 +71,16 @@ r6_prob = frame(WORK / "r6_flip_gold.csv", ids)
 r384 = frame(WORK / "raptor_raw.csv", ids)
 r224 = frame(WORK / "raptor224_raw.csv", ids)
 
-raw = json.loads((WORK / "r6_fold_logits.json").read_text())
+parts = sorted(WORK.glob("r6_fold_logits_worker*.json"))
+if len(parts) != 2:
+    raise RuntimeError(f"expected two worker logit dumps, found {parts}")
+raw = {}
+for path in parts:
+    part = json.loads(path.read_text())
+    overlap = set(raw).intersection(part)
+    if overlap:
+        raise RuntimeError(f"duplicate IDs across worker logit dumps: {sorted(overlap)[:3]}")
+    raw.update(part)
 if set(raw) != set(ids):
     raise RuntimeError("R6 logit dump ID mismatch")
 r6_logits = np.empty((58, 4, 2, 12), np.float32)
