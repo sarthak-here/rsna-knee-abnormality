@@ -103,9 +103,9 @@ public_auc = macro_auc(truth, public_gold)
 seed_predictions = []; seed_rows = []
 for seed in SEEDS:
     rng = np.random.default_rng(seed)
-    bag = np.sort(rng.choice(covered_fit, int(BAG_FRACTION * len(covered_fit)), replace=False))
+    bag = np.sort(rng.choice(len(covered_fit), int(BAG_FRACTION * len(covered_fit)), replace=False))
     model = Ridge(alpha=RIDGE_ALPHA, fit_intercept=True, solver="lsqr", tol=1e-5)
-    model.fit(z_fit[bag], residual_target[bag])
+    model.fit(z_fit[covered_fit[bag]], residual_target[bag])
     correction = np.clip(model.predict(z_gold), -1., 1.)
     corrected_gold = sigmoid(logit(public_gold) + correction)
     candidate = (1. - RESIDUAL_WEIGHT) * anchor + RESIDUAL_WEIGHT * ranks(corrected_gold)

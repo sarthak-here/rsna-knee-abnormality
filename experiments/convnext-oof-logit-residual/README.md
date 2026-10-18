@@ -30,6 +30,16 @@ Advance only if every condition passes:
 A pass authorizes a separate inference implementation only. Gold labels are
 evaluation-only and cannot be used to alter this contract.
 
+## Runtime history
+
+Version 1 reached residual fitting after completing public-head inference and
+the fixed projection, then failed because sampled residual-row positions were
+incorrectly used as full non-gold row indices. Version 2 changes only that
+index mapping: a bag now selects rows from `covered_fit` for features and the
+same positional rows from the 2,610-row residual target. The representation,
+targets, alpha, seeds, bag fraction, clipping, residual weight, and gates are
+unchanged.
+
 ## Attribution
 
 - `goodpjw2008/rsna-knee-2-5d-convnext-reader` (Apache-2.0)
