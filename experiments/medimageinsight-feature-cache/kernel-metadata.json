@@ -1,0 +1,20 @@
+{
+  "id": "sarthaksharma14/rsna-knee-medimageinsight-feature-cache",
+  "title": "RSNA Knee MedImageInsight Feature Cache",
+  "code_file": "medimageinsight-feature-cache.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [],
+  "dataset_sources": [],
+  "kernel_sources": [
+    "sarthaksharma14/rsna-knee-288px-12-slice-cache"
+  ],
+  "model_sources": [
+    "thelionai/medimageinsight/PyTorch/default/1"
+  ]
+}
