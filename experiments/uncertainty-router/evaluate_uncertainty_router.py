@@ -42,19 +42,26 @@ def macro_auc(y: np.ndarray, p: np.ndarray) -> tuple[float, np.ndarray]:
 
 
 def build_predictions(
-    r6_logits: np.ndarray, raptor_prob: np.ndarray
+    r6_prob: np.ndarray, r6_logits: np.ndarray, raptor_prob: np.ndarray
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    if r6_prob.shape != (len(r6_logits), EXPECTED_TARGETS):
+        raise ValueError(f"r6_prob must have shape [N,12], got {r6_prob.shape}")
     if r6_logits.ndim != 4 or r6_logits.shape[1:] != (4, 2, EXPECTED_TARGETS):
         raise ValueError(f"r6_logits must have shape [N,4,2,12], got {r6_logits.shape}")
     if raptor_prob.shape != (len(r6_logits), 2, EXPECTED_TARGETS):
         raise ValueError(f"raptor_prob must have shape [N,2,12], got {raptor_prob.shape}")
-    if not np.isfinite(r6_logits).all() or not np.isfinite(raptor_prob).all():
+    if (
+        not np.isfinite(r6_prob).all()
+        or not np.isfinite(r6_logits).all()
+        or not np.isfinite(raptor_prob).all()
+    ):
         raise ValueError("non-finite model output")
-    if np.any((raptor_prob < 0) | (raptor_prob > 1)):
-        raise ValueError("Raptor probabilities outside [0,1]")
+    if np.any((r6_prob < 0) | (r6_prob > 1)) or np.any(
+        (raptor_prob < 0) | (raptor_prob > 1)
+    ):
+        raise ValueError("model probabilities outside [0,1]")
 
     fold_logits = r6_logits.mean(axis=2)
-    r6_prob = sigmoid(fold_logits.mean(axis=1))
     r6_unc = fold_logits.std(axis=1)
 
     r384_rank = rank_columns(raptor_prob[:, 0])
@@ -105,11 +112,12 @@ def bootstrap(
 def evaluate(path: Path) -> dict:
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
     with np.load(path, allow_pickle=False) as z:
-        required = {"ids", "truth", "r6_logits", "raptor_prob"}
+        required = {"ids", "truth", "r6_prob", "r6_logits", "raptor_prob"}
         if not required.issubset(z.files):
             raise ValueError(f"missing keys: {sorted(required - set(z.files))}")
         ids = z["ids"]
         truth = z["truth"].astype(np.int8)
+        r6_prob = z["r6_prob"].astype(np.float64)
         r6_logits = z["r6_logits"].astype(np.float64)
         raptor_prob = z["raptor_prob"].astype(np.float64)
     if ids.dtype.kind not in "US" or len(ids) != 58 or len(np.unique(ids)) != 58:
@@ -117,7 +125,7 @@ def evaluate(path: Path) -> dict:
     if truth.shape != (58, EXPECTED_TARGETS) or not np.isin(truth, [0, 1]).all():
         raise ValueError("truth must be binary [58,12]")
 
-    anchor, candidate, shares = build_predictions(r6_logits, raptor_prob)
+    anchor, candidate, shares = build_predictions(r6_prob, r6_logits, raptor_prob)
     anchor_macro, anchor_targets = macro_auc(truth, anchor)
     candidate_macro, candidate_targets = macro_auc(truth, candidate)
     target_delta = candidate_targets - anchor_targets

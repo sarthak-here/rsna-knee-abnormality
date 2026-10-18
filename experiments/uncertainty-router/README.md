@@ -20,16 +20,18 @@ predeclared before the 58 evaluation labels are read.
 - exact preprocessing and checkpoint hashes from the validated public kernel;
 - the 58 organizer-labelled studies only for one terminal evaluation.
 
-The cache must contain exactly 58 unique IDs, truth `[58,12]`, R6 logits
-`[58,4,2,12]` (`plain`, `flip`), and Raptor probabilities `[58,2,12]`. It must
-be finite, fail closed, contain no fallback predictions, and create no
-submission CSV.
+The cache must contain exactly 58 unique IDs, truth `[58,12]`, the exact final
+R6 probabilities `[58,12]`, aligned R6 logits `[58,4,2,12]` (`plain`, `flip`),
+and Raptor probabilities `[58,2,12]`. It must be finite, fail closed, contain
+no fallback predictions, and create no submission CSV.
 
 ## Fixed router
 
 For each target independently:
 
-1. average each R6 fold's plain/flip logits, then average folds;
+1. average each R6 fold's anatomically aligned plain/flip logits for uncertainty
+   only; use the exact final R6 probabilities, including its frozen stackers,
+   for prediction;
 2. define R6 uncertainty as fold-logit standard deviation;
 3. define Raptor uncertainty as the absolute logit disagreement between its
    384px and 224px checkpoints;

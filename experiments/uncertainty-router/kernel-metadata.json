@@ -1,0 +1,16 @@
+{
+  "id": "sarthaksharma14/rsna-knee-fold-uncertainty-router",
+  "title": "RSNA Knee Fold Uncertainty Router",
+  "code_file": "uncertainty-router.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "dataset_sources": [
+    "sarthaksharma14/rsna-knee-r6-frozen-fe055406-w1",
+    "nartaa/rsna-knee-publication-swa-weights-20261007",
+    "heliosli/rsna-orthofoundation-fold0-epoch7-20261004"
+  ],
+  "competition_sources": ["rsna-knee-abnormality-detection"]
+}
