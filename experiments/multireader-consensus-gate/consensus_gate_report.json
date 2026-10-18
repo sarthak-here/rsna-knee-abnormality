@@ -1,0 +1,46 @@
+{
+  "contract": "label-free consensus-gated R7 residual; no submission",
+  "prediction_cache_sha256": "6cdea905549c3df74d94c08a0547a556c9b3a890f6b1d90e432f0b79d3b0c124",
+  "anchor_weights": [
+    0.5,
+    0.325,
+    0.175,
+    0.0
+  ],
+  "max_r7_slot": 0.1,
+  "temperature": 0.1,
+  "anchor_auc": 0.9387940563529873,
+  "candidate_auc": 0.9385166930002686,
+  "candidate_minus_anchor": -0.0002773633527186625,
+  "nonnegative_targets": 8,
+  "mean_r7_slot": 0.05243408568084432,
+  "per_target_delta": [
+    0.0,
+    0.0,
+    -0.0024038461538462563,
+    -0.001242236024844634,
+    0.0,
+    0.0029013539651836506,
+    0.0,
+    1.1102230246251565e-16,
+    -0.0011947431302270495,
+    0.0,
+    0.0,
+    -0.001388888888888884
+  ],
+  "bootstrap": {
+    "mean": -0.00027706336461984265,
+    "p_improve": 0.2825,
+    "q025": -0.0015142454941301786,
+    "q975": 0.0009421609995696434
+  },
+  "gate": {
+    "macro_gain_at_least_0_001": false,
+    "nonnegative_targets_at_least_8": true,
+    "bootstrap_p_at_least_0_90": false,
+    "bootstrap_q025_above_minus_0_001": false,
+    "integrity": true
+  },
+  "passed": false,
+  "submission_created": false
+}
