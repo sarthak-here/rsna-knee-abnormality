@@ -137,9 +137,10 @@ def build(r6_path: Path, output: Path) -> None:
     )
     collect = COLLECT.replace("__R6_SHA__", BASE.R6_SHA256)
     final = FINAL.replace("__EVALUATOR_SHA__", evaluator_sha)
+    prep = "import time\nNB_T0 = time.time()\n" + BASE.PREP
     cells = [
         BASE.markdown("# RSNA knee R6 dense-window screen\n\nPrivate no-submission evaluation; exact public attribution is retained in the pinned R6 source.\n"),
-        BASE.code(BASE.PREP),
+        BASE.code(prep),
         BASE.code(stage),
         BASE.code(BASE.cell_source(source, 7)),
         BASE.code(BASE.save_reader_cell("r6_stride2")),
