@@ -68,5 +68,13 @@ target subset, or uncertainty definitions after seeing gold results.
 - [ ] Launch the private no-submission cache and run the evaluator unchanged.
 - [ ] Build hidden inference only if every gate passes.
 
+## Launch status
+
+Version 1 was created without the required R6-v1 mirror because the metadata
+mistakenly named that public dataset under the notebook owner's account. Kaggle
+reported the source as invalid at push time. Version 2 corrects only the dataset
+owner from `sarthaksharma14` to `heliosli`; model code, identities, routing
+formula, evaluator, and gates are unchanged.
+
 The Raptor checkpoints are OAI-trained and retain their existing provenance and
 acknowledgements. No first-place claim is made.
