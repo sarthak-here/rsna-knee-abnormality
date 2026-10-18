@@ -3,8 +3,11 @@
 This private no-label/no-submission experiment extracts a materially distinct
 medical-image representation from Microsoft's MedImageInsight DaViT encoder.
 The exact public Kaggle model is
-`thelionai/medimageinsight/PyTorch/default/1` (MIT), with checkpoint SHA-256
-`0453e28ee7d1585796ee74f34a6b7ec3af198b63f19052e46a3ade2a5d68ea22`.
+`thelionai/medimageinsight/PyTorch/default/1` (MIT), with exact Kaggle-hosted
+checkpoint SHA-256
+`5eeda63bf616a61664bc95b2c09d3b3d7125209e635678bd3f5f324e9bdb1414`.
+The identically sized Hugging Face artifact has different bytes and is not
+accepted by this contract.
 
 The immutable physical cache contributes four fixed, non-overlapping 2.5D
 windows for each of six clinical sequence slots. The frozen encoder produces a
