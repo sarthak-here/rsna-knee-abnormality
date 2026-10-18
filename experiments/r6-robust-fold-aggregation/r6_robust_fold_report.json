@@ -1,0 +1,45 @@
+{
+  "status": "REJECTED",
+  "contract": "r6_four_fold_middle_two_logit_mean_v1",
+  "input_sha256": "92ef1f26200069ae7b3e7e679b59bf30ed3556cf669ccdfe40fccb0cb1046623",
+  "stacker_targets_preserved": [
+    7,
+    9
+  ],
+  "anchor_macro_auc": 0.9387940563529873,
+  "candidate_macro_auc": 0.9383339112907075,
+  "macro_delta": -0.0004601450622797598,
+  "target_delta": [
+    0.002450980392156854,
+    -0.005668934240362855,
+    0.0,
+    -0.003726708074534013,
+    0.0031007751937983663,
+    0.004835589941972862,
+    0.0012870012870012104,
+    0.0,
+    -0.01194743130227005,
+    0.0,
+    0.0006747638326585204,
+    0.00347222222222221
+  ],
+  "nonnegative_targets": 9,
+  "mean_logit_reconstruction_max_abs": 7.951302016806494e-08,
+  "bootstrap": {
+    "valid_samples": 9999,
+    "probability_positive": 0.3868386838683868,
+    "q025": -0.003549633269675961,
+    "q50": -0.00042944263469291144,
+    "q975": 0.0026009787935760607
+  },
+  "gates": {
+    "macro_gain_ge_0.001": false,
+    "nonnegative_targets_ge_8": true,
+    "bootstrap_p_ge_0.90": false,
+    "bootstrap_q025_gt_minus_0.001": false,
+    "mean_logit_reconstruction_max_abs_le_1e-6": true,
+    "finite_outputs": true
+  },
+  "passed": false,
+  "submission_created": false
+}
