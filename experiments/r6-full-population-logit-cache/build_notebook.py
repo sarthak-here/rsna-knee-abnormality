@@ -44,12 +44,19 @@ if len(roots) != 1:
     raise RuntimeError(f"expected one competition train root, found {roots}")
 root = roots[0]
 train = pd.read_csv(root / "train.csv", dtype={"StudyInstanceUID": str})
-ids = train[["StudyInstanceUID"]].copy()
-if len(ids) != 4407 or ids.StudyInstanceUID.nunique() != 4407:
+all_ids = train[["StudyInstanceUID"]].copy()
+if len(all_ids) != 4407 or all_ids.StudyInstanceUID.nunique() != 4407:
     raise RuntimeError("full-population study identity drift")
+SHARD_INDEX = __SHARD_INDEX__
+SHARD_COUNT = __SHARD_COUNT__
+ids = all_ids.iloc[SHARD_INDEX::SHARD_COUNT].reset_index(drop=True)
+EXPECTED = __EXPECTED__
+if len(ids) != EXPECTED or ids.StudyInstanceUID.nunique() != EXPECTED:
+    raise RuntimeError("deterministic shard identity drift")
 series = pd.read_csv(root / "train_series.csv", dtype=str)
+series = series[series.StudyInstanceUID.isin(set(ids.StudyInstanceUID))].copy()
 if set(series.StudyInstanceUID) != set(ids.StudyInstanceUID):
-    raise RuntimeError("full-population series coverage drift")
+    raise RuntimeError("shard series coverage drift")
 ids.to_csv(EVAL / "test.csv", index=False)
 series.to_csv(EVAL / "test_series.csv", index=False)
 sample = ids.copy()
@@ -59,7 +66,7 @@ for target in ["ACL", "MCL", "Medial Meniscus", "Lateral Meniscus", "Medial OA",
     sample[target] = 0.5
 sample.to_csv(EVAL / "sample_submission.csv", index=False)
 os.symlink(root / "train_series", EVAL / "test_series", target_is_directory=True)
-print("FULL_POPULATION_EVAL_READY", len(ids), len(series), root, flush=True)
+print("FULL_POPULATION_SHARD_READY", SHARD_INDEX, SHARD_COUNT, len(ids), len(series), root, flush=True)
 '''
 
 COLLECT = r'''from pathlib import Path
@@ -84,8 +91,11 @@ frame = pd.read_csv(WORK / "ours_sub.csv", dtype={"StudyInstanceUID": str})
 if frame.columns.tolist() != ["StudyInstanceUID"] + TARGETS:
     raise RuntimeError("R6 probability schema drift")
 ids = frame.StudyInstanceUID.astype(str).tolist()
-if len(ids) != 4407 or len(set(ids)) != 4407:
-    raise RuntimeError("R6 full-population ID drift")
+EXPECTED = __EXPECTED__
+SHARD_INDEX = __SHARD_INDEX__
+SHARD_COUNT = __SHARD_COUNT__
+if len(ids) != EXPECTED or len(set(ids)) != EXPECTED:
+    raise RuntimeError("R6 shard ID drift")
 probability = frame[TARGETS].to_numpy(np.float32)
 if not np.isfinite(probability).all() or probability.min() < 0 or probability.max() > 1:
     raise RuntimeError("R6 probability drift")
@@ -102,7 +112,7 @@ for path in parts:
     raw.update(part)
 if set(raw) != set(ids):
     raise RuntimeError("R6 logit identity drift")
-logits = np.empty((4407, 4, 2, 12), np.float32)
+logits = np.empty((EXPECTED, 4, 2, 12), np.float32)
 for index, uid in enumerate(ids):
     record = raw[uid]
     plain = np.asarray(record.get("z_plain"), np.float32)
@@ -119,17 +129,18 @@ receipt = json.loads((WORK / "submission_receipt.json").read_text())
 if receipt.get("status") != "PASS" or int(receipt.get("fallback_studies", -1)) != 0:
     raise RuntimeError("R6 inference receipt failed")
 
-cache = WORK / "r6_full_population_logits.npz"
+cache = WORK / f"r6_full_population_logits_shard{SHARD_INDEX}.npz"
 np.savez_compressed(cache, ids=np.asarray(ids, dtype="U80"),
                     targets=np.asarray(TARGETS, dtype="U32"),
                     probability=probability, logits=logits)
 result = {
-    "status": "COMPLETE", "studies": 4407, "targets": 12,
-    "probability_shape": [4407, 12], "logit_shape": [4407, 4, 2, 12],
+    "status": "COMPLETE", "shard_index": SHARD_INDEX, "shard_count": SHARD_COUNT,
+    "studies": EXPECTED, "targets": 12,
+    "probability_shape": [EXPECTED, 12], "logit_shape": [EXPECTED, 4, 2, 12],
     "finite": True, "fallback_studies": 0, "receipt": receipt,
     "cache_sha256": sha256(cache), "submission_created": False,
 }
-(WORK / "r6_full_population_receipt.json").write_text(json.dumps(result, indent=2) + "\n")
+(WORK / f"r6_full_population_receipt_shard{SHARD_INDEX}.json").write_text(json.dumps(result, indent=2) + "\n")
 for path in WORK.rglob("*.csv"):
     path.unlink()
 if list(WORK.rglob("*.csv")):
@@ -143,7 +154,14 @@ def patch_all_root(source: str) -> str:
                             "DATA = Path('/kaggle/working/all_train_eval')")
     return source
 
-def build(r6_path: Path, output: Path) -> None:
+def render(template: str, shard_index: int, shard_count: int) -> str:
+    expected = len(range(shard_index, 4407, shard_count))
+    return (template.replace("__SHARD_INDEX__", str(shard_index))
+                    .replace("__SHARD_COUNT__", str(shard_count))
+                    .replace("__EXPECTED__", str(expected)))
+
+
+def build(r6_path: Path, output: Path, shard_index: int, shard_count: int) -> None:
     if BASE.sha256(r6_path) != BASE.R6_SHA256:
         raise RuntimeError("R6 source notebook identity mismatch")
     r6 = json.loads(r6_path.read_text(encoding="utf-8"))
@@ -156,8 +174,8 @@ def build(r6_path: Path, output: Path) -> None:
     stage = ROUTER.patch_r6_logit_dump(stage)
     cells = [
         BASE.markdown("# R6 full-population fold-logit cache\n\nPrivate inference-only cache; no labels and no submission.\n"),
-        BASE.code(PREP), BASE.code(stage), BASE.code(BASE.cell_source(r6, 7)),
-        BASE.code(COLLECT),
+        BASE.code(render(PREP, shard_index, shard_count)), BASE.code(stage),
+        BASE.code(BASE.cell_source(r6, 7)), BASE.code(render(COLLECT, shard_index, shard_count)),
     ]
     notebook = {"cells": cells, "metadata": r6.get("metadata", {}),
                 "nbformat": 4, "nbformat_minor": 5}
@@ -166,22 +184,28 @@ def build(r6_path: Path, output: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--r6", type=Path, default=BASE.DEFAULT_R6)
-    parser.add_argument("--output", type=Path, default=HERE / "r6-full-population-logit-cache.ipynb")
+    parser.add_argument("--shard-count", type=int, default=2)
     args = parser.parse_args()
-    build(args.r6, args.output)
-    metadata = {
-        "id": "sarthaksharma14/rsna-knee-r6-full-population-logit-cache",
-        "title": "RSNA Knee R6 Full Population Logit Cache",
-        "code_file": args.output.name, "language": "python", "kernel_type": "notebook",
-        "is_private": True, "enable_gpu": True, "enable_tpu": False,
-        "enable_internet": False, "machine_shape": "NvidiaTeslaT4",
-        "dataset_sources": ["heliosli/rsna-knee-r6-frozen-fe055406-w1",
-                            "heliosli/rsna-orthofoundation-fold0-epoch7-20261004"],
-        "competition_sources": ["rsna-knee-abnormality-detection"],
-        "kernel_sources": [], "model_sources": [],
-    }
-    (HERE / "kernel-metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
-    print(args.output)
+    if args.shard_count != 2:
+        raise RuntimeError("the repaired runtime contract is pinned to exactly two shards")
+    for shard_index in range(args.shard_count):
+        shard_dir = HERE / f"shard-{shard_index}"
+        shard_dir.mkdir(exist_ok=True)
+        output = shard_dir / "r6-full-population-logit-cache.ipynb"
+        build(args.r6, output, shard_index, args.shard_count)
+        metadata = {
+            "id": f"sarthaksharma14/rsna-knee-r6-full-logits-shard-{shard_index}",
+            "title": f"RSNA Knee R6 Full Logits Shard {shard_index}",
+            "code_file": output.name, "language": "python", "kernel_type": "notebook",
+            "is_private": True, "enable_gpu": True, "enable_tpu": False,
+            "enable_internet": False, "machine_shape": "NvidiaTeslaT4",
+            "dataset_sources": ["heliosli/rsna-knee-r6-frozen-fe055406-w1",
+                                "heliosli/rsna-orthofoundation-fold0-epoch7-20261004"],
+            "competition_sources": ["rsna-knee-abnormality-detection"],
+            "kernel_sources": [], "model_sources": [],
+        }
+        (shard_dir / "kernel-metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
+        print(output)
 
 if __name__ == "__main__":
     main()
