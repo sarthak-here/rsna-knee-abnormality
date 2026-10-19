@@ -1,5 +1,18 @@
 # R6 cross-fitted fold/pass calibration
 
+## Status: invalid design, withdrawn before execution
+
+The 19 October research audit found that cross-fitting the ridge combiner does
+not exclude validation studies from the pretrained R6 fold models. This is not
+independent OOF evaluation of the complete predictor. The comparator also omits
+the deployed Effusion fluid and Baker's state stackers. This contract must not
+be run as an advancement gate, used to build hidden inference, or submitted.
+No candidate score was observed and no alpha, formula, target, or gate was tuned.
+The implementation and original predeclaration below remain preserved as audit
+evidence. See `../research-audit-2026-10-19/README.md` for the exact findings.
+
+## Original predeclaration (archived)
+
 This is the falsification test for the hypothesis that the four published R6
 folds and their plain/flip passes contain complementary ranking information
 that the equal-logit mean discards.
