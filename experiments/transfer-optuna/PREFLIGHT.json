@@ -1,0 +1,17 @@
+{
+  "synthetic_only": true,
+  "predictive_trials": 0,
+  "models_source_sha256": "1867236cceae8aeef951968e53e02c39c0d1de8a127cf14866797c2f8219ab0f",
+  "weight_hashes": {
+    "swin3d_t": "7615ae035996b65eb38dad437ae533d2dfcd36f9f89d28c0f0fa7bfb8e6b3130",
+    "videomae": "065cfde56f97671da4d196e1a3a6d3cf9304dcad92eb671e3632a6c6cdd04f73"
+  },
+  "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "torch": "2.13.0+cu126",
+  "models": [
+    {"family": "swin3d_t", "passed": true, "step_seconds": [0.703, 0.359, 0.359],
+     "peak_bytes": 1040794112, "trainable_parameters": 14322012},
+    {"family": "videomae", "passed": true, "step_seconds": [0.75, 0.766, 0.75],
+     "peak_bytes": 1796154880, "trainable_parameters": 14200332}
+  ]
+}

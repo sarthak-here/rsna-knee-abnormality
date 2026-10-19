@@ -1,0 +1,22 @@
+{
+  "id": "sarthaksharma14/rsna-knee-video-transfer-optuna-screen",
+  "title": "RSNA Knee Video Transfer Optuna Private Screen",
+  "code_file": "transfer-optuna.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "dataset_sources": [
+    "stevenleehans/rsna-knee-llm-report-labels"
+  ],
+  "kernel_sources": [
+    "sarthaksharma14/rsna-knee-288px-12-slice-cache"
+  ],
+  "model_sources": []
+}
