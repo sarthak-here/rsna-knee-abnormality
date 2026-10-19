@@ -1,0 +1,127 @@
+{
+  "validated_checkpoints_and_sources": true,
+  "split_counts": {
+    "fit": 2637,
+    "tune": 856,
+    "confirmation": 852
+  },
+  "active_trial_seconds": 6378.321127456996,
+  "gold_evaluations": 0,
+  "confirmation_evaluations": 0,
+  "no_submission_completion_marker": true,
+  "fatal_traceback": false,
+  "dependency_conflicts": [
+    "diffusers 0.40.0 requires huggingface-hub<2.0,>=1.23.0, but you have huggingface-hub 0.36.2 which is incompatible.",
+    "diffusers 0.40.0 requires safetensors>=0.8.0, but you have safetensors 0.6.2 which is incompatible.",
+    "gradio 6.26.0 requires huggingface-hub<2.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible."
+  ],
+  "trials": [
+    {
+      "number": 0,
+      "state": "COMPLETE",
+      "params": {
+        "family": "swin3d_t",
+        "lr": 3e-05,
+        "weight_decay": 0.001
+      },
+      "proxy_bce": 0.5768359076475429,
+      "seconds": 2104.893913766,
+      "checkpoint_sha256": "59155942a34811fa79f94d64d47cf167348ebac4e1c9abf0ffae3b7f6d954e37"
+    },
+    {
+      "number": 1,
+      "state": "COMPLETE",
+      "params": {
+        "family": "videomae",
+        "lr": 3e-05,
+        "weight_decay": 0.001
+      },
+      "proxy_bce": 0.6009348335667192,
+      "seconds": 1514.8928305050003,
+      "checkpoint_sha256": "cee7ec93845d9006dc626bb686c951a2ecbb8b0a4c16be2e5aa6ee49bf852412"
+    },
+    {
+      "number": 2,
+      "state": "PRUNED",
+      "params": {
+        "family": "swin3d_t",
+        "lr": 1.334896448794599e-05,
+        "weight_decay": 0.0018743695644812374
+      },
+      "proxy_bce": 0.6157098249575802,
+      "seconds": 912.1174550319993,
+      "checkpoint_sha256": null
+    },
+    {
+      "number": 3,
+      "state": "COMPLETE",
+      "params": {
+        "family": "swin3d_t",
+        "lr": 8.382731648609953e-05,
+        "weight_decay": 0.00012672881584838104
+      },
+      "proxy_bce": 0.5671608386056446,
+      "seconds": 1846.234892696999,
+      "checkpoint_sha256": "2274760cb880d2450b630593233daeb5ed287a0c5aa4a608eb72d59ec71bd89c"
+    },
+    {
+      "number": 4,
+      "state": "PRUNED",
+      "params": {
+        "family": "swin3d_t",
+        "lr": 7.599904961445277e-05,
+        "weight_decay": 0.00010364670770761739
+      },
+      "proxy_bce": null,
+      "seconds": 0.04074863299865683,
+      "checkpoint_sha256": null
+    },
+    {
+      "number": 5,
+      "state": "PRUNED",
+      "params": {
+        "family": "videomae",
+        "lr": 9.426378753712845e-05,
+        "weight_decay": 0.00010640716384253154
+      },
+      "proxy_bce": null,
+      "seconds": 0.04573306699967361,
+      "checkpoint_sha256": null
+    },
+    {
+      "number": 6,
+      "state": "PRUNED",
+      "params": {
+        "family": "swin3d_t",
+        "lr": 5.593516736084647e-05,
+        "weight_decay": 0.0003149206422501695
+      },
+      "proxy_bce": null,
+      "seconds": 0.04358944399973552,
+      "checkpoint_sha256": null
+    },
+    {
+      "number": 7,
+      "state": "PRUNED",
+      "params": {
+        "family": "swin3d_t",
+        "lr": 4.680717126347615e-05,
+        "weight_decay": 0.009892351314153398
+      },
+      "proxy_bce": null,
+      "seconds": 0.05196431299918913,
+      "checkpoint_sha256": null
+    }
+  ],
+  "fit_only_constant_baseline_bce": 0.6051387939378368,
+  "selected_minus_constant_bce": -0.03797795533219217,
+  "selected_trial": 3,
+  "promotion": false,
+  "scope": "proxy screening only, no pathology or leaderboard improvement established",
+  "artifact_hashes": {
+    "transfer_optuna\\search-output\\contract.json": "b8f25985f07455849cd61cfed7608cddf8f1db0a52de26f7b004b2f37587b0a5",
+    "transfer_optuna\\search-output\\screen_report.json": "61d8570f9ae9dfa256abd3337a2b33ae1889096892bb9c6e393646135cc451c5",
+    "transfer_optuna\\search-output\\study.sqlite3": "3e62109b4d48e5c5247d5603099789c39871c8637e4f2e2e6fdc351583ed34af",
+    "rsna-knee-video-transfer-optuna-private-screen.log": "966f68c97f455ebd6288c97b1523ec68a57f1ec0201c7717e427e888ba324eb1"
+  }
+}

@@ -1,6 +1,7 @@
 # Transfer-learning comparison — 19 October 2026
 
-Status: implementation/preflight, **not a trained improvement or a submission**.
+Status: version 1 completed; all three completed checkpoints and source/split
+receipts validated. See RESULTS.md. **No pathology improvement or submission**.
 The user requested a wider web search and a bounded Optuna comparison. The locked
 public 0.957 submission 57197157 is unchanged. Cancelled R6 jobs remain closed.
 
@@ -40,7 +41,7 @@ downloads weights, executes remote code, loads an R6 checkpoint or submits.
   proxy labels is not used to select a model. No organizer-gold optimization,
   target-specific selection, blend search or public-LB tuning.
 - Both models receive one identical baseline trial before TPE explores LR
-  [1e-5,1e-4] and weight decay [1e-4,1e-2]. Architecture is categorical; four
+  [1e-5,1e-4] and weight decay [1e-4,1e-2]. Architecture is categorical;
   **one epoch for this coarse screen**, eight trials maximum, total active search
   budget two hours. This is a representation/LR prefilter, not a fully trained
   model contest; a slower-converging candidate can lose a short screen.
