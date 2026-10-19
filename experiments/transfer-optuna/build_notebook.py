@@ -67,7 +67,7 @@ def build(label_sha):
                     {"cell_type": "code", "metadata": {}, "execution_count": None,
                      "outputs": [], "source": source.splitlines(keepends=True)}]}
     (ROOT / "transfer-optuna.ipynb").write_text(json.dumps(notebook, indent=1))
-    metadata = {"id": "sarthaksharma14/rsna-knee-video-transfer-optuna-screen",
+    metadata = {"id": "sarthaksharma14/rsna-knee-video-transfer-optuna-private-screen",
                 "title": "RSNA Knee Video Transfer Optuna Private Screen",
                 "code_file": "transfer-optuna.ipynb", "language": "python", "kernel_type": "notebook",
                 "is_private": True, "enable_gpu": True, "enable_tpu": False, "enable_internet": True,
