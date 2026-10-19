@@ -24,7 +24,7 @@ dependencies. No checkpoint or image dataset was downloaded for this check.
 
 ## Local-CV five-fold package
 
-Only `README.md` (747 bytes) and `manifest.json` (1,442 bytes) were downloaded
+Only `README.md` (747 bytes) and `manifest.json` (1,440 bytes) were downloaded
 from `jessky/rsna-knee-local-cv-cnx50` into the ignored `.audit` directory.
 
 - README SHA-256: `d0cd07836cbcf56129132c2b96cb3251b44dc2577cd827864a7da6a6644fdb0d`
