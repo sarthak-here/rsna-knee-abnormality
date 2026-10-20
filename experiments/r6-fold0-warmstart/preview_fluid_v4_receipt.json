@@ -1,0 +1,182 @@
+{
+  "scope": "one complete official preview study; original training eval vs deployed CPU loader",
+  "fixture_receipt_sha256": "94a0184c47431e76c7b271ea8a599a9be27742d18df8bfec2c11f0e0d4a87e4e",
+  "dicom_count": 135,
+  "series_count": 5,
+  "raw_bytes": 91028286,
+  "assets": {
+    "compact_infer.py": {
+      "sha256": "8401812cd63737ec99839d317c4037c4efb445d1baec892fa7481bb30399cc2d",
+      "bytes": 84290
+    },
+    "compact_train.py": {
+      "sha256": "04df7e2e154b2c2521696908f272940c63ce17e9b6337b85847fee64504eeaba",
+      "bytes": 230308
+    },
+    "px_cache.py": {
+      "sha256": "b13e38a7ad3bd496f8027e02209653e224b0926db4f0853eeb0d076a2d6e2632",
+      "bytes": 20263
+    },
+    "knee_anchor_bank_v2.py": {
+      "sha256": "e564807a129dfcd3c984348917436ee6083066a4d685340587ebd1d3ea14f309",
+      "bytes": 14529
+    },
+    "side_common.py": {
+      "sha256": "bbcc5d027834e6a6fd48c4a8cf228e25661b7522c792587c840fe4d7cd5c0566",
+      "bytes": 1571
+    },
+    "manifest.json": {
+      "sha256": "6508ce6921eda986c885b2226fa55dd4d2aa8e5fc570b4c007c9a60c05bfc648",
+      "bytes": 4120
+    },
+    "anatomy.pt": {
+      "sha256": "5904dd16eb9a4fd7a1caf90ac977f8fe2ef364908598c23c209db3fe7fd1563e",
+      "bytes": 112496037
+    },
+    "side_cls.pt": {
+      "sha256": "ab623e2b619db4917639220fed15202e8c8aedd07c8e298a66a2afc0f153650a",
+      "bytes": 85255211
+    }
+  },
+  "anchor": {
+    "study": "1.2.826.0.1.3680043.8.498.10062861783145312629332250977456991776",
+    "version": 2,
+    "joint_lps": [
+      -81.32992574687464,
+      0.2679386886554374,
+      -3.3768946324469638
+    ],
+    "patella_lps": [
+      -79.87960178065235,
+      -27.744401855749473,
+      24.103880193988584
+    ],
+    "method": "skm_tea_joint_avg2",
+    "why": [
+      "mass<250(0)"
+    ],
+    "series": {
+      "1.2.826.0.1.3680043.8.498.10543708582570884867685900269888836671": {
+        "joint": [
+          0.495481605519699,
+          0.5685484365365173
+        ],
+        "in_field": true,
+        "dist_mm": 1.7,
+        "patella": [
+          0.34239338008814596,
+          0.7243883890062707
+        ]
+      },
+      "1.2.826.0.1.3680043.8.498.10818107180155454609278933308651876447": {
+        "joint": [
+          0.4232390311070658,
+          0.4605509821119787
+        ],
+        "in_field": true,
+        "dist_mm": 0.3,
+        "patella": [
+          0.24906502690777632,
+          0.4697100665238442
+        ]
+      },
+      "1.2.826.0.1.3680043.8.498.34851887739080902195133258975769749352": {
+        "joint": [
+          0.4957107760625161,
+          0.5683488812192325
+        ],
+        "in_field": true,
+        "dist_mm": 1.7,
+        "patella": [
+          0.34255174414424344,
+          0.7242609129066649
+        ]
+      },
+      "1.2.826.0.1.3680043.8.498.49057071886338907232646925625200929717": {
+        "joint": [
+          0.4954534908831106,
+          0.5685729179779618
+        ],
+        "in_field": true,
+        "dist_mm": 1.7,
+        "patella": [
+          0.3423739519896167,
+          0.7244040277710532
+        ]
+      },
+      "1.2.826.0.1.3680043.8.498.49397095733611495516760005725956804191": {
+        "joint": [
+          0.5024786006030948,
+          0.470445212157884
+        ],
+        "in_field": true,
+        "dist_mm": 1.0,
+        "patella": [
+          0.3463553817986139,
+          0.478905264351959
+        ]
+      }
+    },
+    "slab_prior_lps": [
+      -83.10844947609351,
+      6.038788379062499,
+      -4.092541278500761
+    ]
+  },
+  "side": {
+    "side": "R",
+    "status": "unknown_no_explicit_tags",
+    "x": -84.9,
+    "score": 7.833,
+    "flipped": false
+  },
+  "images_shape": [
+    510,
+    3,
+    384,
+    384
+  ],
+  "segmentation_derived_anchor_accepted": true,
+  "explicit_source_geometry_prior_used": false,
+  "images_sha256": "7d577755bd5c8dd4bc0e201e30017cf25e569233eb14c74f8e3c753886a73c0b",
+  "metadata_shape": [
+    510,
+    9
+  ],
+  "metadata_sha256": "b75f0574b591d3acb959435da7166210f036d9b727aad630363463a4a1ac1b9d",
+  "training_eval_and_runtime_windows_bitwise_equal": true,
+  "training_eval_and_runtime_metadata_bitwise_equal": true,
+  "settings": {
+    "size": 384,
+    "crop": 352,
+    "views": "v4",
+    "stride": 1,
+    "through_plane_step_mm": 3.5,
+    "local_crop_mm": 100.0,
+    "slices": 3
+  },
+  "fluid": {
+    "status": "ok",
+    "eff_sag_p99_open": 1.107606987534815,
+    "bak_sag_p99_open": 9.434809997360054,
+    "n_sag_fluid_series": 2,
+    "series": "1.2.826.0.1.3680043.8.498.34851887739080902195133258975769749352",
+    "median": 45.0,
+    "n": 24,
+    "spacing": 3.9999985694885254
+  },
+  "fluid_measurement_branch_exercised": true,
+  "positive_fluid_measurement_exercised": true,
+  "disease_network_forward_tested": false,
+  "encoder_normalization_parity_tested": false,
+  "model_input_parity": null,
+  "gpu_used": false,
+  "optimizer_steps": 0,
+  "pathology_predictions": 0,
+  "labels_used": false,
+  "submission_created": false,
+  "advancement_authorized": false,
+  "cpu_seconds_including_aux_model_load": 40.28671149996808,
+  "limits": "Single preview fixture, no proof of every protocol or training augmentation; no accuracy evidence.",
+  "audit_script_sha256": "657d554d3d8549cb7faeaa140397d1cfa5b3e0b7d367fa1f90f5c4aa9ab5d8f9"
+}

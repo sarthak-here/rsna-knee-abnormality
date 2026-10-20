@@ -188,3 +188,49 @@ Do not redownload or repeat this completed fixture gate. A fluid-sensitive
 sagittal preview fixture is needed for the remaining positive anatomy/fluid
 branches; model-crop/encoder-normalization parity also remains separate.
 This result does not authorize a GPU probe or solve supervision/evaluation.
+
+## Positive anatomy/fluid fixture and real encoder-input gate
+
+`preview_fluid_v4_receipt.json` adds a **different** complete official preview
+study with fluid-sensitive sagittal sequences: five series, 135 DICOMs,
+91,028,286 bytes. Its immutable raw receipt is
+`C:/Users/sarthak/Desktop/codex/r6p/study_fixture_6de38b5f7bf9.json`, SHA-256
+`94a0184c47431e76c7b271ea8a599a9be27742d18df8bfec2c11f0e0d4a87e4e`.
+No earlier fixture was redownloaded or earlier completed check repeated.
+
+- Original training-evaluation and deployed loaders match bitwise on real
+  `[510,3,384,384]` uint8 windows and `[510,9]` metadata.
+- The published locator accepts two sagittal candidates: method
+  `skm_tea_joint_avg2`, with a patella anchor and all five projections in field.
+  No geometric slab-prior or field-centre substitution was used for this study.
+- With no explicit laterality tags, the published side classifier was actually
+  exercised: score `+7.833`, retaining the inferred right side. This tests its
+  **retain** branch, not the forced-flip/re-render branch.
+- The exact source D2 pixel heuristic returns finite nonnegative volumes:
+  Effusion channel `1.1076069875 mL`, Baker's channel `9.4348099974 mL`.
+  Two fluid-sensitive sagittal series were available. These are source
+  heuristic outputs, **not** validated clinical segmentations or disease scores.
+- CPU execution including auxiliary model loading took 40.287 seconds. No
+  pathology reader, optimizer, labels, GPU or submission was used.
+
+`input_parity.py` and `input_parity_receipt.json` separately verify the previously
+untested **352px crop and normalization**, using the first study's retained
+rendered cache rather than repeating raw decoding/anchor tests. The complete
+window hash was checked against the earlier immutable receipt before sampling.
+One actual window per slot/view combination gives 15 real views. AST-extracted
+original training `center()` and worker crop assignment give bitwise-equal
+`[1,15,3,352,352]` crops. The exact fold-0 checkpoint is loaded strictly; a
+forward pre-hook intercepts normalized pixels **before** encoder computation.
+The intercepted `[32,3,352,352]` channels-last tensor (including the source's
+zero-window padding) matches the preserved mean/std formula bitwise, SHA-256
+`f0e958322f8b9c6c43cce6e5b181886d4f8a52dcd521a6dc25fcbf2a384c19de`.
+Neither the encoder nor disease heads execute. The optional
+`audit_preview_v4.py --check-model-input` integrates this same check for future
+fixtures; do not rerun the completed fixtures merely to regenerate receipts.
+
+**Scope still limited:** no forced side-flip/re-render fixture, all-protocol or
+all-compression coverage, stochastic training augmentation parity, full disease
+forward or clinical accuracy proof. Original rich supervision, source-prior /
+postprocessor exposure, the five-study pool discrepancy, independent evaluation
+scope and bounded compute remain unresolved before a training launch. These
+implementation gates do not establish a better model or justify GPU spending.

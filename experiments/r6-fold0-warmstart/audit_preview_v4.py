@@ -24,6 +24,7 @@ def main():
     parser.add_argument("--fixture", required=True)
     parser.add_argument("--fixture-receipt", required=True)
     parser.add_argument("--out", required=True)
+    parser.add_argument("--check-model-input", action="store_true", help="Intercept real normalized inputs before encoder computation")
     args = parser.parse_args()
     repo = Path(__file__).resolve().parents[2]
     source = repo / ".audit/rsna-knee-blend-code/r6src"
@@ -125,6 +126,13 @@ def main():
     fluid = out["fluid"]
     if str(fluid["status"]).startswith("error:"):
         raise ValueError("pixel fluid code failed: " + fluid["status"])
+    if fluid["status"] == "ok" and not all(fluid.get(k) is not None and np.isfinite(fluid[k]) and fluid[k] >= 0
+                                           for k in ("eff_sag_p99_open", "bak_sag_p99_open")):
+        raise ValueError("invalid pixel-derived fluid measurement")
+    input_parity = None
+    if args.check_model_input:
+        from input_parity import check
+        input_parity = check(images, meta, trainer, source, assets, config["crop"])
     report = {
         "scope": "one complete official preview study; original training eval vs deployed CPU loader",
         "fixture_receipt_sha256": sha(manifest_path), "dicom_count": len(receipt["files"]),
@@ -139,8 +147,11 @@ def main():
         "training_eval_and_runtime_metadata_bitwise_equal": True,
         "settings": {"size": 384, "crop": 352, "views": "v4", "stride": stride,
                      "through_plane_step_mm": physical_step, "local_crop_mm": 100., "slices": 3},
-        "fluid": fluid, "positive_fluid_measurement_exercised": fluid["status"] == "ok",
-        "disease_network_forward_tested": False, "encoder_normalization_parity_tested": False,
+        "fluid": fluid, "fluid_measurement_branch_exercised": fluid["status"] == "ok",
+        "positive_fluid_measurement_exercised": fluid["status"] == "ok" and any(
+            fluid[k] > 0 for k in ("eff_sag_p99_open", "bak_sag_p99_open")),
+        "disease_network_forward_tested": False, "encoder_normalization_parity_tested": input_parity is not None,
+        "model_input_parity": input_parity,
         "gpu_used": False, "optimizer_steps": 0, "pathology_predictions": 0,
         "labels_used": False, "submission_created": False, "advancement_authorized": False,
         "cpu_seconds_including_aux_model_load": time.perf_counter() - started,
