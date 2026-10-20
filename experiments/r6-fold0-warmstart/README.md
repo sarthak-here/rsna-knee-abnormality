@@ -47,9 +47,10 @@ python -m unittest discover -s experiments/r6-fold0-warmstart -p "test_*.py"
    The generic 288px/12-slice cache used by video experiments is **not** a
    substitute for this R6 pipeline. The receipt deliberately records raw-pixel
    parity as false. The current synthetic test starts after the encoder.
-2. Validate unchanged complete output semantics: flip permutation/MCL exception,
-   state readouts, and fluid/state postprocessors. A raw-logit gain must not be
-   called a gain over the deployed stack. Postprocessor parity is not tested yet.
+2. Synthetic parity for flip permutation/MCL exception, state readouts, and
+   fluid/state coefficient application now passes (details below). End-to-end
+   real-study parity, including measuring fluid volumes from pixels, remains
+   untested. A raw-logit gain must not be called a gain over the deployed stack.
 3. Define evidence-based supervision and budget before an optimizer step. The
    original likelihood-ratio/state target table remains missing; Steven/older
    reader labels are not proven stronger. This loader is not an unchanged-source
@@ -65,3 +66,35 @@ python -m unittest discover -s experiments/r6-fold0-warmstart -p "test_*.py"
 
 Attribution: Heliosli's released R6 package and bundled trainer/inference source,
 with their preserved upstream credits. The scored 0.957 baseline is untouched.
+
+## CPU postprocessing gate
+
+`postprocess.py` pins the existing inference worker and both published stacker
+specifications, then preserves the exact deployed TTA and readout ordering.
+`audit_postprocess.py` extracts the original worker's scoring/stacker function
+bodies as an independent reference and compares deterministic **synthetic**
+fixtures. It never runs the worker's main routine, writes CSVs or predicts studies.
+
+- Trainer/inference mirror transforms, inverse mirror, class/binary permutations
+  and report-state column layouts match.
+- Sixteen fixtures verify per-pass logit/state/binary assembly, including the
+  MCL plain-only exception. Results match the source bitwise.
+- Ninety-six fixtures verify final probability assembly for the published
+  Effusion fluid stacker and Baker's state stacker. They cover absent, zero,
+  positive, negative and NaN volume inputs: the source's explicit missing-volume
+  branch is preserved, not confused with an unseen-reader fallback. Maximum
+  absolute probability difference from source is **0.0**; no source fallback
+  branch was triggered in these fixtures.
+- Invalid nonfinite logits are rejected rather than silently retaining an
+  uncorrected prediction. No coefficients are fitted or changed.
+
+```powershell
+python experiments/r6-fold0-warmstart/audit_postprocess.py --worker .audit/rsna-knee-blend-code/r6src/compact_infer.py --trainer .audit/rsna-knee-blend-code/r6src/compact_train.py --bundle-dir .audit/r6-strict-load --out experiments/r6-fold0-warmstart/postprocess_receipt.json
+```
+
+The scope is deliberately narrower than complete model/pixel parity. Synthetic
+fold counts test arithmetic only; no other fold's checkpoint was loaded or used
+to evaluate fold-0 holdouts. These tests neither authenticate stacker fitting
+lineage nor establish an independent accuracy score. The original load receipt's
+`postprocessor_parity_tested=false` describes that earlier test; the separate
+postprocessing receipt records this later synthetic gate precisely.

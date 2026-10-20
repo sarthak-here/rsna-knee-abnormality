@@ -1,0 +1,33 @@
+{
+  "scope": "synthetic CPU postprocessing, not raw-DICOM or study inference parity",
+  "fixture_seed": 20261020,
+  "torch_version": "2.13.0+cu126",
+  "numpy_version": "2.2.6",
+  "implementation_sha256": "bffc920c2031f58475da902ba2b8879667f7f2a0ed2d6b3de48d458ec44b30de",
+  "audit_sha256": "18fa5e58e7c8acb60b987ff7ac2f9e3c70d7b2d0817d7398948e477eb8c4f5f5",
+  "worker_sha256": "8401812cd63737ec99839d317c4037c4efb445d1baec892fa7481bb30399cc2d",
+  "trainer_sha256": "04df7e2e154b2c2521696908f272940c63ce17e9b6337b85847fee64504eeaba",
+  "fluid_stacker_sha256": "9fbd6f652470c5ef131f997edb4e358038937dd45e6f6b65a4afed80e10cf35d",
+  "state_stacker_sha256": "b05147bb463a389a66a4a0d7ff0555efd2bde6f486718f79e9d7fa3d90b24522",
+  "trainer_worker_mirror_and_state_layout_exact": true,
+  "mirror_involution": true,
+  "tta_fixture_cases": 16,
+  "tta_logits_states_bitwise_equal": true,
+  "mcl_plain_only_logits_states_binaries_verified": true,
+  "postprocessing_fixture_cases": 96,
+  "max_abs_probability_difference": 0.0,
+  "source_silent_fallbacks_during_fixtures": 0,
+  "nonfinite_inputs_rejected": true,
+  "fluid_adopted_classes": [
+    "Effusion"
+  ],
+  "state_adopted_classes": [
+    "Baker's"
+  ],
+  "gpu_used": false,
+  "optimizer_steps": 0,
+  "study_predictions": 0,
+  "raw_dicom_parity_tested": false,
+  "fluid_measurement_from_pixels_tested": false,
+  "promotion": false
+}
