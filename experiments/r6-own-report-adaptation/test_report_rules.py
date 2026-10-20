@@ -22,7 +22,14 @@ class ReportRulesTests(unittest.TestCase):
 
     def test_no_unwarranted_grade(self):
         self.assertEqual(extract("Findings: Partial ACL tear. Small to moderate effusion. Moderate chondral loss."), {})
-        self.assertEqual(extract("Findings: No tear of the medial meniscus."), {"Medial Meniscus": "normal"})
+        self.assertEqual(extract("Findings: No tear of the medial meniscus."), {})
+
+    def test_negation_does_not_destroy_or_invent_fine_states(self):
+        self.assertEqual(extract("Findings: Degeneration of medial meniscus without tear."), {})
+        self.assertEqual(extract("Findings: MCL intact with periligamentous edema."), {})
+        self.assertEqual(extract("Findings: No large joint effusion. No acute fracture."), {})
+        self.assertEqual(extract("Findings: Small joint effusion without loose bodies."), {"Effusion": "small"})
+        self.assertEqual(extract("Findings: Baker cyst is not ruptured."), {})
 
 
 if __name__ == "__main__":

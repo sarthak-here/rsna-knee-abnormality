@@ -5,6 +5,13 @@ This is NOT reproduction of R6's unavailable original supervision. It does not
 reuse the rejected soft-v2/Steven/teacher tables or read organizer-gold reports.
 No publisher contact or competition submission is authorized by this experiment.
 
+Prelaunch v1.1 correction: synthetic counterexamples showed that “no tear”
+cannot establish a fine-grained normal state, “no large effusion” cannot mean
+none, and a negator after an entity may refer to another finding. These cells
+are now masked or scope-corrected. This semantic fix was made before any
+training, validation loss, prediction or gold inspection, not tuned to coverage
+or a model score. The corrected rules are re-frozen before split regeneration.
+
 ## Frozen first pilot contract (before coverage or losses)
 
 - Exact released fold-0 R6 checkpoint; all heads, priors, state/fluid stackers
@@ -32,6 +39,9 @@ No publisher contact or competition submission is authorized by this experiment.
   convolutional stage and pass its maps through all untouched original heads.
   This is not another frozen-feature head. Verify cached split vs full network
   execution on the training GPU before training; no silent feature fallback.
+  Prefix storage is float16; test the actual rounded cache, with maximum
+  absolute logit error<=0.02 on valid source state slots. Invalid padded state
+  slots remain source-defined -infinity, not treated as runtime failures.
 - One fixed seed20261020, 3 epochs, AdamW LR1e-5 / WD0.01, one study per step,
   gradient clipping1.0. No optimizer, epoch, checkpoint, target or blend search.
   Heads remain in eval mode; only the final stage enters train mode.
