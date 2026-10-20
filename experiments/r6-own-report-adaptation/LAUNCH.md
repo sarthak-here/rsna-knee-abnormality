@@ -1,6 +1,14 @@
 # Actual private launch — 20 October 2026
 
-## Current status: version3 accepted and verified RUNNING
+## Current status: version3 COMPLETE, audited and scientifically REJECTED
+
+Read `RESULTS.md` and `v3_terminal_receipt.json`. All3 epochs/576 updates,
+checkpoint hashes and frozen-weight identities pass. Tuning passed; once-only
+confirmation improved report-state NLL0.059662 but failed max probability drift:
+0.457414 vs the predeclared0.30 cap. This exact contract is CLOSED. Do not poll,
+retry, retune or submit it. No independent pathology/public-AUC gain established.
+
+## Historical accepted v3 launch
 
 Version2 ended ERROR after four optimizer steps; exact terminal receipts and
 runtime-only same-study AMP backoff repair are pushed in `86057d9`. See

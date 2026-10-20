@@ -5,6 +5,12 @@ This is NOT reproduction of R6's unavailable original supervision. It does not
 reuse the rejected soft-v2/Steven/teacher tables or read organizer-gold reports.
 No publisher contact or competition submission is authorized by this experiment.
 
+**CLOSED: version3 completed with integrity but failed the fixed confirmation
+max-drift gate (0.457414 >0.30), despite report-state NLL gain0.059662.** Read
+`RESULTS.md` and `v3_terminal_receipt.json`. Do not rerun, tune, blend, submit,
+select earlier epochs/targets or build inference for this exact contract.
+No independent pathology/public-score improvement was established.
+
 Runtime status: v1 failed during AMP backward after caching all320 studies;
 see `V1_FAILURE.md` and `v1_terminal_receipt.json`. The numerical-only v2 repair
 uses initial AMP scale1024 instead of default65536 and checks scaled complete
