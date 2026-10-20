@@ -133,3 +133,34 @@ not a complete study, no anchor model, no anatomy-centred v4 rendering and no
 pixel-derived fluid-volume validation yet. No model predictions, optimizer or
 GPU were used. Do not mark the whole preprocessing gate complete or use this
 small uncompressed fixture to forecast training time across the competition.
+
+## Manifest-pinned real v4 study gate
+
+`PREPROCESSING_IDENTITY.md` corrects the earlier stride and physical-spacing
+description: released R6 uses stride **1**, a **3.5 mm through-plane step**,
+384px rendered slices, 352px model crops, and **100 mm local views** plus full
+field. Do not copy the generic cache's 140 mm setting into this reader.
+
+`fetch_preview_series.py --study-uid` extends the existing raw fixture to one
+complete official preview study, refusing more than eight listing pages,
+400 files or 512 MiB. It reuses existing DICOMs, keeps the earlier series receipt
+untouched, and writes a separate immutable whole-study receipt. This acquires
+neither training labels nor controlled-access MRI data.
+
+`audit_preview_v4.py` is CPU-only before importing torch. It pins the release
+manifest, renderer/trainer, anatomy locator and side classifier. It invokes the
+original worker's real study-side/geometry/anchor/rendering path and compares
+its window tensors with the original training `Studies(mode='eval')` loader
+over the captured rendered cache. No disease model or optimizer runs.
+It fails on omitted series, missing/out-of-field anchors or runtime-error
+fallbacks, and explicitly distinguishes accepted segmentation anchors from
+the source's geometric slab-prior branch. A matching fixture is not evidence
+that every protocol, augmentation, encoder normalization or positive-fluid
+branch has been validated.
+
+```powershell
+python experiments/r6-fold0-warmstart/audit_preview_v4.py --fixture C:/Users/sarthak/Desktop/codex/r6p --fixture-receipt C:/Users/sarthak/Desktop/codex/r6p/study_fixture_064d58efe1af.json --out experiments/r6-fold0-warmstart/preview_v4_receipt.json
+```
+
+Treat this command as unpassed until its terminal receipt exists. It does not
+authorize a GPU probe or solve the missing supervision/evaluation gates.

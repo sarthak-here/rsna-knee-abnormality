@@ -1,11 +1,18 @@
 # R6 dense-window localization screen
 
-This private no-submission screen builds directly on the strongest R6 reader.
-It changes only its deterministic evaluation window stride from the published
-`3` to `2`, increasing through-plane coverage while preserving the exact four
-checkpoints, physical/anatomy-centred v4 views, 140 mm preprocessing, flip TTA,
-side correction, state stackers, architecture, and every other inference
-setting.
+**Identity correction, 20 October 2026:** the original description below was
+wrong about the reference settings. The pinned released R6 manifest sets
+`eval_stride=1` and `phys_mm=3.5`; the upstream controller reads those values
+from the manifest. Its `.get(..., 3)` expression is a missing-key default, not
+the actual deployed stride. This experiment patched the stride to `2`, making
+coverage **sparser**, not denser. The local anatomy-centred crops are 100 mm;
+140 mm describes a different generic physical cache, not this R6 setting.
+
+The exact four checkpoints, v4 views, flip TTA, side correction and stackers
+were retained. The stored stride-2 outputs and rejection remain unchanged.
+This correction does not authorize another stride test or reopen the contract.
+Evidence and source hashes are in
+`../r6-fold0-warmstart/PREPROCESSING_IDENTITY.md`.
 
 The 58 organizer-labelled studies remain evaluation-only. The frozen reference
 is the immutable four-reader prediction cache SHA-256
