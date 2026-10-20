@@ -1,0 +1,36 @@
+{
+  "dataset": "nurikw3/rsna-knee-vjepa21-checkpoints",
+  "scope": "STATIC_SOURCE_ONLY",
+  "files_sha256": {
+    "infer.py": "15496b8e23baa29d87abefafd2e60e3008af901a5723e4acd7837c978d6cc265",
+    "finetune_model.py": "358993ee598cfaa1608b3cfdb65d7165fb6894b0656794a70dd039122c883abe",
+    "source_manifest.json": "a28e12df105a131a6540591379c0c218667059f10903e59be0a6e2f7c1c06566",
+    "LICENSE": "cf9b17822d1fcd4ff32ccbe14183386fb3adf6f2ff92dc184130823f7fc28173"
+  },
+  "double_read_sites": [
+    {
+      "caller_line": 55,
+      "helper": "_ordered_datasets",
+      "helper_line": 35,
+      "decoded_datasets_passed_to_reader_helper": true
+    }
+  ],
+  "silent_reader_exception_to_missing_view": true,
+  "all_missing_inputs_force_one_zero_view_present": true,
+  "five_checkpoint_inventory_seen": true,
+  "weights_downloaded_or_hashed": false,
+  "downloaded_code_executed": false,
+  "gpu_used": false,
+  "submission_created": false,
+  "distinct_backbone_source": "V-JEPA2.1 with spatial/slice transformer finding head",
+  "encoder_trainable_in_released_class": true,
+  "training_execution_proven": false,
+  "upstream_ref": "main",
+  "upstream_commit_pinned": false,
+  "inference_parity_verified": false,
+  "training_folds_and_targets_authenticated": false,
+  "exact_public_score_verified": false,
+  "qualified_for_gpu_launch": false,
+  "source_code_license_file": "MIT; dataset metadata declares CC0, not proof of pretrained-weight terms",
+  "pydicom_contract_reference": "https://pydicom.github.io/pydicom/stable/reference/generated/pydicom.filereader.dcmread.html"
+}
