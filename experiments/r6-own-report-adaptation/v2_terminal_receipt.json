@@ -1,0 +1,121 @@
+{
+  "version": 2,
+  "status": "RUNTIME_FAILURE_NOT_SCIENTIFIC_REJECTION",
+  "failure": {
+    "stage": "gradient",
+    "epoch": 1,
+    "completed_steps_this_epoch": 4,
+    "optimizer_steps": 4,
+    "amp_scale": 1024.0,
+    "finite_objective": 3.1899046897888184
+  },
+  "cached_studies": 320,
+  "reader_failures": 0,
+  "no_epoch_checkpoint": true,
+  "no_evaluation_report": true,
+  "accuracy_result": null,
+  "temporary_cache_bytes_available": false,
+  "no_retained_csv": true,
+  "no_submission": true,
+  "preflight": {
+    "actual_studies": 8,
+    "study_seconds": [
+      19.00775980949402,
+      9.679023027420044,
+      5.558960676193237,
+      4.731915473937988,
+      5.755019187927246,
+      5.043722152709961,
+      8.463957786560059,
+      8.670626401901245
+    ],
+    "training_step_seconds": 1.990774393081665,
+    "projected_completion_epoch": 1792522668.4804053,
+    "deadline_epoch": 1792525484.4820654,
+    "optimizer_steps": 0,
+    "prefix_full_max_abs_errors": [
+      0.003168821334838867,
+      0.00390625,
+      0.00390625
+    ],
+    "amp_initial_scale": 1024.0,
+    "scaled_objective_gradients_finite": true,
+    "trainable_names": [
+      "enc.stages.3.downsample.0.weight",
+      "enc.stages.3.downsample.0.bias",
+      "enc.stages.3.downsample.1.weight",
+      "enc.stages.3.downsample.1.bias",
+      "enc.stages.3.blocks.0.gamma",
+      "enc.stages.3.blocks.0.conv_dw.weight",
+      "enc.stages.3.blocks.0.conv_dw.bias",
+      "enc.stages.3.blocks.0.norm.weight",
+      "enc.stages.3.blocks.0.norm.bias",
+      "enc.stages.3.blocks.0.mlp.fc1.weight",
+      "enc.stages.3.blocks.0.mlp.fc1.bias",
+      "enc.stages.3.blocks.0.mlp.fc2.weight",
+      "enc.stages.3.blocks.0.mlp.fc2.bias",
+      "enc.stages.3.blocks.1.gamma",
+      "enc.stages.3.blocks.1.conv_dw.weight",
+      "enc.stages.3.blocks.1.conv_dw.bias",
+      "enc.stages.3.blocks.1.norm.weight",
+      "enc.stages.3.blocks.1.norm.bias",
+      "enc.stages.3.blocks.1.mlp.fc1.weight",
+      "enc.stages.3.blocks.1.mlp.fc1.bias",
+      "enc.stages.3.blocks.1.mlp.fc2.weight",
+      "enc.stages.3.blocks.1.mlp.fc2.bias",
+      "enc.stages.3.blocks.2.gamma",
+      "enc.stages.3.blocks.2.conv_dw.weight",
+      "enc.stages.3.blocks.2.conv_dw.bias",
+      "enc.stages.3.blocks.2.norm.weight",
+      "enc.stages.3.blocks.2.norm.bias",
+      "enc.stages.3.blocks.2.mlp.fc1.weight",
+      "enc.stages.3.blocks.2.mlp.fc1.bias",
+      "enc.stages.3.blocks.2.mlp.fc2.weight",
+      "enc.stages.3.blocks.2.mlp.fc2.bias"
+    ],
+    "peak_cuda_bytes": 959771136
+  },
+  "input_identity": {
+    "checkpoint_sha256": "59cc88a197bc80c7fa5faa89e69ae7bec04f69cab5259a23a0d0ceb9431e53f6",
+    "metadata_sha256": "8ca2203c0e9d61c080c7a314c7cdb51c1b03a1d9eb4770819f7f34af53ef4e33",
+    "series_metadata_sha256": "573c1d80772bf41211c91b149c95677385a1c22d63f485c347f1b46c0177aef3",
+    "source_sha256": {
+      "compact_train.py": "04df7e2e154b2c2521696908f272940c63ce17e9b6337b85847fee64504eeaba",
+      "compact_infer.py": "8401812cd63737ec99839d317c4037c4efb445d1baec892fa7481bb30399cc2d",
+      "px_cache.py": "b13e38a7ad3bd496f8027e02209653e224b0926db4f0853eeb0d076a2d6e2632",
+      "knee_anchor_bank_v2.py": "e564807a129dfcd3c984348917436ee6083066a4d685340587ebd1d3ea14f309",
+      "side_common.py": "bbcc5d027834e6a6fd48c4a8cf228e25661b7522c792587c840fe4d7cd5c0566"
+    },
+    "auxiliary_sha256": {
+      "state_spec.json": "3914242b0c404aee625ea65801f14f60adfee326c1ddd6fb96c48ed7050b7ff3",
+      "side_cls.pt": "ab623e2b619db4917639220fed15202e8c8aedd07c8e298a66a2afc0f153650a",
+      "state_stacker.json": "b05147bb463a389a66a4a0d7ff0555efd2bde6f486718f79e9d7fa3d90b24522",
+      "fluid_stacker.json": "9fbd6f652470c5ef131f997edb4e358038937dd45e6f6b65a4afed80e10cf35d"
+    },
+    "anatomy_sha256": "5904dd16eb9a4fd7a1caf90ac977f8fe2ef364908598c23c209db3fe7fd1563e",
+    "split_sha256": "58e14aace2828174c2e96a505630151fa930941051fc531b2a49a8faca2edc81",
+    "own_source_sha256": {
+      "train.py": "4cdcea1b9e6210f9c0b5ddedb31f6eb506b9c26c9002fe6077c0c4822016da00",
+      "prepare_splits.py": "3ede9ff4b59cde02ab3f5c29e61e94cc3b85e1ed65f12f24222a2b8a2b48e283",
+      "report_rules.py": "e10ed7ed45841ab058ffe6926e8bddf01e46a67da2fcf149c6dae0f49569b736"
+    }
+  },
+  "downloaded_file_sha256": {
+    "cufile.log": "4fbfca538f23de713520c6c6e8f14c2adf12fdab8ec5cff1a244207fe092be1d",
+    "rsna-knee-r6-own-report-adaptation.log": "10179ae746dd55f0ec6ad606a05c4c2fa50a35ce87e9f00c5914a63085ce20d0",
+    "own_report_adaptation\\assets.json": "fd803e33ff45a48e0119ea2c6e6ffbb63a11c75643c9a2e6607356b4aad7aa77",
+    "own_report_adaptation\\environment.json": "e024058d151f15c42e1b33bdf1a392743a6225e2585ec24c03a4d83d8adb1b09",
+    "own_report_adaptation\\postprocess.py": "bffc920c2031f58475da902ba2b8879667f7f2a0ed2d6b3de48d458ec44b30de",
+    "own_report_adaptation\\prepare_splits.py": "3ede9ff4b59cde02ab3f5c29e61e94cc3b85e1ed65f12f24222a2b8a2b48e283",
+    "own_report_adaptation\\report_rules.py": "e10ed7ed45841ab058ffe6926e8bddf01e46a67da2fcf149c6dae0f49569b736",
+    "own_report_adaptation\\splits.json": "58e14aace2828174c2e96a505630151fa930941051fc531b2a49a8faca2edc81",
+    "own_report_adaptation\\strict_reconstruct.py": "929f4765de94879a898ace4bd594fddc764606b3602e4671a54f86332cb3836d",
+    "own_report_adaptation\\train.py": "4cdcea1b9e6210f9c0b5ddedb31f6eb506b9c26c9002fe6077c0c4822016da00",
+    "own_report_adaptation\\results\\cache_progress.json": "b98d9c13845a8d9b92cd2948ed0bbbafd3515762a7c3cd45356c479eae08d038",
+    "own_report_adaptation\\results\\cache_receipt.json": "cd977fc0c0daaba897ade02a4a0b56cdf519d5a769938455ec365b1ec3ba12e4",
+    "own_report_adaptation\\results\\contract.json": "227d36dc728534b5eed9dd4998fd7f488d6f7839b11cb52a3f2d92f6877d7492",
+    "own_report_adaptation\\results\\input_identity_receipt.json": "ef4ef341125a8d391d3b1c2ce9b1e99b5730a4b0014a206100371b00a09e9f0d",
+    "own_report_adaptation\\results\\preflight.json": "f671ad721884fa27a3349c657682d8f324d63b8c6867863e52e254e72e01cc56",
+    "own_report_adaptation\\results\\runtime_failure.json": "4dc6ba024ccc8c45d741823b4f3440dc52fb44c7026db1776001e805f178b781"
+  }
+}

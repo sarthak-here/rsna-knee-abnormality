@@ -11,6 +11,12 @@ uses initial AMP scale1024 instead of default65536 and checks scaled complete
 objective gradients at preflight. Scientific contract and three-hour cap remain
 fixed. No model improvement or evaluation result was obtained from v1.
 
+V2 subsequently failed on its fifth training study after four completed updates,
+despite passing preflight; no epoch or evaluation result. See `V2_FAILURE.md`
+and `v2_terminal_receipt.json`. The v3 runtime-only repair backs off AMP scaling
+and replays the same study/RNG without skipping any optimizer update, failing
+closed at scale1. All scientific parameters and hard3h cap remain unchanged.
+
 Prelaunch v1.1 correction: synthetic counterexamples showed that “no tear”
 cannot establish a fine-grained normal state, “no large effusion” cannot mean
 none, and a negator after an entity may refer to another finding. These cells

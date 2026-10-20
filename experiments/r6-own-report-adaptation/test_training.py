@@ -1,11 +1,37 @@
 import unittest
+import time
 import numpy as np
 import torch
 from torch.nn import functional as F
-from train import gates, state_losses, training_objective, AMP_INITIAL_SCALE
+from train import gates, state_losses, training_objective, AMP_INITIAL_SCALE, finite_amp_step
 
 
 class TrainingContractTests(unittest.TestCase):
+    def test_amp_overflow_replays_same_rng_and_takes_one_step(self):
+        p = torch.nn.Parameter(torch.tensor(1.))
+        optimizer = torch.optim.SGD([p], lr=.1)
+        scaler = torch.amp.GradScaler('cpu', init_scale=65536.)
+        seen, retries = [], []
+        def objective():
+            seen.append((float(torch.rand(())), float(p.detach())))
+            # float16 backward overflows at large scale, but the actual
+            # unscaled objective and gradient are finite.
+            return (p.half()*2).float()
+        loss = finite_amp_step(objective, [p], optimizer, scaler, time.time()+30, retries)
+        self.assertEqual(loss, 2.)
+        self.assertGreater(len(retries), 0)
+        self.assertTrue(all(x == seen[0] for x in seen))
+        self.assertAlmostEqual(float(p.detach()), .9, places=5)  # one clipped update only
+        self.assertTrue(all(not r['optimizer_step_taken'] for r in retries))
+
+    def test_amp_intrinsic_nonfinite_gradient_fails_without_update(self):
+        p = torch.nn.Parameter(torch.tensor(0.))
+        optimizer = torch.optim.SGD([p], lr=.1)
+        scaler = torch.amp.GradScaler('cpu', init_scale=1.)
+        with self.assertRaisesRegex(RuntimeError, 'scale1'):
+            finite_amp_step(lambda: p.sqrt(), [p], optimizer, scaler, time.time()+30, [])
+        self.assertEqual(float(p.detach()), 0.)
+
     def test_shared_objective_and_numerical_scale(self):
         self.assertEqual(AMP_INITIAL_SCALE, 1024.)
         z = torch.zeros(1, 12, requires_grad=True)

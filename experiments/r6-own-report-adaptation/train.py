@@ -67,6 +67,44 @@ def training_objective(outputs, teacher, target, class_counts, state_valid):
     return supervision + .5*kl_z + .5*kl_s + .1*kl_b
 
 
+def finite_amp_step(objective, parameters, optimizer, scaler, deadline, retries):
+    """Retry scaled overflow on the SAME batch/RNG; never skip a study/update.
+
+    No model with mutable training buffers is supported by this pilot (only the
+    original LayerNorm ConvNeXt final stage trains). Fail at scale1 rather than
+    hiding an intrinsically nonfinite objective/gradient.
+    """
+    parameters = list(parameters)
+    cpu_rng = torch.get_rng_state()
+    cuda_rng = torch.cuda.get_rng_state_all() if any(p.is_cuda for p in parameters) else None
+    while True:
+        if time.time() > deadline:
+            raise TimeoutError("AMP retry reached the unchanged training deadline")
+        optimizer.zero_grad(set_to_none=True)
+        torch.set_rng_state(cpu_rng)
+        if cuda_rng is not None:
+            torch.cuda.set_rng_state_all(cuda_rng)
+        loss = objective()
+        if not torch.isfinite(loss):
+            raise RuntimeError("nonfinite training objective")
+        scaler.scale(loss).backward(); scaler.unscale_(optimizer)
+        if any(p.grad is None for p in parameters):
+            raise RuntimeError("missing trainable gradient")
+        if all(bool(torch.isfinite(p.grad).all()) for p in parameters):
+            norm = torch.nn.utils.clip_grad_norm_(parameters, 1.)
+            if not torch.isfinite(norm):
+                raise RuntimeError("nonfinite unscaled gradient norm")
+            scaler.step(optimizer); scaler.update()
+            return float(loss.detach())
+        scale = scaler.get_scale()
+        retries.append({"scale": scale, "loss": float(loss.detach()), "optimizer_step_taken": False})
+        if scale <= 1.:
+            raise RuntimeError("nonfinite gradient at scale1; no optimizer step")
+        # Explicit update clears GradScaler's per-optimizer unscale state. The
+        # same forward is replayed with RNG restored, so no sample is dropped.
+        scaler.update(new_scale=max(1., scale / 2.))
+
+
 def state_losses(probabilities, targets):
     losses = np.full((len(targets), 12), np.nan, dtype=np.float64)
     for i, target in enumerate(targets):
@@ -258,6 +296,7 @@ def run(assets_path):
     optimizer = torch.optim.AdamW([p for p in candidate.parameters() if p.requires_grad], lr=1e-5, weight_decay=.01)
     scaler = torch.amp.GradScaler("cuda", init_scale=AMP_INITIAL_SCALE)
     training_log = []
+    numerical_retries = []
     for epoch in range(3):
         candidate.eval(); candidate.enc.stages[3].train()
         order = np.random.default_rng(SEED+epoch).permutation(192)
@@ -269,23 +308,24 @@ def run(assets_path):
                 return
             record = split["fit"][int(index)]; d = data(record)
             target = torch.tensor(record["state_targets"], device=dev)
-            optimizer.zero_grad(set_to_none=True)
-            with torch.autocast("cuda", dtype=torch.float16):
-                z, sl, bl = tail(candidate, d["early"], d["meta"])
-            loss = training_objective((z, sl, bl), (d["z"], d["sl"], d["bl"]), target, class_counts, candidate.state_valid)
-            if not torch.isfinite(loss):
-                write(out / "runtime_failure.json", {"stage": "objective", "epoch": epoch+1,
-                      "completed_steps_this_epoch": len(losses), "optimizer_steps": epoch*192+len(losses)})
-                raise RuntimeError("nonfinite training objective")
-            scaler.scale(loss).backward(); scaler.unscale_(optimizer)
-            norm = torch.nn.utils.clip_grad_norm_([p for p in candidate.parameters() if p.requires_grad], 1.)
-            if not torch.isfinite(norm):
-                write(out / "runtime_failure.json", {"stage": "gradient", "epoch": epoch+1,
+            def objective():
+                with torch.autocast("cuda", dtype=torch.float16):
+                    outputs = tail(candidate, d["early"], d["meta"])
+                return training_objective(outputs, (d["z"], d["sl"], d["bl"]), target, class_counts, candidate.state_valid)
+            retries = []
+            try:
+                loss = finite_amp_step(objective, [p for p in candidate.parameters() if p.requires_grad],
+                                       optimizer, scaler, deadline-300, retries)
+            except (RuntimeError, TimeoutError) as exc:
+                write(out / "runtime_failure.json", {"stage": "backward", "epoch": epoch+1,
                       "completed_steps_this_epoch": len(losses), "optimizer_steps": epoch*192+len(losses),
-                      "amp_scale": scaler.get_scale(), "finite_objective": float(loss.detach())})
-                raise RuntimeError("nonfinite gradient, refusing silent scaler-skipped step")
-            scaler.step(optimizer); scaler.update()
-            losses.append(float(loss.detach()))
+                      "amp_scale": scaler.get_scale(), "retries": retries, "error": str(exc)})
+                raise
+            if retries:
+                numerical_retries.append({"epoch": epoch+1, "step": len(losses)+1, "retries": retries,
+                                          "successful_scale": scaler.get_scale()})
+                write(out / "numerical_retry_receipt.json", numerical_retries)
+            losses.append(loss)
         ckpt = out / f"epoch_{epoch+1}.pt"
         torch.save({"state_dict": candidate.cpu().state_dict(), "optimizer": optimizer.state_dict(),
                     "scaler": scaler.state_dict(), "epoch": epoch+1, "torch_rng": torch.get_rng_state(),
