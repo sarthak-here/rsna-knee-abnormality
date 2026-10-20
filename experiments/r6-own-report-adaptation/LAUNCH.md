@@ -1,6 +1,21 @@
 # Actual private launch — 20 October 2026
 
-## Current status: version2 accepted and verified QUEUED
+## Current status: version3 accepted and verified RUNNING
+
+Version2 ended ERROR after four optimizer steps; exact terminal receipts and
+runtime-only same-study AMP backoff repair are pushed in `86057d9`. See
+`V2_FAILURE.md`. No tuning or confirmation report was produced.
+
+On20 October2026, the authorized runtime-repair push returned
+`Kernel version 3 successfully pushed`; a subsequent status request returned
+`KernelWorkerStatus.RUNNING`. Exact v3 notebook SHA-256:
+`93ee2bf92236862d89736adbd330b4081d00e10da9799ab22b6c4929940b1bbe`.
+Thirteen tests pass. Monitor this exact version, no duplicate launch. AMP retry
+receipts must show identical-study/RNG replay without silently skipped updates.
+The original objective, split, architecture, gates and inclusive3h cap remain
+unchanged. No competition prediction was submitted or score improvement found.
+
+## Historical accepted v2 launch
 
 On20 October2026 the user explicitly asked to try the Kaggle upload. The
 authorized push succeeded: `Kernel version 2 successfully pushed`. A subsequent
@@ -78,7 +93,7 @@ public-leaderboard improvement. No automatic larger training or submission.
 ## Monitoring and terminal audit
 
 Do not duplicate while queued/running. On terminal state download the exact
-version-1 outputs and logs. Require source/input/build/split/checkpoint identities,
+current-version outputs and logs. Require source/input/build/split/checkpoint identities,
 finite valid predictions and objectives, only last-stage weights changed, complete
 cache/step/epoch receipts, zero reader failures, no CSV/submission, correct MCL
 plain-only exception and unchanged postprocessors. Invalid source state slots
