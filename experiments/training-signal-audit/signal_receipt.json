@@ -1,0 +1,151 @@
+{
+  "kind": "FITTING_SUPERVISION_AND_PILOT_EXPOSURE_AUDIT",
+  "metadata_sha256": "8ca2203c0e9d61c080c7a314c7cdb51c1b03a1d9eb4770819f7f34af53ef4e33",
+  "spec_sha256": "3914242b0c404aee625ea65801f14f60adfee326c1ddd6fb96c48ed7050b7ff3",
+  "normalized_split_sha256": "58e14aace2828174c2e96a505630151fa930941051fc531b2a49a8faca2edc81",
+  "fit_groups": 192,
+  "known_fit_cells": 536,
+  "active_supervised_classes": 8,
+  "per_class": {
+    "ACL": {
+      "known_fit_cells": 84,
+      "fit_coverage": 0.4375,
+      "state_counts": {
+        "normal": 63,
+        "tear_unspecified": 10,
+        "complete_tear": 11
+      },
+      "coefficient_per_known_ce_cell": 0.2857142857142857,
+      "epoch_sum_ce_coefficients": 24.0,
+      "direct_report_supervision": true
+    },
+    "MCL": {
+      "known_fit_cells": 60,
+      "fit_coverage": 0.3125,
+      "state_counts": {
+        "normal": 58,
+        "complete_tear": 2
+      },
+      "coefficient_per_known_ce_cell": 0.4,
+      "epoch_sum_ce_coefficients": 24.0,
+      "direct_report_supervision": true
+    },
+    "Medial Meniscus": {
+      "known_fit_cells": 124,
+      "fit_coverage": 0.6458333333333334,
+      "state_counts": {
+        "normal": 44,
+        "tear": 80
+      },
+      "coefficient_per_known_ce_cell": 0.1935483870967742,
+      "epoch_sum_ce_coefficients": 24.0,
+      "direct_report_supervision": true
+    },
+    "Lateral Meniscus": {
+      "known_fit_cells": 112,
+      "fit_coverage": 0.5833333333333334,
+      "state_counts": {
+        "normal": 86,
+        "tear": 26
+      },
+      "coefficient_per_known_ce_cell": 0.21428571428571427,
+      "epoch_sum_ce_coefficients": 24.0,
+      "direct_report_supervision": true
+    },
+    "Medial OA": {
+      "known_fit_cells": 0,
+      "fit_coverage": 0.0,
+      "state_counts": {},
+      "coefficient_per_known_ce_cell": 0.0,
+      "epoch_sum_ce_coefficients": 0.0,
+      "direct_report_supervision": false
+    },
+    "Lateral OA": {
+      "known_fit_cells": 0,
+      "fit_coverage": 0.0,
+      "state_counts": {},
+      "coefficient_per_known_ce_cell": 0.0,
+      "epoch_sum_ce_coefficients": 0.0,
+      "direct_report_supervision": false
+    },
+    "PF OA": {
+      "known_fit_cells": 0,
+      "fit_coverage": 0.0,
+      "state_counts": {},
+      "coefficient_per_known_ce_cell": 0.0,
+      "epoch_sum_ce_coefficients": 0.0,
+      "direct_report_supervision": false
+    },
+    "Effusion": {
+      "known_fit_cells": 86,
+      "fit_coverage": 0.4479166666666667,
+      "state_counts": {
+        "small": 20,
+        "none_or_trace": 43,
+        "moderate": 19,
+        "large": 4
+      },
+      "coefficient_per_known_ce_cell": 0.27906976744186046,
+      "epoch_sum_ce_coefficients": 24.0,
+      "direct_report_supervision": true
+    },
+    "Synovitis": {
+      "known_fit_cells": 12,
+      "fit_coverage": 0.0625,
+      "state_counts": {
+        "synovitis": 11,
+        "none": 1
+      },
+      "coefficient_per_known_ce_cell": 2.0,
+      "epoch_sum_ce_coefficients": 24.0,
+      "direct_report_supervision": true
+    },
+    "Baker's": {
+      "known_fit_cells": 53,
+      "fit_coverage": 0.2760416666666667,
+      "state_counts": {
+        "ruptured_or_leaking": 6,
+        "none": 37,
+        "moderate": 3,
+        "small": 5,
+        "large": 2
+      },
+      "coefficient_per_known_ce_cell": 0.4528301886792453,
+      "epoch_sum_ce_coefficients": 24.0,
+      "direct_report_supervision": true
+    },
+    "Contusion": {
+      "known_fit_cells": 0,
+      "fit_coverage": 0.0,
+      "state_counts": {},
+      "coefficient_per_known_ce_cell": 0.0,
+      "epoch_sum_ce_coefficients": 0.0,
+      "direct_report_supervision": false
+    },
+    "Fracture": {
+      "known_fit_cells": 5,
+      "fit_coverage": 0.026041666666666668,
+      "state_counts": {
+        "none": 4,
+        "old_or_healed_fracture": 1
+      },
+      "coefficient_per_known_ce_cell": 4.8,
+      "epoch_sum_ce_coefficients": 24.0,
+      "direct_report_supervision": true
+    }
+  },
+  "max_to_min_positive_cell_coefficient": 24.8,
+  "parser_calls": 192,
+  "gold_report_parser_calls": 0,
+  "tune_confirmation_report_parser_calls": 0,
+  "remaining_guarded_source_fold0_groups_not_in_pilot": 844,
+  "remaining_group_digest": "9def810c3a54500bdf1f194dd478d541fc1952b5ba64fc8e4e7624330e2f639f",
+  "remaining_group_labels_inspected": false,
+  "globally_fresh_or_independent_evaluation_proven": false,
+  "scope_caveat": "not used in this pilot is not proof of exclusion from all prior research/source priors",
+  "model_or_prediction_loaded": false,
+  "gpu_used": false,
+  "candidate_authorized": false,
+  "closed_contract_changed": false,
+  "causal_reason_for_failure_proven": false
+}
