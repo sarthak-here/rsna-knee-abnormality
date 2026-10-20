@@ -178,6 +178,159 @@
       "matches_any_embedded_original_md5": false
     }
   ],
+  "soft_v2_state_category_compatibility": {
+    "ACL": {
+      "exact_name_matches": [
+        "normal",
+        "signal_or_degeneration"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 1066,
+        "high_grade_or_complete_tear": 317,
+        "low_grade_partial": 47
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "MCL": {
+      "exact_name_matches": [
+        "normal"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 1859,
+        "grade2_partial": 231,
+        "grade1_edema": 298,
+        "grade3_complete": 76,
+        "chronic_or_healed": 17
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "Medial Meniscus": {
+      "exact_name_matches": [
+        "degeneration_no_tear",
+        "normal"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 594,
+        "definite_tear": 1900,
+        "equivocal_tear": 162,
+        "macerated_or_postop": 68
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "Lateral Meniscus": {
+      "exact_name_matches": [
+        "degeneration_no_tear",
+        "normal"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 604,
+        "equivocal_tear": 119,
+        "definite_tear": 723,
+        "macerated_or_postop": 18
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "Medial OA": {
+      "exact_name_matches": [
+        "low_grade_chondral",
+        "normal"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 1606,
+        "moderate": 782,
+        "high_grade_or_bone_on_bone": 319
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "Lateral OA": {
+      "exact_name_matches": [
+        "low_grade_chondral",
+        "normal"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 2133,
+        "moderate": 418,
+        "high_grade_or_bone_on_bone": 226
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "PF OA": {
+      "exact_name_matches": [
+        "low_grade_chondral",
+        "normal"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 2694,
+        "moderate": 479,
+        "high_grade_or_bone_on_bone": 175
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "Effusion": {
+      "exact_name_matches": [
+        "large",
+        "moderate"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 623,
+        "trace_or_small": 2114,
+        "none": 1031
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "Synovitis": {
+      "exact_name_matches": [],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 1457,
+        "negated": 1415,
+        "possible_or_mild": 1182,
+        "definite": 295
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "Baker's": {
+      "exact_name_matches": [
+        "none",
+        "small"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 434,
+        "moderate_or_large": 456,
+        "ruptured": 72
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "Contusion": {
+      "exact_name_matches": [
+        "degenerative_or_reactive_edema",
+        "none"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 3008,
+        "traumatic_contusion_or_bruise": 242
+      },
+      "name_match_does_not_authenticate_semantics": true
+    },
+    "Fracture": {
+      "exact_name_matches": [
+        "acute_fracture",
+        "none"
+      ],
+      "nonmatching_names_and_counts": {
+        "not_mentioned": 1426,
+        "stress_or_insufficiency": 205,
+        "old_or_healed": 269
+      },
+      "name_match_does_not_authenticate_semantics": true
+    }
+  },
+  "soft_v2_provenance_gate": {
+    "status": "previously_rejected_do_not_reuse_for_training_or_selection",
+    "prior_audit": "experiments\\public-frontier-audit-2026-10-17\\README.md",
+    "prior_audit_sha256": "d273d9f08cc801209ec7736dd1755ff31c82963a5d3f94bf8c3502eca99defb8",
+    "reason": "exact v2 generator is not pinned; public author lineage iterated prompts on all 58 gold reports",
+    "changing_to_partial_label_loss_does_not_clear_provenance": true
+  },
   "important_objective_detail": "lr_loss applies torch.log(lr): lr_prior is a positive likelihood ratio, not a raw probability or an already-log ratio",
   "pool_difference_status": "unresolved: trainer excludes blanked priors, review holdout and fold -3, and requires rendered cache availability; five IDs cannot be inferred from counts alone",
   "other_local_pool": {

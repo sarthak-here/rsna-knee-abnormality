@@ -8,6 +8,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from collections import Counter
 
 
 def digest(path, algorithm="sha256"):
@@ -59,6 +60,20 @@ def main():
     other_config = repo / ".audit/bleg-cpu-audit/run_config.json"
     other_rows = json.loads(other_pool.read_text())
     other_run = json.loads(other_config.read_text())
+    # A new loss cannot repair uncertain upstream prompt/label selection.
+    # This release was already closed by the frontier provenance audit.
+    prior_audit = repo / "experiments/public-frontier-audit-2026-10-17/README.md"
+    with paths[1].open(encoding="utf-8-sig", newline="") as stream:
+        states = list(csv.DictReader(stream))
+    non_gold_states = [r for r in states if r["gold"] == "0"]
+    state_schema = {}
+    for label in spec["labels"]:
+        counts = Counter(r[label + "_state"] for r in non_gold_states)
+        state_schema[label] = {
+            "exact_name_matches": sorted(set(counts) & set(spec["categories"][label])),
+            "nonmatching_names_and_counts": {k: v for k, v in counts.items() if k not in spec["categories"][label]},
+            "name_match_does_not_authenticate_semantics": True,
+        }
     report = {
         "scope": "original target lineage and local substitute schema audit, not an accuracy screen",
         "state_spec_sha256": digest(spec_path), "trainer_sha256": digest(trainer_path),
@@ -66,6 +81,13 @@ def main():
         "deployed_training_target_filename": "probe_targets_opusv11b_rr6_plr6_cdr.csv",
         "embedded_parent_is_not_final_cdr_target": True,
         "local_alternatives": tables,
+        "soft_v2_state_category_compatibility": state_schema,
+        "soft_v2_provenance_gate": {
+            "status": "previously_rejected_do_not_reuse_for_training_or_selection",
+            "prior_audit": str(prior_audit.relative_to(repo)), "prior_audit_sha256": digest(prior_audit),
+            "reason": "exact v2 generator is not pinned; public author lineage iterated prompts on all 58 gold reports",
+            "changing_to_partial_label_loss_does_not_clear_provenance": True,
+        },
         "important_objective_detail": "lr_loss applies torch.log(lr): lr_prior is a positive likelihood ratio, not a raw probability or an already-log ratio",
         "pool_difference_status": "unresolved: trainer excludes blanked priors, review holdout and fold -3, and requires rendered cache availability; five IDs cannot be inferred from counts alone",
         "other_local_pool": {"path": ".audit/bleg-cpu-audit/pool_uids.json", "rows": len(other_rows),

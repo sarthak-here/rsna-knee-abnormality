@@ -36,6 +36,33 @@ The five-study discrepancy remains unresolved: source filtering can exclude
 blanked reports, review holdouts, fold -3 and unavailable rendered studies.
 The count alone does not identify which five studies were absent.
 
+## Do not resurrect the closed soft-v2 label route
+
+The schema audit above is **not** permission to train from soft-v2. The earlier
+`public-frontier-audit-2026-10-17/README.md` already rejected that release:
+its exact v2 generator/mapping is not pinned, and the author's public lineage
+iterates report-state prompts on all 58 organizer-gold reports. This is a
+separate provenance problem from the missing LR columns. Excluding gold rows
+from a new optimizer or adopting a new loss does not undo upstream selection.
+
+An additional CPU inspection checked the actual non-gold state vocabulary
+against the frozen R6 head, without scoring predictions or making targets.
+The vocabularies are not drop-in compatible: e.g. soft-v2's
+`trace_or_small` does not identify which of R6's `none_or_trace` and `small`
+states applies; `macerated_or_postop` is not an authenticated alias for
+`macerated_or_destroyed`; OA `moderate` does not supply the size/grade detail
+in the original fine-grained state categories. Even matching names do not
+establish identical report extraction or definitions.
+
+Partial-label learning could in principle retain a set of possible fine-grained
+states instead of inventing a single category. That mathematical alternative
+does **not** authenticate this source's generation/selection lineage or supply
+independent pathology evidence. It is therefore not a justified GPU candidate
+with these closed inputs. No mappings, training targets, loss tuning or models
+were generated. The reproducible audit records per-finding vocabulary mismatch
+counts and links the earlier provenance decision; do not repeat this route as
+another experiment while awaiting publisher-contact approval.
+
 ## Fresh publisher inventory check
 
 The public publisher inventory listed six releases on this check. In addition
