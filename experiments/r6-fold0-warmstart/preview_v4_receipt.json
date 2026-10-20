@@ -1,0 +1,162 @@
+{
+  "scope": "one complete official preview study; original training eval vs deployed CPU loader",
+  "fixture_receipt_sha256": "836d62c9343f36a164d7ddaf1500e833809aef7a5bae47dfc6a05758e158c8cf",
+  "dicom_count": 284,
+  "series_count": 5,
+  "raw_bytes": 436378362,
+  "assets": {
+    "compact_infer.py": {
+      "sha256": "8401812cd63737ec99839d317c4037c4efb445d1baec892fa7481bb30399cc2d",
+      "bytes": 84290
+    },
+    "compact_train.py": {
+      "sha256": "04df7e2e154b2c2521696908f272940c63ce17e9b6337b85847fee64504eeaba",
+      "bytes": 230308
+    },
+    "px_cache.py": {
+      "sha256": "b13e38a7ad3bd496f8027e02209653e224b0926db4f0853eeb0d076a2d6e2632",
+      "bytes": 20263
+    },
+    "knee_anchor_bank_v2.py": {
+      "sha256": "e564807a129dfcd3c984348917436ee6083066a4d685340587ebd1d3ea14f309",
+      "bytes": 14529
+    },
+    "side_common.py": {
+      "sha256": "bbcc5d027834e6a6fd48c4a8cf228e25661b7522c792587c840fe4d7cd5c0566",
+      "bytes": 1571
+    },
+    "manifest.json": {
+      "sha256": "6508ce6921eda986c885b2226fa55dd4d2aa8e5fc570b4c007c9a60c05bfc648",
+      "bytes": 4120
+    },
+    "anatomy.pt": {
+      "sha256": "5904dd16eb9a4fd7a1caf90ac977f8fe2ef364908598c23c209db3fe7fd1563e",
+      "bytes": 112496037
+    },
+    "side_cls.pt": {
+      "sha256": "ab623e2b619db4917639220fed15202e8c8aedd07c8e298a66a2afc0f153650a",
+      "bytes": 85255211
+    }
+  },
+  "anchor": {
+    "study": "1.2.826.0.1.3680043.8.498.10047035057544427318018579121635276191",
+    "version": 2,
+    "joint_lps": [
+      76.07948003975,
+      -69.45757786776001,
+      6.778210891500009
+    ],
+    "patella_lps": null,
+    "method": "slab_prior",
+    "why": [
+      "mass<250(0)",
+      "mass<250(0)"
+    ],
+    "series": {
+      "1.2.826.0.1.3680043.8.498.11580656442259111255675562605155903947": {
+        "joint": [
+          0.40919246894902117,
+          0.4474099459598993
+        ],
+        "in_field": true,
+        "dist_mm": 0.4,
+        "patella": null
+      },
+      "1.2.826.0.1.3680043.8.498.17811502614030631664517622518906646132": {
+        "joint": [
+          0.4939820516380761,
+          0.5928311920488696
+        ],
+        "in_field": true,
+        "dist_mm": 1.1,
+        "patella": null
+      },
+      "1.2.826.0.1.3680043.8.498.30565395595045942404081022062489758495": {
+        "joint": [
+          0.4939121641606039,
+          0.5928923009571464
+        ],
+        "in_field": true,
+        "dist_mm": 1.1,
+        "patella": null
+      },
+      "1.2.826.0.1.3680043.8.498.32856494541816845805947850304653662081": {
+        "joint": [
+          0.43633696874613465,
+          0.4516212955157777
+        ],
+        "in_field": true,
+        "dist_mm": 0.6,
+        "patella": null
+      },
+      "1.2.826.0.1.3680043.8.498.44334485654554877495800965096767429689": {
+        "joint": [
+          0.4151407670633037,
+          0.47551264639568447
+        ],
+        "in_field": true,
+        "dist_mm": 0.3,
+        "patella": null
+      }
+    },
+    "slab_prior_lps": [
+      76.07948003975,
+      -69.45757786776001,
+      6.778210891500009
+    ]
+  },
+  "side": {
+    "side": "L",
+    "status": "explicit_study_tags",
+    "x": 82.3,
+    "score": null,
+    "flipped": false
+  },
+  "images_shape": [
+    574,
+    3,
+    384,
+    384
+  ],
+  "segmentation_derived_anchor_accepted": false,
+  "explicit_source_geometry_prior_used": true,
+  "images_sha256": "69a866fb818d802cc0204204ef4703a326816026034d836f474b7d16f2471bcb",
+  "metadata_shape": [
+    574,
+    9
+  ],
+  "metadata_sha256": "fcc9f4d349f1b3d3baaeca1c3f49a8c29eb1ae4076f6bd1982675e2f560f01ff",
+  "training_eval_and_runtime_windows_bitwise_equal": true,
+  "training_eval_and_runtime_metadata_bitwise_equal": true,
+  "settings": {
+    "size": 384,
+    "crop": 352,
+    "views": "v4",
+    "stride": 1,
+    "through_plane_step_mm": 3.5,
+    "local_crop_mm": 100.0,
+    "slices": 3
+  },
+  "fluid": {
+    "status": "no fluid-sensitive sagittal series",
+    "eff_sag_p99_open": null,
+    "bak_sag_p99_open": null,
+    "n_sag_fluid_series": 0,
+    "series": null,
+    "median": null,
+    "n": null,
+    "spacing": null
+  },
+  "positive_fluid_measurement_exercised": false,
+  "disease_network_forward_tested": false,
+  "encoder_normalization_parity_tested": false,
+  "gpu_used": false,
+  "optimizer_steps": 0,
+  "pathology_predictions": 0,
+  "labels_used": false,
+  "submission_created": false,
+  "advancement_authorized": false,
+  "cpu_seconds_including_aux_model_load": 29.92542849999154,
+  "limits": "Single preview fixture, no proof of every protocol or training augmentation; no accuracy evidence.",
+  "audit_script_sha256": "e0a7c3b3335d891b0bde251fd2147a90c2a323ce2e5596e26765d96bd6d12f65"
+}

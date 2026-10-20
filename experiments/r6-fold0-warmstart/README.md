@@ -162,5 +162,29 @@ branch has been validated.
 python experiments/r6-fold0-warmstart/audit_preview_v4.py --fixture C:/Users/sarthak/Desktop/codex/r6p --fixture-receipt C:/Users/sarthak/Desktop/codex/r6p/study_fixture_064d58efe1af.json --out experiments/r6-fold0-warmstart/preview_v4_receipt.json
 ```
 
-Treat this command as unpassed until its terminal receipt exists. It does not
-authorize a GPU probe or solve the missing supervision/evaluation gates.
+The terminal `preview_v4_receipt.json` now records a **partial implementation
+pass**, not complete preprocessing certification:
+
+- All five official series / 284 DICOM files (436,378,362 raw bytes) were
+  present and hash-checked. The prior 34-file fixture receipt was preserved.
+- The deployed loader and original training evaluation loader produced
+  bitwise-identical `[574,3,384,384]` uint8 windows and `[574,9]` metadata.
+- Explicit left-knee DICOM tags were accepted consistently with sagittal
+  position; this fixture did **not** exercise image-classifier correction.
+- Both sagittal series are non-fluid-sensitive. The segmentation model found
+  zero qualifying tissue mass, so the original code explicitly selected its
+  **geometry-derived slab prior**, not a substituted field-centre anchor.
+  All five projected anchors were in field. A positive segmentation anchor
+  therefore remains untested.
+- The source correctly reported `no fluid-sensitive sagittal series`; actual
+  positive fluid-volume measurement remains untested, not silently counted as
+  a successful measurement.
+- CPU runtime including auxiliary model loading was 29.925 seconds. No GPU,
+  disease-network forward, labels, optimizer, predictions or submission ran.
+
+The complete preview fixture receipt SHA-256 is
+`836d62c9343f36a164d7ddaf1500e833809aef7a5bae47dfc6a05758e158c8cf`.
+Do not redownload or repeat this completed fixture gate. A fluid-sensitive
+sagittal preview fixture is needed for the remaining positive anatomy/fluid
+branches; model-crop/encoder-normalization parity also remains separate.
+This result does not authorize a GPU probe or solve supervision/evaluation.
