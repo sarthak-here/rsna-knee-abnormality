@@ -98,3 +98,38 @@ to evaluate fold-0 holdouts. These tests neither authenticate stacker fitting
 lineage nor establish an independent accuracy score. The original load receipt's
 `postprocessor_parity_tested=false` describes that earlier test; the separate
 postprocessing receipt records this later synthetic gate precisely.
+
+## Actual preview DICOM native-encoding gate
+
+The official competition exposes individual public-preview DICOM files, so a
+bounded fixture could be fetched without any training archive or GPU job.
+`fetch_preview_series.py` downloaded 34 axial preview DICOMs (62,719,196 bytes),
+plus the two small official test metadata CSVs, under the workspace directory
+`C:/Users/sarthak/Desktop/codex/r6p`. The downloader refuses candidates exceeding
+80 files/96 MiB or extending past the first listing-page boundary. No training
+labels, new external MRI dataset or patient report was downloaded.
+
+`audit_native_preview.py` verifies each raw-file hash and compares the published
+training/native path with the inference worker's memory-saving implementation:
+
+- Full-header versus header-only reads produce identical physical slice order.
+- Full versus reread canonical pixel arrays and in-plane spacings match exactly
+  for all 34 DICOMs, with no slice silently omitted by the ordering code.
+- Whole-volume training quantization versus slice-wise inference quantization
+  yields the same `[34,960,960]` uint16 bytes, display window, extrema and stated
+  quantization metadata. This fixture is Explicit VR Little Endian; it does not
+  establish parity for every compressed transfer syntax.
+- Native-array SHA-256 is
+  `0ec597d62f7368a6768c7aac2e5b3b1143eb19325d2f209541940165e34309c1`.
+  Source identities and pydicom 3.0.1 are pinned. Dependencies are installed only
+  into `.audit/r6-cpu-deps`, without changing the user's global environment.
+
+```powershell
+python experiments/r6-fold0-warmstart/audit_native_preview.py --fixture C:/Users/sarthak/Desktop/codex/r6p --code-root .audit/rsna-knee-blend-code/cloud_code --probe-worker .audit/rsna-knee-blend-code/r6src/probe_infer.py --deps .audit/r6-cpu-deps --out experiments/r6-fold0-warmstart/native_preview_receipt.json
+```
+
+**Scope:** one real preview series, before study-level laterality correction;
+not a complete study, no anchor model, no anatomy-centred v4 rendering and no
+pixel-derived fluid-volume validation yet. No model predictions, optimizer or
+GPU were used. Do not mark the whole preprocessing gate complete or use this
+small uncompressed fixture to forecast training time across the competition.

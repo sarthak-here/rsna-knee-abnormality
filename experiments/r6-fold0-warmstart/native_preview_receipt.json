@@ -1,0 +1,39 @@
+{
+  "scope": "real preview single-series pre-laterality native decoder/quantizer parity only",
+  "fixture_receipt_sha256": "a431b12f737b09636194d7c161db1b933061727ebdc78b1b2183ccbea1a5595d",
+  "dicom_files": 34,
+  "raw_bytes": 62719196,
+  "plane": "Axial",
+  "native_shape": [
+    34,
+    960,
+    960
+  ],
+  "native_dtype": "uint16",
+  "physical_header_order_identical": true,
+  "full_vs_lean_canonical_pixels_and_spacing_identical": true,
+  "uint16_quantization_bitwise_equal": true,
+  "display_window_and_quantization_metadata_exact": true,
+  "native_array_sha256": "0ec597d62f7368a6768c7aac2e5b3b1143eb19325d2f209541940165e34309c1",
+  "cpu_audit_seconds_excluding_python_startup": 4.66222120000748,
+  "pydicom_version": "3.0.1",
+  "transfer_syntaxes": [
+    "1.2.840.10008.1.2.1"
+  ],
+  "source_hashes": {
+    "native_cache.py": "c53ce8985406b3b918d9e821d43518479e89d9f946daebd817f378e3949718b9",
+    "dicom_geometry.py": "12aa501f9704aef15b7a3bbd560951acb6d95b89b7de0141d6cf89fc3f051ab1",
+    "probe_infer.py": "a6cc31448019c84be5868d0a2ff1d99719b23b0f86110efc03efff3ce6bd6980",
+    "audit_script": "0498fdccf2ce61a970548cfa023efeed4d9269e08f65f1b905e3e1a3ea9bf39a"
+  },
+  "study_side_resolution_tested": false,
+  "anchor_inference_tested": false,
+  "anatomy_centred_v4_render_tested": false,
+  "pixel_derived_fluid_volume_tested": false,
+  "scope_is_complete_study": false,
+  "gpu_used": false,
+  "optimizer_steps": 0,
+  "study_predictions": 0,
+  "training_labels_used": false,
+  "promotion": false
+}
