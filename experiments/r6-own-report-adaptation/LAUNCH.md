@@ -1,5 +1,20 @@
 # Actual private launch — 20 October 2026
 
+## Current status: v1 ERROR; v2 built, NOT launched
+
+Runtime failure and numerical repair are committed/pushed in `79028e2`.
+See `V1_FAILURE.md`. The replacement notebook SHA-256 is
+`7829a00d8168f8e374852a4736c31ef582303eee463ac60cdcb0cfdb2e4a5537`.
+Its initial AMP scale is1024; scientific contract and hard3h cap are unchanged.
+
+The attempted Kaggle push was rejected by the app approval reviewer **before
+execution**, because specific approval to export the private notebook/code to
+Kaggle was required. No version2 acceptance or queued/running state exists.
+Do not bypass or retry the blocked upload without explicit user approval. The
+monitor now records this approval block rather than polling the failed v1 job.
+
+## Historical accepted v1 launch
+
 Kaggle accepted **version 1** of
 `sarthaksharma14/rsna-knee-r6-own-report-adaptation` and subsequently returned
 `KernelWorkerStatus.RUNNING`. This is an actual created run, not a planned job.
