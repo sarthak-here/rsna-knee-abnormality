@@ -1,6 +1,20 @@
 # Actual private launch — 20 October 2026
 
-## Current status: v1 ERROR; v2 built, NOT launched
+## Current status: version2 accepted and verified QUEUED
+
+On20 October2026 the user explicitly asked to try the Kaggle upload. The
+authorized push succeeded: `Kernel version 2 successfully pushed`. A subsequent
+Kaggle status request returned `KernelWorkerStatus.QUEUED`. The prior upload
+approval block is resolved. No competition prediction was submitted.
+Monitor this exact version; do not duplicate it while queued/running.
+
+The unchanged v2 notebook SHA-256 is
+`7829a00d8168f8e374852a4736c31ef582303eee463ac60cdcb0cfdb2e4a5537`;
+implementation/repair commit `79028e2`, previous block record `1e67def`.
+All original scientific parameters, advancement gates and the inclusive hard
+three-hour run cap remain fixed. The monitor is updated to follow version2.
+
+## Historical approval block (resolved)
 
 Runtime failure and numerical repair are committed/pushed in `79028e2`.
 See `V1_FAILURE.md`. The replacement notebook SHA-256 is
