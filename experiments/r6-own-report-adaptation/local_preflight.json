@@ -1,0 +1,26 @@
+{
+  "checkpoint_sha256": "59cc88a197bc80c7fa5faa89e69ae7bec04f69cab5259a23a0d0ceb9431e53f6",
+  "device": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "prefix_shape": [
+    32,
+    384,
+    22,
+    22
+  ],
+  "prefix_dtype": "torch.float16",
+  "max_full_vs_cached_logit_errors": [
+    0.000537872314453125,
+    0.0009765625,
+    0.00390625
+  ],
+  "gradient_tensors": 31,
+  "nonzero_gradient_tensors": 31,
+  "last_stage_backward_seconds": 1.7522594999754801,
+  "total_seconds": 8.185282499995083,
+  "peak_cuda_bytes": 817719296,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "pathology_score": null,
+  "kaggle_measurement_required": true,
+  "script_sha256": "76cf9b8be4f888929b2f9683be872b7b4589fa4403c1b21b197dbe1b461e00b2"
+}

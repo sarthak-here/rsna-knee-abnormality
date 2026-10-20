@@ -1,0 +1,13 @@
+{
+  "source_notebook_sha256": "16a9d953972d9d82717f279f75e57e798d3902f93d1071c30f3caa67326e3601",
+  "files_sha256": {
+    "report_rules.py": "e10ed7ed45841ab058ffe6926e8bddf01e46a67da2fcf149c6dae0f49569b736",
+    "prepare_splits.py": "3ede9ff4b59cde02ab3f5c29e61e94cc3b85e1ed65f12f24222a2b8a2b48e283",
+    "train.py": "ef77eb3ae3012f55342ced3c6326dae1ca0c04139874f6f9ae1f63d21dab1424",
+    "splits.json": "58e14aace2828174c2e96a505630151fa930941051fc531b2a49a8faca2edc81",
+    "postprocess.py": "bffc920c2031f58475da902ba2b8879667f7f2a0ed2d6b3de48d458ec44b30de",
+    "strict_reconstruct.py": "929f4765de94879a898ace4bd594fddc764606b3602e4671a54f86332cb3836d"
+  },
+  "notebook_sha256": "51a90a9a6b5332a93fd8dd345df650ec126d21e9f9772d9bac08b4c007ccb7df",
+  "submission_launcher_included": false
+}
