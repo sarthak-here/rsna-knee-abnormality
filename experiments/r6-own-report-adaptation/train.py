@@ -14,6 +14,7 @@ import torch
 from torch.nn import functional as F
 
 SEED = 20261020
+AMP_INITIAL_SCALE = 1024.  # v1 default65536 overflow reproduced without optimization.
 
 
 def sha(path):
@@ -50,6 +51,20 @@ def aligned_state_prob(model, plain, reflected, perm):
     out = .5 * (p + q)
     out[:, 1] = p[:, 1]  # Original MCL plain-only exception.
     return out[0]
+
+
+def training_objective(outputs, teacher, target, class_counts, state_valid):
+    """Unchanged v1 objective, shared with the scaled actual-device preflight."""
+    z, sl, bl = outputs
+    known = target >= 0
+    ce = F.cross_entropy(sl[0, known].float(), target[known], reduction="none")
+    weights = torch.tensor(1. / class_counts[known.cpu().numpy()], dtype=torch.float32, device=z.device)
+    supervision = (ce * weights).sum() * (192. / int(np.sum(class_counts > 0)))
+    kl_z = F.binary_cross_entropy_with_logits(z.float(), teacher[0].sigmoid()) - F.binary_cross_entropy_with_logits(teacher[0], teacher[0].sigmoid())
+    log_state = sl.float().log_softmax(-1).masked_fill(~state_valid[None], 0.)
+    kl_s = F.kl_div(log_state, teacher[1].softmax(-1), reduction="none").sum(-1).mean()
+    kl_b = F.binary_cross_entropy_with_logits(bl.float(), teacher[2].sigmoid()) - F.binary_cross_entropy_with_logits(teacher[2], teacher[2].sigmoid())
+    return supervision + .5*kl_z + .5*kl_s + .1*kl_b
 
 
 def state_losses(probabilities, targets):
@@ -140,6 +155,7 @@ def run(assets_path):
     post = load_bundle(source / "compact_infer.py", bundle_dir / "state_spec.json",
                        bundle_dir / "fluid_stacker.json", bundle_dir / "state_stacker.json")
     records = split["fit"] + split["tune"] + split["confirmation"]
+    class_counts = np.sum(np.asarray([r["state_targets"] for r in split["fit"]]) >= 0, 0)
     cache = Path(a["cache"]); cache.mkdir(parents=True, exist_ok=True)
     ds = worker.CStudies(a["eval_root"], "test", [r["id"] for r in records], cache / "render", a["code"],
                          384, eval_stride=1, views="v4", slices=3, anchor_weights=a["anatomy"], phys_mm=3.5,
@@ -210,14 +226,19 @@ def run(assets_path):
             start_step = time.time()
             with torch.autocast("cuda", dtype=torch.float16):
                 probe = tail(candidate, early.detach(), meta)
-                objective = probe[0].float().square().mean()
-            objective.backward(); torch.cuda.synchronize()
+            objective = training_objective(probe, teacher, torch.tensor(record["state_targets"], device=dev),
+                                           class_counts, candidate.state_valid)
+            (objective * AMP_INITIAL_SCALE).backward(); torch.cuda.synchronize()
+            if not torch.isfinite(objective) or any(p.grad is None or not torch.isfinite(p.grad).all()
+                                                   for p in candidate.parameters() if p.requires_grad):
+                raise RuntimeError("scaled objective/gradient preflight failed before full cache")
             step_seconds = time.time() - start_step
             candidate.zero_grad(set_to_none=True)
             projected = time.time() + 1.5 * np.mean(elapsed) * (len(records) - 8) + 1.5 * step_seconds * (3*192 + 4*128) + 300
             preflight = {"actual_studies": 8, "study_seconds": elapsed.copy(), "training_step_seconds": step_seconds,
                          "projected_completion_epoch": projected, "deadline_epoch": deadline,
                          "optimizer_steps": 0, "prefix_full_max_abs_errors": parity,
+                         "amp_initial_scale": AMP_INITIAL_SCALE, "scaled_objective_gradients_finite": True,
                          "trainable_names": names, "peak_cuda_bytes": torch.cuda.max_memory_allocated()}
             write(out / "preflight.json", preflight)
             if projected > deadline:
@@ -234,9 +255,8 @@ def run(assets_path):
         with np.load(plain_targets[record["id"]], allow_pickle=False) as z:
             return {k: torch.from_numpy(z[k]).to(dev) for k in z.files}
 
-    class_counts = np.sum(np.asarray([r["state_targets"] for r in split["fit"]]) >= 0, 0)
     optimizer = torch.optim.AdamW([p for p in candidate.parameters() if p.requires_grad], lr=1e-5, weight_decay=.01)
-    scaler = torch.amp.GradScaler("cuda")
+    scaler = torch.amp.GradScaler("cuda", init_scale=AMP_INITIAL_SCALE)
     training_log = []
     for epoch in range(3):
         candidate.eval(); candidate.enc.stages[3].train()
@@ -249,23 +269,20 @@ def run(assets_path):
                 return
             record = split["fit"][int(index)]; d = data(record)
             target = torch.tensor(record["state_targets"], device=dev)
-            known = target >= 0
             optimizer.zero_grad(set_to_none=True)
             with torch.autocast("cuda", dtype=torch.float16):
                 z, sl, bl = tail(candidate, d["early"], d["meta"])
-            ce = F.cross_entropy(sl[0, known].float(), target[known], reduction="none")
-            weights = torch.tensor(1. / class_counts[known.cpu().numpy()], dtype=torch.float32, device=dev)
-            supervision = (ce * weights).sum() * (192. / int(np.sum(class_counts > 0)))
-            kl_z = F.binary_cross_entropy_with_logits(z.float(), d["z"].sigmoid()) - F.binary_cross_entropy_with_logits(d["z"], d["z"].sigmoid())
-            log_state = sl.float().log_softmax(-1).masked_fill(~candidate.state_valid[None], 0.)
-            kl_s = F.kl_div(log_state, d["sl"].softmax(-1), reduction="none").sum(-1).mean()
-            kl_b = F.binary_cross_entropy_with_logits(bl.float(), d["bl"].sigmoid()) - F.binary_cross_entropy_with_logits(d["bl"], d["bl"].sigmoid())
-            loss = supervision + .5*kl_z + .5*kl_s + .1*kl_b
+            loss = training_objective((z, sl, bl), (d["z"], d["sl"], d["bl"]), target, class_counts, candidate.state_valid)
             if not torch.isfinite(loss):
+                write(out / "runtime_failure.json", {"stage": "objective", "epoch": epoch+1,
+                      "completed_steps_this_epoch": len(losses), "optimizer_steps": epoch*192+len(losses)})
                 raise RuntimeError("nonfinite training objective")
             scaler.scale(loss).backward(); scaler.unscale_(optimizer)
             norm = torch.nn.utils.clip_grad_norm_([p for p in candidate.parameters() if p.requires_grad], 1.)
             if not torch.isfinite(norm):
+                write(out / "runtime_failure.json", {"stage": "gradient", "epoch": epoch+1,
+                      "completed_steps_this_epoch": len(losses), "optimizer_steps": epoch*192+len(losses),
+                      "amp_scale": scaler.get_scale(), "finite_objective": float(loss.detach())})
                 raise RuntimeError("nonfinite gradient, refusing silent scaler-skipped step")
             scaler.step(optimizer); scaler.update()
             losses.append(float(loss.detach()))

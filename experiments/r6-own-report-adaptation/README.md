@@ -5,6 +5,12 @@ This is NOT reproduction of R6's unavailable original supervision. It does not
 reuse the rejected soft-v2/Steven/teacher tables or read organizer-gold reports.
 No publisher contact or competition submission is authorized by this experiment.
 
+Runtime status: v1 failed during AMP backward after caching all320 studies;
+see `V1_FAILURE.md` and `v1_terminal_receipt.json`. The numerical-only v2 repair
+uses initial AMP scale1024 instead of default65536 and checks scaled complete
+objective gradients at preflight. Scientific contract and three-hour cap remain
+fixed. No model improvement or evaluation result was obtained from v1.
+
 Prelaunch v1.1 correction: synthetic counterexamples showed that “no tear”
 cannot establish a fine-grained normal state, “no large effusion” cannot mean
 none, and a negator after an entity may refer to another finding. These cells
