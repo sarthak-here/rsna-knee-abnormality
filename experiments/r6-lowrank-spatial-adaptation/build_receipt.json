@@ -1,0 +1,36 @@
+{
+  "notebook_sha256": "6c94ff834fcf66ef7ac7d495ce575dd7693e27c21fb36dbecebfb9a3131ba19b",
+  "split_sha256": "55322d1981812d21b40ad800ecca15eedf231a6e7b119793ebb82a6611a4d9fd",
+  "files_sha256": {
+    "adapters.py": "8d9c4265dd13715e417db5c80d0b9d028ce399dcc35d31bd15515b6f417c3fea",
+    "train.py": "20d811e8fc40e7eeb0328a15f87398fc7b793c62ef227e0d61ae62f5d1286420",
+    "prepare_splits.py": "900d3495fa65b1ea2ef223c2b0771fd0a0527b9776908f4fa505ed92b2414907",
+    "report_rules.py": "e10ed7ed45841ab058ffe6926e8bddf01e46a67da2fcf149c6dae0f49569b736",
+    "splits.json": "55322d1981812d21b40ad800ecca15eedf231a6e7b119793ebb82a6611a4d9fd",
+    "excluded_previous_split.json": "a4d51d3b9258378fbe9f59bcf8ebf590992c9cd97e1a7b16658b6a107c400b0a",
+    "postprocess.py": "bffc920c2031f58475da902ba2b8879667f7f2a0ed2d6b3de48d458ec44b30de",
+    "strict_reconstruct.py": "929f4765de94879a898ace4bd594fddc764606b3602e4671a54f86332cb3836d"
+  },
+  "excluded_previous_groups": 320,
+  "counts": {
+    "fit": 192,
+    "tune": 64,
+    "confirmation": 64
+  },
+  "fit_state_counts": [
+    90,
+    72,
+    117,
+    123,
+    0,
+    0,
+    0,
+    87,
+    22,
+    68,
+    0,
+    4
+  ],
+  "submission_launcher_included": false,
+  "training_launched": false
+}

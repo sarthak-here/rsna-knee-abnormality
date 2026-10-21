@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "synthetic_only": true,
+  "optimizer_steps": 0,
+  "checkpoint_sha256": "59cc88a197bc80c7fa5faa89e69ae7bec04f69cab5259a23a0d0ceb9431e53f6",
+  "initial_reader_outputs_bitwise_equal": true,
+  "original_tensors_unchanged": true,
+  "trainable_names": [
+    "enc.stages.3.blocks.0.mlp.fc2.adapter_down.weight",
+    "enc.stages.3.blocks.0.mlp.fc2.adapter_up.weight",
+    "enc.stages.3.blocks.1.mlp.fc2.adapter_down.weight",
+    "enc.stages.3.blocks.1.mlp.fc2.adapter_up.weight",
+    "enc.stages.3.blocks.2.mlp.fc2.adapter_down.weight",
+    "enc.stages.3.blocks.2.mlp.fc2.adapter_up.weight"
+  ],
+  "trainable_parameters": 92160,
+  "gradient_tensors": 6,
+  "nonzero_gradient_tensors": 3,
+  "full_objective_loss": 0.3690963089466095,
+  "amp_scale": 1024.0,
+  "adapter_backward_seconds": 0.6192176999757066,
+  "total_seconds": 6.065942799963523,
+  "peak_cuda_bytes": 676910080,
+  "device": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "actual_training_gpu_preflight_required": true,
+  "pathology_improvement_established": false
+}
