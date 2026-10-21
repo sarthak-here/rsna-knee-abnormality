@@ -1,0 +1,100 @@
+{
+  "root_keys": [
+    "contract",
+    "epoch",
+    "model",
+    "score"
+  ],
+  "metadata_types": {
+    "contract": "dict",
+    "epoch": "int",
+    "score": "dict"
+  },
+  "model_tensors": 197,
+  "model_elements": 90939306,
+  "tensor_dtypes": {
+    "torch.float32": 197
+  },
+  "tensor_families": {
+    "pixel_mean": 1,
+    "pixel_std": 1,
+    "encoder": 158,
+    "head": 37
+  },
+  "shape_identity_sha256": "7d7a2cb1a3464419f955dd484e082c711ddcf61b2a3622e547bf1fd74b10cf75",
+  "all_model_tensors_finite": true,
+  "metadata_is_independent_training_lineage_proof": false,
+  "gpu_used": false,
+  "publisher_source_executed": false,
+  "predictions_generated": false,
+  "publisher_contract": {
+    "settings": {
+      "frames": 16,
+      "size": 320,
+      "hidden": 384,
+      "head_depth": 2,
+      "regions": 4,
+      "dropout": 0.2,
+      "batch": 4,
+      "accumulate": 4,
+      "epochs": 8,
+      "encoder_lr": 2e-05,
+      "head_lr": 0.0003,
+      "layer_decay": 0.8,
+      "warmup_steps": 100,
+      "clip_grad": 5.0,
+      "checkpoint_steps": 25,
+      "log_steps": 5,
+      "checkpoint_blocks": false,
+      "seed": 42
+    },
+    "labels": [
+      "8ca2203c0e9d61c080c7a314c7cdb51c1b03a1d9eb4770819f7f34af53ef4e33",
+      "eb4c2b29e7e84adbb4b5ccee825ca20ade6a43dbe295f13be442d549e4f5dca4"
+    ],
+    "site_meta": "a19c3aaf4d085d615f50af81ce870fd72bab670afe3115e95a4d3c9be90b3cbd",
+    "reference_folds": "382ed0c9fca4b3889b2a6cc8970f730c0fc7282d2bd8000c622465a77818ad56",
+    "ids": "d04c128a44cd2c4a4a2aa52172a9df54cf2f42be2dbef391fb7087f4954d79e3",
+    "source_npz_hashes": "be00220254777292a6cb0fdabf74a2db6e9e1a55006ff000ff2ab9576467b85d",
+    "source": [
+      "3055894580c0555b722db23ec10783aeb654381791a5b7138ee8da81fb11c504",
+      "358993ee598cfaa1608b3cfdb65d7165fb6894b0656794a70dd039122c883abe",
+      "b96e9ab6f1a6c8868860abeaeff58f9e8e6adc80030d6e77055564327ae9dae3",
+      "32c7be172b7b7367b1b2b7f9cc413491ccfde531aaa71940f171a781ce37a376"
+    ],
+    "weights": "848a77c33cc9e6649ed2119c9bea1e2c569bcdab9539ff3e7c02ccc2959ddf4d",
+    "upstream": "a28e12df105a131a6540591379c0c218667059f10903e59be0a6e2f7c1c06566",
+    "python": "3.12.14",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "numpy": "2.5.2",
+    "opencv": "5.0.0",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "policy": "gold_holdout_v4_soft_margin_weight_v1",
+    "precision": "bf16_autocast_fp32_weights_adamw",
+    "fold": 0
+  },
+  "publisher_epoch": 7,
+  "publisher_score": {
+    "macro": 0.776107671322023,
+    "per_target": {
+      "ACL": 0.7134416543574593,
+      "MCL": 0.6980021767603166,
+      "Medial Meniscus": 0.8288174966813685,
+      "Lateral Meniscus": 0.7205491502582916,
+      "Medial OA": 0.7797537547380274,
+      "Lateral OA": 0.7103000632580654,
+      "PF OA": 0.7348666757828525,
+      "Effusion": 0.8570288743199889,
+      "Synovitis": 0.8579258490398856,
+      "Baker's": 0.6986113901165126,
+      "Contusion": 0.8495120698510529,
+      "Fracture": 0.8644829007004532
+    },
+    "targets_scored": 12
+  },
+  "publisher_score_is_verified_public_auc": false,
+  "checkpoint_sha256": "6cc9612676a655ef7f5bb94ae0c57fc7e487b46a2390c255870495a570f73b2f",
+  "checkpoint_bytes": 363835140,
+  "torch_version": "2.13.0+cu126"
+}
