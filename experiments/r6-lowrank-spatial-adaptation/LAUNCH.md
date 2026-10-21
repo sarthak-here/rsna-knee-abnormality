@@ -15,6 +15,10 @@ The builder generates a private notebook and split locally. They are ignored by 
 
 ## Launch
 
+### Accepted version1 — supersedes the earlier approval block below
+
+User explicitly directed proceeding after the private code/anonymous-ID/derived-target upload and capped training scope had been explained. Kaggle accepted version1 on21October2026 around20:39UTC; `kaggle kernels push` exited0 with `Kernel version 1 successfully pushed`. Subsequent authenticated status returned `KernelWorkerStatus.RUNNING`. Notebook SHA256 remains `6c94ff834fcf66ef7ac7d495ce575dd7693e27c21fb36dbecebfb9a3131ba19b`. This is a private no-submission training pilot, not a competition submission. No training outcome or improvement is established. Do not duplicate the launch; retain exact-version terminal artifacts. Selected submissions57483292/57197157 are unchanged.
+
 **BUILT, NOT LAUNCHED.** Initial `kaggle kernels push` attempt was rejected by the approval checker before process creation: the user requested building the candidate but had not explicitly authorized this exact new private Kaggle upload/run. No version1 acceptance or job status exists. Do not retry, use UI/another route, duplicate, or claim RUNNING/QUEUED until explicit user approval of `sarthaksharma14/rsna-knee-r6-lowrank-spatial-adaptation` and its hard3h private GPU run. Payload includes project/published model code, generated anonymous study IDs and report-rule state targets, and references to the same existing competition/model datasets. No raw reports, credentials, new external data or competition submission are intended. Ask once for this scoped upload/run permission; do not repeat unchanged notifications.
 
 Implementation and tests are pushed in `f0413b8`. Final selected57483292/57197157 remain protected. The previous own-report pilot's upload approval is not reused for this materially new job.
