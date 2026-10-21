@@ -1,5 +1,11 @@
 # Final selection, 21 October 2026
 
+## Current final pair — approved and verified 22 October 2026 IST
+
+The user's "go ahead" approved replacing57228245 with the scored0.958 submission57483292, retaining57197157 as safety. The authenticated Kaggle Selected filter now shows exactly **57483292 (0.958)** and **57197157 (0.957)** checked, **2/2**, with the confirmation that submission.csv will be evaluated for the final score. Proof: `selected-pair-0958.png`. The0.958 entry links to exact scriptVersionId **358751289**; the safety entry links to358330886.
+
+On arrival, the live page already had57483292 and57228245 checked (the intervening actor or auto-selection behavior is not established). We did not claim to have first selected57483292: we deselected57228245 and selected57197157, then verified the approved final pair. No new model run/submission occurred. The historical pair below is superseded, not the current state. Do not ask again for this resolved promotion approval or revert to the old pair. Private scores and final ranking remain unavailable.
+
 User direction: "its time for final submission". Verified account submission history through the Kaggle CLI and final-selection controls in the authenticated browser. No new inference run, upload, competition submission, or GPU spending was needed.
 
 Final pair explicitly selected on Kaggle:
