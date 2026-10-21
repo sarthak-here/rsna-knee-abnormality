@@ -1,0 +1,48 @@
+{
+  "control_submission": 57483292,
+  "public_score": "0.958",
+  "rows": 3,
+  "target_order": [
+    "ACL",
+    "MCL",
+    "Medial Meniscus",
+    "Lateral Meniscus",
+    "Medial OA",
+    "Lateral OA",
+    "PF OA",
+    "Effusion",
+    "Synovitis",
+    "Baker's",
+    "Contusion",
+    "Fracture"
+  ],
+  "preview_bitwise_float32_equal": true,
+  "max_error": 0.0,
+  "formula": "w*(0.65*avg_tie_pct_rank(Raptor384)+0.35*avg_tie_pct_rank(Raptor224))+(1-w)*avg_tie_pct_rank(R6)",
+  "raptor_per_target_weights": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.2,
+    0.6,
+    0.5,
+    0.8,
+    0.35,
+    0.5,
+    0.5
+  ],
+  "input_sha256": {
+    "ours_sub.csv": "33d765a742bae2853d80cbd5abff9eb1756d2c303d8b9a823b46c4c5eea1d751",
+    "raptor_raw.csv": "83ec72f34924cc639f55210f8ed32afd688eae59463b8005e41095adca60e8d1",
+    "raptor224_raw.csv": "0b9ebbb30630d1582a37938b6c691b57088c3eb0b6084d80bab2562793b9d87b",
+    "submission.csv": "5dd9febae16c11b76450eecb92bbc67669214f71cdd6edce69ec48a02376d7b4"
+  },
+  "labels_read": false,
+  "auc_computed": false,
+  "model_fitted": false,
+  "new_predictions_generated": false,
+  "gpu_used": false,
+  "scope": "Existing public three-study preview arithmetic only, not hidden or pathology validation"
+}
