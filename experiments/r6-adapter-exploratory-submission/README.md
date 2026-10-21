@@ -1,0 +1,11 @@
+# Explicit exploratory submission after failed proxy gate
+
+The user explicitly directed "doesnt matter now try sub,mitting it with improvement" after the rank8 pilot's failure was disclosed. This overrides the earlier no-submission disposition for one exploratory candidate; it does NOT change the failed scientific result or establish an improvement. No retuning, new training, epoch selection or gate relaxation occurs.
+
+Candidate: use exactly the FINAL (epoch3) rank8 adapter checkpoint SHA `1b488e45ee6f9905241260b79a2f22a588a29ad5cce765d3d2406a65b7f9aa69` in place of the original fold0 reader within the exact scored0.958 four-fold R6/Raptor pipeline. Keep folds1–3, Raptor384/224, physical/anatomy preprocessing, flip/MCL behavior, state/fluid stackers, average-tie ranks and per-finding blend weights unchanged. Load the adapter modules explicitly; do not merge/requantize their matrices into base weights. Every original tensor is checked against the pinned original fold0 state before strict adapter loading.
+
+No gold evaluation, label fitting, target/weight search, checkpoint selection or final-selection mutation. Selected57483292/57197157 stay unchanged. This is a single user-authorized exploratory submission, not advancement under the rejected training contract. No promise of public-score or pathology improvement. No private source targets are added to this inference notebook; it mounts the already authorized private training output to load epoch3, uses existing competition/model assets and produces test predictions only.
+
+Retain the original8.3h inclusive inference deadline. At current launch planning time this fits within the remaining improvement window; preview and hidden execution runtime remain uncertain. Require zero reader fallbacks; any failure stops before a usable submission. Validate preview source/checkpoint/component identities and receipts before submitting this exact new notebook version once. Do not replace final selections automatically, even if a better score appears.
+
+Attribution: exact public base notebook by Heliosli, with nartaa/dreaddevelopment model contributions and existing OAI/NDA/model-use acknowledgements retained. This adaptation is our weak-report-proxy training, not a reproduction of unavailable rich source targets or independently verified pathology learning.

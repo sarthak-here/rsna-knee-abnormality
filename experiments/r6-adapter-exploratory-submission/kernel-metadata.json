@@ -1,0 +1,23 @@
+{
+  "language": "python",
+  "kernel_type": "notebook",
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "dataset_sources": [
+    "heliosli/rsna-knee-r6-frozen-fe055406-w1",
+    "nartaa/rsna-knee-publication-swa-weights-20261007",
+    "heliosli/rsna-orthofoundation-fold0-epoch7-20261004"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "model_sources": [],
+  "id": "sarthaksharma14/rsna-knee-r6-adapter-exploratory-submission",
+  "title": "RSNA Knee R6 Adapter Exploratory Submission",
+  "code_file": "adapter-exploratory.ipynb",
+  "is_private": true,
+  "kernel_sources": [
+    "sarthaksharma14/rsna-knee-r6-lowrank-spatial-adaptation"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "base_notebook_sha256": "ad0b97aca3361f16e32b0836655dd68bc2a37ff0cc5a44f6d6f4de07880d986d",
+  "notebook_sha256": "6ce1e157fd7cc50a1ca79b10917a7bd190a73ac659318a8d79dddaecf7b93700",
+  "epoch3_sha256": "1b488e45ee6f9905241260b79a2f22a588a29ad5cce765d3d2406a65b7f9aa69",
+  "adapter_source_sha256": "8d9c4265dd13715e417db5c80d0b9d028ce399dcc35d31bd15515b6f417c3fea",
+  "changed_source_cells": [
+    "insert adapter loader after setup",
+    "zero fallback controller",
+    "zero fallback blend",
+    "final adapter receipt"
+  ],
+  "training_proxy_status": "REJECTED",
+  "improvement_established": false,
+  "final_selection_changes": false,
+  "launched": false,
+  "submitted": false
+}
