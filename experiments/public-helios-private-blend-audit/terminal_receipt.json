@@ -1,0 +1,20 @@
+{
+  "competition": "rsna-knee-abnormality-detection",
+  "submission_id": 57483292,
+  "kernel": "heliosli/blend-mine-in-private-lb-luck-to-all-upvoters",
+  "kernel_version": 1,
+  "submitted_at_utc": "2026-10-21T13:14:12.327000",
+  "status": "SubmissionStatus.COMPLETE",
+  "public_score": "0.958",
+  "private_score": "",
+  "previous_best_displayed_public_score": "0.957",
+  "displayed_public_gain": "0.001",
+  "verification_source": "kaggle competitions submissions rsna-knee-abnormality-detection --page-size 5 --format json",
+  "verification_local_date": "2026-10-22",
+  "verification_timezone": "Asia/Calcutta",
+  "final_selection_changed": false,
+  "our_training_gain_established": false,
+  "independent_pathology_gain_established": false,
+  "attribution": ["Heliosli", "nartaa", "dreaddevelopment"],
+  "oai_trained_raptor_provenance_acknowledged": true
+}

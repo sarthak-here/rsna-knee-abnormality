@@ -1,5 +1,7 @@
 # Heliosli public 0.958 per-finding blend audit
 
+**Our verified result:** approved exact version1 submission **57483292** completed at public **0.958**, verified22October2026IST. See `SUBMISSION.md` and `terminal_receipt.json`. Approval is resolved; do not request it again or duplicate this submission. The historical pre-approval discussion below is retained as provenance, not current status.
+
 This audit tracks public kernel `heliosli/blend-mine-in-private-lb-luck-to-all-upvoters`, version 1. It is a reweight of the validated R6 flip-TTA + Raptor-384/224 stack and has current public-leaderboard evidence above the locked `0.957` baseline.
 
 ## Identity and runtime validation

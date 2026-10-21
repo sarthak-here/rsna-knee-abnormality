@@ -1,5 +1,11 @@
 # Explicitly approved submission, 21 October 2026
 
+## Terminal result verified 22 October 2026 IST
+
+Kaggle API reports submission **57483292 COMPLETE**, public macro AUC **0.958**, private score unavailable. This is a displayed **+0.001** over the previous0.957 best, not an unrounded delta. The exact version1 contract is now the best scored reference for subsequent work. This is attributed public-contract reproduction/reweight improvement, not a gain established by our own training or independent pathology validation. See `terminal_receipt.json`.
+
+No resubmission is needed. Final-selection changes remain a separate user decision: the last verified selected pair remains57197157/57228245, both0.957. Recommend retaining57197157 as the older safety pick and replacing57228245 with57483292 after explicit direction. Do not silently perform that replacement or claim a private-score improvement.
+
 The user approved this exact separate contract with "bruv go ahead" after disclosure of its same-family reweight nature, OAI-trained Raptor provenance and uncertain possible displayed +0.001. This is not new model training or a guaranteed improvement.
 
 - Competition: `rsna-knee-abnormality-detection`
