@@ -15,4 +15,8 @@ The builder generates a private notebook and split locally. They are ignored by 
 
 ## Launch
 
+**BUILT, NOT LAUNCHED.** Initial `kaggle kernels push` attempt was rejected by the approval checker before process creation: the user requested building the candidate but had not explicitly authorized this exact new private Kaggle upload/run. No version1 acceptance or job status exists. Do not retry, use UI/another route, duplicate, or claim RUNNING/QUEUED until explicit user approval of `sarthaksharma14/rsna-knee-r6-lowrank-spatial-adaptation` and its hard3h private GPU run. Payload includes project/published model code, generated anonymous study IDs and report-rule state targets, and references to the same existing competition/model datasets. No raw reports, credentials, new external data or competition submission are intended. Ask once for this scoped upload/run permission; do not repeat unchanged notifications.
+
+Implementation and tests are pushed in `f0413b8`. Final selected57483292/57197157 remain protected. The previous own-report pilot's upload approval is not reused for this materially new job.
+
 Target private notebook: `sarthaksharma14/rsna-knee-r6-lowrank-spatial-adaptation`, version1 if accepted. No launch is claimed until Kaggle accepts it and its status is verified. Hard3h cap includes setup/cache/evaluation;8actual-study measured preflight must fit conservative projection before any update. No silent increase. Preserve failure/update-count/AMP-retry receipts and exact-version outputs, including optimizer/RNG checkpoints. Close on a budget rejection or scientific gate failure. No automatic submission even after a proxy pass.
