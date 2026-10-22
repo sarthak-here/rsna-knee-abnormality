@@ -1,5 +1,6 @@
 """Validate accepted version1, not the newer unlaunched bounded-lookup build."""
 import ast
+import argparse
 import hashlib
 import json
 import sys
@@ -18,7 +19,10 @@ def sha(path):
 
 
 def main():
-    root = ROOT / '.audit/r6-adapter-exploratory-v1'
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--version', type=int, choices=(1, 2), default=1)
+    args = parser.parse_args()
+    root = ROOT / f'.audit/r6-adapter-exploratory-v{args.version}'
     out = root / 'output'
     source = root / 'source/rsna-knee-r6-adapter-exploratory-submission.ipynb'
     nb = json.loads(source.read_text(encoding='utf-8'))
@@ -26,7 +30,7 @@ def main():
     assert len(nb['cells']) == len(expected['cells'])
     for i, (actual, current) in enumerate(zip(nb['cells'], expected['cells'])):
         text = ''.join(current['source'])
-        if i == 8:
+        if i == 8 and args.version == 1:
             start = text.index("_input_root = Path('/kaggle/input')")
             end = text.index('assert len(_epoch_candidates) == 1')
             text = text[:start] + "_epoch_candidates = list(Path('/kaggle/input').rglob('epoch_3.pt'))\n_epoch_candidates = [_p for _p in _epoch_candidates if _p.parent.name == 'results' and _p.parent.parent.name == 'r6_lowrank_adaptation']\n" + text[end:]
@@ -88,8 +92,12 @@ def main():
     for marker in ('RAPTOR_STAGE_DONE', 'RAPTOR224_STAGE_DONE', 'NOTEBOOK_COMPLETE', 'EXPLORATORY_ADAPTER_COMPLETE'):
         assert marker in log
     assert 'Traceback (most recent call last)' not in log and 'BLEND_FALLBACK' not in log
-    report = {'version': 1, 'integrity_passed': True, 'uploaded_notebook_sha256': '6ce1e157fd7cc50a1ca79b10917a7bd190a73ac659318a8d79dddaecf7b93700',
-        'downloaded_notebook_sha256': sha(source), 'saved_cell_sources_match_accepted_v1': True,
+    upload_sha = ('6ce1e157fd7cc50a1ca79b10917a7bd190a73ac659318a8d79dddaecf7b93700' if args.version == 1
+                  else '38a08459197fca3f0b4f3abafb41112701cd8eef778a665d950104d1daf70a6d')
+    if args.version == 2:
+        assert sha(HERE / 'adapter-exploratory.ipynb') == upload_sha
+    report = {'version': args.version, 'integrity_passed': True, 'uploaded_notebook_sha256': upload_sha,
+        'downloaded_notebook_sha256': sha(source), 'saved_cell_sources_match_accepted_version': True,
         'serialization_note': 'Kaggle reserializes notebook JSON; every cell source/type was independently matched',
         'rows': 3, 'zero_fallbacks': True, 'final_epoch_loaded_both_workers': True,
         'exact_blend_formula_reproduced': True, 'csv_sha256': sha(out / 'submission.csv'),
@@ -97,7 +105,8 @@ def main():
         'scope': 'three-study preview integrity only; equal preview ranks do not establish equal hidden predictions or accuracy',
         'log_warning_free': False, 'improvement_established': False,
         'adapter_receipt': adapter, 'output_sha256': {p.name: sha(p) for p in out.iterdir() if p.is_file()}}
-    (HERE / 'preview_validation.json').write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
+    name = 'preview_validation.json' if args.version == 1 else 'v2_preview_validation.json'
+    (HERE / name).write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
     print(json.dumps(report, indent=2))
 
 

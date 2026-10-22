@@ -1,4 +1,14 @@
-# Built, NOT launched or submitted
+# Launch history
+
+## Runtime-only version2 — accepted and RUNNING
+
+On23October2026IST the user explicitly said "so go ahead" after discussion of repairing/resubmitting the failed version1. The competition API verified deadline22October2026 23:59UTC /23October05:29IST was still open. Version2 was accepted around22October18:32UTC /23October00:02IST and authenticated status verified `KernelWorkerStatus.RUNNING`.
+
+Exact notebookSHA `38a08459197fca3f0b4f3abafb41112701cd8eef778a665d950104d1daf70a6d`. The sole runtime change is bounded checkpoint lookup documented in RUNTIME_FIX.md. The final epoch, architecture, all weights, preprocessing, TTA, stackers, rank blend, zero-fallback checks and8.3hdeadline are unchanged. Three tests passed, including actual checkpoint loader equality and bounded mount lookup. No new training. This fixes a reproducible global input-tree traversal inefficiency; it does NOT establish that this was the generic hidden exception's cause.
+
+User approval covers this particular repaired private run and one resubmission if preview integrity passes. Do not ask again or duplicate while running. Validate with `python experiments/r6-adapter-exploratory-submission/validate_preview.py --version 2` after downloading terminal outputs to `.audit/r6-adapter-exploratory-v2/output` and saved source to its `source` directory. Verify exact version2source, adapter loaded in bothworkers, allcomponent/source/stackeridentities, finiteorderedoutputs, exactblendformula, zeroallreaderfailures and completionmarkers. Then submit **version2 once**, only before actual deadline; inspect history to avoid duplicates. No final-selection changes. If failure persists, capture evidence rather than weakening checks or tuning weights.
+
+The version1failure remains documented in FAILURE.md/terminal_receipt.json. Do not poll/resubmit version1. Statements below about the bounded repair being unlaunched describe historical state before this acceptedversion2.
 
 ## Superseding accepted launch — version1
 
