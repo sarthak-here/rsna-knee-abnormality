@@ -11,6 +11,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 sys.path.insert(0, str(HERE.parent / 'r6-own-report-adaptation'))
 from report_rules import LABELS, ENTITY, BODY, norm, extract
+from evidence import ledger
 
 
 def digest(path):
@@ -49,6 +50,7 @@ def summarize(rows, series, parser=extract):
     observed, entity_mentions, multientity_mentions = Counter(), Counter(), Counter()
     states = {label: Counter() for label in LABELS}
     metadata_flags, headers, lexical = Counter(), Counter(), Counter()
+    review_groups, review_sections = Counter(), Counter()
     for _, members in eligible:
         report = members[0]['Report']
         lengths.append(len(report))
@@ -62,6 +64,11 @@ def summarize(rows, series, parser=extract):
             if re.search(pattern, text):
                 lexical[name] += 1
         labels = parser(report)
+        evidence = ledger(report)
+        for label in sorted({m['finding'] for e in evidence['entries'] for m in e['mentions']}):
+            review_groups[label] += 1
+        for section in sorted({e['section'] for e in evidence['entries']}):
+            review_sections[section] += 1
         for label, state in labels.items():
             observed[label] += 1
             states[label][state] += 1
@@ -90,6 +97,8 @@ def summarize(rows, series, parser=extract):
         'excluded_groups': excluded, 'parsed_gold_reports': 0, 'parsed_source_fold0_reports': 0,
         'report_length_characters': {str(q): lengths[min(int(q*(len(lengths)-1)),len(lengths)-1)] if lengths else None for q in (.0,.25,.5,.75,1.)},
         'heading_counts': dict(headers), 'overlapping_heading_lexical_indicators': dict(lexical),
+        'review_ledger_candidate_groups_not_labels': dict(review_groups),
+        'review_ledger_section_group_counts_overlapping': dict(review_sections),
         'series_count_histogram': dict(series_counts), 'protocol_metadata_flags': dict(metadata_flags),
         'fluid_sensitive_metadata_values': dict(Counter(r['Fluid_Sensitive'] for r in series)),
         'plane_metadata_values': dict(Counter(r['Anatomical_Plane'] for r in series)),
@@ -113,7 +122,8 @@ def main():
         srows = list(csv.DictReader(f))
     result = summarize(rows, srows)
     result['input_sha256'] = {'train': digest(train), 'series': digest(series),
-        'frozen_rules': digest(HERE.parent / 'r6-own-report-adaptation/report_rules.py')}
+        'frozen_rules': digest(HERE.parent / 'r6-own-report-adaptation/report_rules.py'),
+        'review_ledger_source': digest(HERE / 'evidence.py')}
     (HERE / 'aggregate_eda.json').write_text(json.dumps(result, indent=2)+'\n', encoding='utf-8')
     print(json.dumps(result, indent=2))
 

@@ -24,6 +24,27 @@
     "french": 491,
     "english": 824
   },
+  "review_ledger_candidate_groups_not_labels": {
+    "Effusion": 1715,
+    "Medial Meniscus": 1450,
+    "Lateral Meniscus": 1495,
+    "ACL": 1336,
+    "Baker's": 1144,
+    "Fracture": 584,
+    "Medial OA": 665,
+    "PF OA": 1065,
+    "Contusion": 641,
+    "Synovitis": 305,
+    "Lateral OA": 629,
+    "MCL": 1214
+  },
+  "review_ledger_section_group_counts_overlapping": {
+    "technique": 312,
+    "findings": 1106,
+    "preamble_requires_review": 336,
+    "unsectioned_requires_review": 1003,
+    "history": 81
+  },
   "series_count_histogram": {
     "5": 1706,
     "6": 486,
@@ -197,6 +218,7 @@
   "input_sha256": {
     "train": "8ca2203c0e9d61c080c7a314c7cdb51c1b03a1d9eb4770819f7f34af53ef4e33",
     "series": "573c1d80772bf41211c91b149c95677385a1c22d63f485c347f1b46c0177aef3",
-    "frozen_rules": "e10ed7ed45841ab058ffe6926e8bddf01e46a67da2fcf149c6dae0f49569b736"
+    "frozen_rules": "e10ed7ed45841ab058ffe6926e8bddf01e46a67da2fcf149c6dae0f49569b736",
+    "review_ledger_source": "db651e1d52c79aab8b365b410327a930e68e6effa383ce9bb9e51ae363dec3aa"
   }
 }
