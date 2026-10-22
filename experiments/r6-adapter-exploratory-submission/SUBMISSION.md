@@ -1,5 +1,9 @@
 # Accepted exploratory competition submission57520075
 
+## Terminal outcome — FAILED, no score
+
+Authenticated UI reports **Notebook Threw Exception**; full API object has `status=COMPLETE` plus a generic `errorDescription`, no scores. COMPLETE is not successful here. See `FAILURE.md` and `terminal_receipt.json`. No detailed hidden traceback was exposed, so exact cause is unestablished. Do not poll/retry blindly. Loaded Selected filter reverified57483292(0.958) and57197157(0.957),2/2; no selection changes.
+
 - Submitted22October2026 at10:04:51.813UTC /15:34:51IST.
 - Accepted ID **57520075**, API verified **SubmissionStatus.PENDING**, public/private scores unavailable.
 - Exact private kernel `sarthaksharma14/rsna-knee-r6-adapter-exploratory-submission`, **version1**, output `submission.csv`.
