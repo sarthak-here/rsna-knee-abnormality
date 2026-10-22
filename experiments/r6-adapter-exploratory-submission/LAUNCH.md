@@ -2,6 +2,8 @@
 
 ## Superseding accepted launch — version1
 
+**Runtime inspection update:** see `RUNTIME_FIX.md`. Version1 passed its slow recursive checkpoint lookup and both R6 workers started. A bounded-lookup repair is tested/built locally (SHA38a08459197fca3f0b4f3abafb41112701cd8eef778a665d950104d1daf70a6d), NOT uploaded. `build_receipt.json` now describes that unlaunched repair, not activeversion1. Do not duplicate/cancel the healthy version1 just to avoid a discovery delay already paid; its accepted source hash remains the one below.
+
 On22October2026 the user explicitly replied "mf i approve" to the exact private inference upload/run and one competition submission after output checks. This resolves the prior approval block. Kaggle accepted version1 at about09:34UTC/15:04IST; subsequent authenticated API status was `KernelWorkerStatus.RUNNING`. Notebook SHA remains `6ce1e157fd7cc50a1ca79b10917a7bd190a73ac659318a8d79dddaecf7b93700`. Do not duplicate or ask for the same permission again. No competition submission exists yet: first validate the terminal preview outputs, exact final-adapter/component/source identities and zero failures, then submit this exact version once. Final selections remain unchanged.
 
 This latest explicit direction authorizes completing this particular inference/submission attempt; it does not authorize broader research, training or changes to selected finals. Its8.3h hidden inference cap may extend beyond the earlier research-window end; check the actual competition submission deadline before submitting. No improvement is established.

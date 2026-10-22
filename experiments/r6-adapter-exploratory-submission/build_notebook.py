@@ -52,8 +52,13 @@ def build():
                     print('EXPLORATORY_ADAPTER_FOLD0_LOADED', '__EPOCH_SHA__', flush=True)
 '''.replace('__EPOCH_SHA__', EPOCH_SHA)
     setup = f'''# Explicit user-authorized exploration; failed proxy gate remains failed.
-_epoch_candidates = list(Path('/kaggle/input').rglob('epoch_3.pt'))
-_epoch_candidates = [_p for _p in _epoch_candidates if _p.parent.name == 'results' and _p.parent.parent.name == 'r6_lowrank_adaptation']
+_input_root = Path('/kaggle/input')
+_training_slug = 'rsna-knee-r6-lowrank-spatial-adaptation'
+_mounts = [_input_root / _training_slug, _input_root / 'notebooks' / 'sarthaksharma14' / _training_slug]
+_mounts += list(_input_root.glob('notebooks/*/' + _training_slug))
+_mounts += list(_input_root.glob('*/' + _training_slug))
+_epoch_candidates = sorted({{_m / 'r6_lowrank_adaptation' / 'results' / 'epoch_3.pt'
+    for _m in _mounts if (_m / 'r6_lowrank_adaptation' / 'results' / 'epoch_3.pt').is_file()}})
 assert len(_epoch_candidates) == 1, _epoch_candidates
 _epoch_path = _epoch_candidates[0]
 assert hashlib.sha256(_epoch_path.read_bytes()).hexdigest() == {EPOCH_SHA!r}

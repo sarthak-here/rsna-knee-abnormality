@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -31,9 +32,12 @@ class BuildTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             dest = Path(tmp)
             (dest / source.name).write_bytes(source.read_bytes())
-            code = ''.join(nb['cells'][8]['source']).replace("Path('/kaggle/input')", repr(str(ROOT / '.audit/r6-lowrank-v1/output')))
-            # Path object is required before rglob, not a plain string literal.
-            code = code.replace(repr(str(ROOT / '.audit/r6-lowrank-v1/output'))+'.rglob', 'Path('+repr(str(ROOT / '.audit/r6-lowrank-v1/output'))+').rglob')
+            inputs = dest / 'input'
+            epoch = inputs / 'notebooks/sarthaksharma14/rsna-knee-r6-lowrank-spatial-adaptation/r6_lowrank_adaptation/results/epoch_3.pt'
+            epoch.parent.mkdir(parents=True)
+            os.link(ROOT / '.audit/r6-lowrank-v1/output/r6_lowrank_adaptation/results/epoch_3.pt', epoch)
+            code = ''.join(nb['cells'][8]['source']).replace("Path('/kaggle/input')", 'Path('+repr(str(inputs))+')')
+            self.assertNotIn('.rglob(', code)
             env = dict(Path=Path, hashlib=hashlib, json=json, SRC=dest, WORK=dest,
                 SOURCE_SHA={'compact_infer.py': hashlib.sha256(source.read_bytes()).hexdigest()})
             exec(code, env)
