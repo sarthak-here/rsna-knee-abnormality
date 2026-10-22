@@ -1,0 +1,202 @@
+{
+  "fitting_report_groups": 3199,
+  "fitting_studies": 3228,
+  "excluded_groups": {
+    "source_fold0_or_shared_report_groups": 1000,
+    "gold_or_exact_report_duplicate_groups": 58
+  },
+  "parsed_gold_reports": 0,
+  "parsed_source_fold0_reports": 0,
+  "report_length_characters": {
+    "0.0": 52,
+    "0.25": 636,
+    "0.5": 1005,
+    "0.75": 1475,
+    "1.0": 4477
+  },
+  "heading_counts": {
+    "recognized_findings_heading": 1358,
+    "no_recognized_heading": 1841
+  },
+  "overlapping_heading_lexical_indicators": {
+    "spanish": 189,
+    "dutch": 120,
+    "french": 491,
+    "english": 824
+  },
+  "series_count_histogram": {
+    "5": 1706,
+    "6": 486,
+    "4": 493,
+    "8": 111,
+    "7": 229,
+    "10": 54,
+    "9": 127,
+    "12": 5,
+    "3": 1,
+    "11": 14,
+    "13": 1,
+    "14": 1
+  },
+  "protocol_metadata_flags": {
+    "no_fluid_sensitive_sagittal_metadata": 202
+  },
+  "fluid_sensitive_metadata_values": {
+    "1": 14010,
+    "0": 10361
+  },
+  "plane_metadata_values": {
+    "Sagittal": 9864,
+    "Axial": 5898,
+    "Coronal": 8609
+  },
+  "per_finding": {
+    "ACL": {
+      "supported_by_literal_parser": true,
+      "known_report_groups": 423,
+      "unknown_report_groups": 2776,
+      "coverage": 0.13222882150672086,
+      "state_counts": {
+        "normal": 334,
+        "tear_unspecified": 38,
+        "complete_tear": 51
+      },
+      "entity_clauses": 903,
+      "multi_entity_clauses_rejected": 191
+    },
+    "MCL": {
+      "supported_by_literal_parser": true,
+      "known_report_groups": 342,
+      "unknown_report_groups": 2857,
+      "coverage": 0.10690840887777431,
+      "state_counts": {
+        "normal": 338,
+        "complete_tear": 4
+      },
+      "entity_clauses": 699,
+      "multi_entity_clauses_rejected": 192
+    },
+    "Medial Meniscus": {
+      "supported_by_literal_parser": true,
+      "known_report_groups": 626,
+      "unknown_report_groups": 2573,
+      "coverage": 0.19568615192247577,
+      "state_counts": {
+        "tear": 388,
+        "normal": 238
+      },
+      "entity_clauses": 1282,
+      "multi_entity_clauses_rejected": 49
+    },
+    "Lateral Meniscus": {
+      "supported_by_literal_parser": true,
+      "known_report_groups": 607,
+      "unknown_report_groups": 2592,
+      "coverage": 0.18974679587371054,
+      "state_counts": {
+        "normal": 475,
+        "tear": 132
+      },
+      "entity_clauses": 907,
+      "multi_entity_clauses_rejected": 26
+    },
+    "Medial OA": {
+      "supported_by_literal_parser": false,
+      "known_report_groups": 0,
+      "unknown_report_groups": 3199,
+      "coverage": 0.0,
+      "state_counts": {},
+      "entity_clauses": 0,
+      "multi_entity_clauses_rejected": 0
+    },
+    "Lateral OA": {
+      "supported_by_literal_parser": false,
+      "known_report_groups": 0,
+      "unknown_report_groups": 3199,
+      "coverage": 0.0,
+      "state_counts": {},
+      "entity_clauses": 0,
+      "multi_entity_clauses_rejected": 0
+    },
+    "PF OA": {
+      "supported_by_literal_parser": false,
+      "known_report_groups": 0,
+      "unknown_report_groups": 3199,
+      "coverage": 0.0,
+      "state_counts": {},
+      "entity_clauses": 0,
+      "multi_entity_clauses_rejected": 0
+    },
+    "Effusion": {
+      "supported_by_literal_parser": true,
+      "known_report_groups": 441,
+      "unknown_report_groups": 2758,
+      "coverage": 0.13785557986870897,
+      "state_counts": {
+        "none_or_trace": 202,
+        "moderate": 100,
+        "small": 126,
+        "large": 13
+      },
+      "entity_clauses": 1057,
+      "multi_entity_clauses_rejected": 164
+    },
+    "Synovitis": {
+      "supported_by_literal_parser": true,
+      "known_report_groups": 87,
+      "unknown_report_groups": 3112,
+      "coverage": 0.027195998749609252,
+      "state_counts": {
+        "synovitis": 78,
+        "none": 9
+      },
+      "entity_clauses": 226,
+      "multi_entity_clauses_rejected": 132
+    },
+    "Baker's": {
+      "supported_by_literal_parser": true,
+      "known_report_groups": 319,
+      "unknown_report_groups": 2880,
+      "coverage": 0.0997186620819006,
+      "state_counts": {
+        "none": 181,
+        "small": 70,
+        "moderate": 19,
+        "ruptured_or_leaking": 46,
+        "large": 3
+      },
+      "entity_clauses": 704,
+      "multi_entity_clauses_rejected": 74
+    },
+    "Contusion": {
+      "supported_by_literal_parser": false,
+      "known_report_groups": 0,
+      "unknown_report_groups": 3199,
+      "coverage": 0.0,
+      "state_counts": {},
+      "entity_clauses": 0,
+      "multi_entity_clauses_rejected": 0
+    },
+    "Fracture": {
+      "supported_by_literal_parser": true,
+      "known_report_groups": 30,
+      "unknown_report_groups": 3169,
+      "coverage": 0.009377930603313536,
+      "state_counts": {
+        "none": 27,
+        "acute_fracture": 1,
+        "old_or_healed_fracture": 2
+      },
+      "entity_clauses": 398,
+      "multi_entity_clauses_rejected": 9
+    }
+  },
+  "no_model_or_predictions_read": true,
+  "new_targets_written": false,
+  "scope": "aggregate descriptive fitting-only EDA; no label correctness or pathology validation",
+  "input_sha256": {
+    "train": "8ca2203c0e9d61c080c7a314c7cdb51c1b03a1d9eb4770819f7f34af53ef4e33",
+    "series": "573c1d80772bf41211c91b149c95677385a1c22d63f485c347f1b46c0177aef3",
+    "frozen_rules": "e10ed7ed45841ab058ffe6926e8bddf01e46a67da2fcf149c6dae0f49569b736"
+  }
+}
