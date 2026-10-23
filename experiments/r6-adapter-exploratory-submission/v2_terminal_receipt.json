@@ -1,0 +1,27 @@
+{
+  "observed_at_utc": "2026-10-23T00:03:27.447Z",
+  "observation_time_note": "Heartbeat trigger time; API queried immediately afterwards",
+  "api_object": {
+    "ref": 57535170,
+    "totalBytes": 247131,
+    "date": "2026-10-22T18:44:54.697Z",
+    "description": "User-approved runtime-only bounded checkpoint lookup repair v2; final rank8 fold0; unchanged 0.958 blend",
+    "fileName": "submission.csv",
+    "publicScore": "0.958",
+    "privateScore": "0.942",
+    "status": "COMPLETE",
+    "submittedBy": "sarthaksharma14",
+    "submittedByRef": "sarthaksharma14",
+    "teamName": "Sarthak Sharma",
+    "url": "/code/sarthaksharma14/rsna-knee-r6-adapter-exploratory-submission?scriptVersionId=361224796"
+  },
+  "errorDescription_present": false,
+  "kernel_version": 2,
+  "scriptVersionId": 361224796,
+  "terminal_success": true,
+  "displayed_public_gain_over_0958_control": 0.0,
+  "private_gain_over_control_established": false,
+  "selected_submissions_changed": false,
+  "selected_pair_preserved": [57483292, 57197157],
+  "scope": "Successful user-directed exploratory competition inference; public tie, no established training improvement or private improvement over control. No hidden inference logs or predictions audited locally."
+}

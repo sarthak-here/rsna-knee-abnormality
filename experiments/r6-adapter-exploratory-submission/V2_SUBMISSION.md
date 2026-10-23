@@ -1,5 +1,13 @@
 # Version2 repaired exploration — accepted submission57535170
 
+## Terminal result — 23 October 2026
+
+The full Kaggle API object observed just after 00:03 UTC / 05:33 IST reports **COMPLETE**, **public 0.958**, **private 0.942**, 247131 output bytes and no `errorDescription` field. Exact version2 / scriptVersionId361224796 is confirmed. Full object retained in `v2_terminal_receipt.json`.
+
+This is a successful competition run, but a **displayed public tie** with the frozen 0.958 control, not an established improvement from our training. A private gain over that control has not been established. Hidden inference logs/predictions were not independently audited locally; preview integrity evidence remains distinct from the hidden score result. The original version1 exception cause remains unknown.
+
+Final selections57483292 and57197157 remain unchanged. No third version, retraining, resubmission or automatic promotion. The terminal monitoring task is finished and its recurring monitor is being stopped.
+
 Kaggle accepted**57535170** at22October2026 18:44:54.697UTC /23October2026 00:14:54IST, before the verified23:59UTC /05:29ISTdeadline. Exact version**2**, scriptVersionId**361224796**, output`submission.csv`. Description: `User-approved runtime-only bounded checkpoint lookup repair v2; final rank8 fold0; unchanged 0.958 blend`. Initial full API object confirms ID/version/date but omits status/error/score fields at first query; do not infer success or score. CLI reported3daily submissions remaining. Check status AND errorDescription and scores; API COMPLETE alone is not success.
 
 Explicit user "so go ahead" authorized this bounded runtime repair and one resubmission. No duplicate resubmission, third version or broader research is automatically authorized.
