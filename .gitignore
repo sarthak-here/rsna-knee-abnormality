@@ -4,3 +4,20 @@ __pycache__/
 submission.csv
 *.pt
 *.pth
+
+# Local medical-data, model and authentication artifacts are not public source.
+.audit/
+.pytest_cache/
+.env
+.env.*
+*.dcm
+*.ckpt
+*.safetensors
+*.npz
+*.npy
+*.h5
+*.hdf5
+
+# Already-tracked copies still require coordinated history cleanup.
+experiments/r6-own-report-adaptation/splits.json
+experiments/r6-own-report-adaptation/own-report-adaptation.ipynb

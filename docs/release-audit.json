@@ -1,0 +1,129 @@
+{
+  "scope": "all locally reachable refs; unique Git blobs",
+  "blobs_scanned": 755,
+  "official_metadata_available": true,
+  "known_official_id_count": 4407,
+  "findings": [
+    {
+      "path": "experiments/coatnet-oof-corrected-validation/output-v2/gold_best.npz",
+      "blob_sha": "7139850b26130ed18ee49b23f5d3109a8e887686",
+      "bytes": 21158,
+      "reasons": [
+        "data_or_weight_artifact_requires_review"
+      ],
+      "distinct_official_ids": 0
+    },
+    {
+      "path": "experiments/coatnet-oof-corrected-validation/output-v2/gold_swa.npz",
+      "blob_sha": "0e03562a8fee3063216ef5a516a6499616bead32",
+      "bytes": 21158,
+      "reasons": [
+        "data_or_weight_artifact_requires_review"
+      ],
+      "distinct_official_ids": 0
+    },
+    {
+      "path": "experiments/coatnet2-public-gold-reproduction/output-v2/coatnet2_gold_predictions.npz",
+      "blob_sha": "08b71b21b5b47750b670fa8b71663eb1e2254ba8",
+      "bytes": 10525,
+      "reasons": [
+        "data_or_weight_artifact_requires_review"
+      ],
+      "distinct_official_ids": 0
+    },
+    {
+      "path": "experiments/convnext-oof-teacher-audit/output-v1/convnext_oof_predictions.csv",
+      "blob_sha": "60b4df414e6cd1632cbded5d06715ec09cf0aca7",
+      "bytes": 516916,
+      "reasons": [
+        "official_study_identifiers",
+        "data_or_weight_artifact_requires_review"
+      ],
+      "distinct_official_ids": 2610
+    },
+    {
+      "path": "experiments/convnext-reader-mirror-validation/output-v1/convnext_mirror_gold_predictions.npz",
+      "blob_sha": "34c8590ccf55039fc2234542bc707075fa213d42",
+      "bytes": 10973,
+      "reasons": [
+        "data_or_weight_artifact_requires_review"
+      ],
+      "distinct_official_ids": 0
+    },
+    {
+      "path": "experiments/curia2-gpu-validation/curia2-gpu-validation.ipynb",
+      "blob_sha": "0ebeee0d4056cb6b33ea31c7bb66d943748f038e",
+      "bytes": 1017522,
+      "reasons": [
+        "official_study_identifiers"
+      ],
+      "distinct_official_ids": 58
+    },
+    {
+      "path": "experiments/curia2-gpu-validation/source/upstream-v62.ipynb",
+      "blob_sha": "638d4caf4683220daacb43cceea839d914f0ce3a",
+      "bytes": 1013322,
+      "reasons": [
+        "official_study_identifiers"
+      ],
+      "distinct_official_ids": 58
+    },
+    {
+      "path": "experiments/dinosaur-v55-public-reproduction/output-v1/v45_anchor_0936.csv",
+      "blob_sha": "32b9ce459389be69fc6b0f3c6882d82e731937c6",
+      "bytes": 770,
+      "reasons": [
+        "data_or_weight_artifact_requires_review"
+      ],
+      "distinct_official_ids": 0
+    },
+    {
+      "path": "experiments/r6-own-report-adaptation/own-report-adaptation.ipynb",
+      "blob_sha": "648ef8b2089ddaddb423bf1198b061e418a457bf",
+      "bytes": 589260,
+      "reasons": [
+        "official_study_identifiers"
+      ],
+      "distinct_official_ids": 320
+    },
+    {
+      "path": "experiments/r6-own-report-adaptation/splits.json",
+      "blob_sha": "486da30fc18eba571f47fcaba76d9b7e78146575",
+      "bytes": 115586,
+      "reasons": [
+        "official_study_identifiers",
+        "per_study_supervision_split"
+      ],
+      "distinct_official_ids": 320
+    },
+    {
+      "path": "experiments/r6-own-report-adaptation/own-report-adaptation.ipynb",
+      "blob_sha": "4836cca16c6189ce6baf17411742526c234dfd7b",
+      "bytes": 587289,
+      "reasons": [
+        "official_study_identifiers"
+      ],
+      "distinct_official_ids": 320
+    },
+    {
+      "path": "experiments/r6-own-report-adaptation/own-report-adaptation.ipynb",
+      "blob_sha": "13140067039d7ed66034b3e515c87122fb98e996",
+      "bytes": 585785,
+      "reasons": [
+        "official_study_identifiers"
+      ],
+      "distinct_official_ids": 320
+    },
+    {
+      "path": "experiments/curia2-gpu-validation/curia2-gpu-validation.ipynb",
+      "blob_sha": "04db341bd93ea597d0790a10e4c36068c06512e4",
+      "bytes": 1016718,
+      "reasons": [
+        "official_study_identifiers"
+      ],
+      "distinct_official_ids": 58
+    }
+  ],
+  "public_release_approved": false,
+  "limitations": "Exact known-ID and selected secret patterns only; absence of hits is not proof of safe content. No artifact rights or full medical free-text review."
+}
